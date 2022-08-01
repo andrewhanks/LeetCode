@@ -14,38 +14,42 @@ class Question_1705_Maximum_Number_of_Eaten_Apples {
         }
 
         fun eatenApples(apples: IntArray, days: IntArray): Int {
-            var mostApples = 0
-            // 0: days, 1: max stored days, 2: apple numbers
+            // 0: max stored days, 1: apple numbers
             val growApples: PriorityQueue<IntArray> = PriorityQueue { a, b ->
-                if (a[1] == b[1]) {
-                    b[0] - a[0]
+                a[0] - b[0]
+            }
+            if (days.isEmpty()) {
+                return 0
+            }
+            var day = 0
+            var mostApples = 0
+            var maxStoreDay = days[0]
+            while (day <= apples.size - 1 || day <= maxStoreDay) {
+                if (day <= apples.size - 1 && apples[day] != 0) {
+                    growApples.add(intArrayOf(days[day] + day, apples[day]))
+                }
+                while (growApples.peek() != null && (growApples.peek()[1] <= 0 || growApples.peek()[0] <= day)) {
+                    growApples.remove()
+                }
+                if (growApples.peek() == null) {
+                    day++
                 } else {
-                    b[1] - a[1]
-                }
-            }
-            days.forEachIndexed { index, value ->
-                if (value != 0) {
-                    growApples.offer(intArrayOf(index + 1, index + value, apples[index]))
-                }
-            }
-            var day = growApples.peek()[1]
-            while (day >= 1) {
-                val temp = growApples.peek() ?: break
-                println("day = $day, mostApples = $mostApples" + ", temp[0] = ${temp[0]}, temp[1] = ${temp[1]}, temp[2] = ${temp[2]}")
-                if (day >= temp[0] && day <= temp[1] && temp[2] > 0) {
-                    temp[2] = temp[2] - 1
-                    mostApples++
-                    day--
-                } else if (day < temp[0] || temp[2] <= 0) {
-                    growApples.poll()
-                } else if (temp[1] < day) {
-                    day--
+                    val temp = growApples.peek()
+                    if (day < temp[0]) {
+                        temp[1] = temp[1] - 1
+                        mostApples++
+                        day++
+                    }
+                    if (maxStoreDay < temp[0]) {
+                        maxStoreDay = temp[0]
+                    }
                 }
             }
             return mostApples
         }
 
         fun eatenApplesWebSolution(apples: IntArray, days: IntArray): Int {
+            // 0: number of apples, 1: max stored day
             val q: PriorityQueue<IntArray> = PriorityQueue { a, b -> a[1] - b[1] }
 
             var count = 0
