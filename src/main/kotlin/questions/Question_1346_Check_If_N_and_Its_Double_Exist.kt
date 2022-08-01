@@ -4,7 +4,7 @@ class Question_1346_Check_If_N_and_Its_Double_Exist {
 
     companion object {
 
-        fun runQuestion1346() {
+        fun runQuestion() {
             val numberArray = intArrayOf(10, 2, 5, 3)
             val result = checkIfExist(numberArray)
             println("Question 1346: $result")

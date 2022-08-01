@@ -5,7 +5,7 @@ class Question_15_3Sum {
 
     companion object {
 
-        fun runQuestion15() {
+        fun runQuestion() {
             val intArray = "-1,0,1,2,-1,-4".split(',').map { num -> num.toInt() }.toIntArray()
             val resultList = threeSumWebSolution(intArray)
             var result = "["

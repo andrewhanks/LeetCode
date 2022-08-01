@@ -4,7 +4,7 @@ class Question_17_Letter_Combinations_of_a_Phone_Number {
 
     companion object {
 
-        fun runQuestion17() {
+        fun runQuestion() {
             val number = "23"
             val result = letterCombinations(number)
             println("Question 17: $result")

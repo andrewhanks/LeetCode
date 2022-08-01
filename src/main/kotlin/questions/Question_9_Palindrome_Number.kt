@@ -4,7 +4,7 @@ class Question_9_Palindrome_Number {
 
     companion object {
 
-        fun runQuestion9() {
+        fun runQuestion() {
             val inputInt = 121
             val result = isPalindrome(inputInt)
             println("Question 9: $result")

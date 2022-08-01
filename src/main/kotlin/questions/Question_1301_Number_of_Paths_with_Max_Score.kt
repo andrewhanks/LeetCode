@@ -5,7 +5,7 @@ class Question_1301_Number_of_Paths_with_Max_Score {
 
     companion object {
 
-        fun runQuestion1301() {
+        fun runQuestion() {
             val stringArray = arrayOf("E12", "1X1", "21S").toList()
             val resultArray = pathsWithMaxScoreWebSolution(stringArray)
             var result = "["

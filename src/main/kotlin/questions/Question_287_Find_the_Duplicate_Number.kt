@@ -4,7 +4,7 @@ class Question_287_Find_the_Duplicate_Number {
 
     companion object {
 
-        fun runQuestion287() {
+        fun runQuestion() {
             val inputIntArray = intArrayOf(1, 3, 4, 2, 2)
             val result = findDuplicate(inputIntArray)
             println("Question 287: $result")

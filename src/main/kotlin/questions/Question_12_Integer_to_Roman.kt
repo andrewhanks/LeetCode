@@ -4,7 +4,7 @@ class Question_12_Integer_to_Roman {
 
     companion object {
 
-        fun runQuestion12() {
+        fun runQuestion() {
             val input = 3
             val result = intToRoman(input)
             println("Question 12: $result")

@@ -4,7 +4,7 @@ class Question_5_Longest_Palindromic_Substring {
 
     companion object {
 
-        fun runQuestion5() {
+        fun runQuestion() {
             val inputString = "babad"
             val result = longestPalindromeWebSolution(inputString)
             println("Question 5: $result")

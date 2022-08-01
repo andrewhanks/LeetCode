@@ -4,7 +4,7 @@ class Question_29_Divide_Two_Integers {
 
     companion object {
 
-        fun runQuestion29() {
+        fun runQuestion() {
             val number1 = 10
             val number2 = 3
             val result = divide(number1, number2)

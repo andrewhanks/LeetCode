@@ -5,7 +5,7 @@ class Question_46_Permutations {
 
     companion object {
 
-        fun runQuestion46() {
+        fun runQuestion() {
             val intArray = intArrayOf(1, 2, 3)
             val resultList = permute(intArray)
             var result = "["

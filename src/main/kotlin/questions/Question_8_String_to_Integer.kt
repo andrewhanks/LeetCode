@@ -4,7 +4,7 @@ class Question_8_String_to_Integer {
 
     companion object {
 
-        fun runQuestion8() {
+        fun runQuestion() {
             val inputString = "42"
             val result = myAtoi(inputString)
             println("Question 8: $result")

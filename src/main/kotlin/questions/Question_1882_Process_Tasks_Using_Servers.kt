@@ -6,7 +6,7 @@ class Question_1882_Process_Tasks_Using_Servers {
 
     companion object {
 
-        fun runQuestion1882() {
+        fun runQuestion() {
             val numberArray1 = intArrayOf(3, 3, 2)
             val numberArray2 = intArrayOf(1, 2, 3, 2, 1, 2)
             val result = assignTasksWithPriorityQueuesWebSolution(numberArray1, numberArray2)

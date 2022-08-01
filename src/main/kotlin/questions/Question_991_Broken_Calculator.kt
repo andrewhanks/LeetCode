@@ -4,7 +4,7 @@ class Question_991_Broken_Calculator {
 
     companion object {
 
-        fun runQuestion991() {
+        fun runQuestion() {
             val number1 = 2
             val number2 = 3
             val result = brokenCalc(number1, number2).toString()

@@ -7,7 +7,7 @@ class Question_652_Find_Duplicate_Subtrees {
 
     companion object {
 
-        fun runQuestion652() {
+        fun runQuestion() {
             val treeNodes: TreeNode
             val treeNode1 = TreeNode(1)
             val treeNode2 = TreeNode(2)

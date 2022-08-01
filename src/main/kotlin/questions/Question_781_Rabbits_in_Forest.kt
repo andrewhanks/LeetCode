@@ -4,7 +4,7 @@ class Question_781_Rabbits_in_Forest {
 
     companion object {
 
-        fun runQuestion781() {
+        fun runQuestion() {
             val numberArray = intArrayOf(1, 1, 2)
             val result = numRabbits(numberArray)
             println("Question 781: $result")

@@ -4,7 +4,7 @@ class Question_16_3Sum_Closest {
 
     companion object {
 
-        fun runQuestion16() {
+        fun runQuestion() {
             val inputNums = intArrayOf(1, 1, -1, -1, 3)
             val inputTarget = -1
             val result = threeSumClosest(inputNums, inputTarget)

@@ -4,7 +4,7 @@ class Question_14_Longest_Common_Prefix {
 
     companion object {
 
-        fun runQuestion14() {
+        fun runQuestion() {
             val stringArray = arrayOf("flower", "flow", "flight")
             val result = longestCommonPrefix(stringArray)
             println("Question 14: $result")

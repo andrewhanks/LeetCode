@@ -4,7 +4,7 @@ class Question_948_Bag_of_Tokens {
 
     companion object {
 
-        fun runQuestion948() {
+        fun runQuestion() {
             val inputNums = intArrayOf(100, 200, 300, 400)
             val inputTarget = 200
             val result = bagOfTokensScore(inputNums, inputTarget)

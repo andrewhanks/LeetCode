@@ -4,7 +4,7 @@ class Question_442_Find_All_Duplicates_in_an_Array {
 
     companion object {
 
-        fun runQuestion442() {
+        fun runQuestion() {
             val inputIntArray = intArrayOf(4, 3, 2, 7, 8, 2, 3, 1)
             val resultList = findDuplicatesWebSolution(inputIntArray)
             var result = "["

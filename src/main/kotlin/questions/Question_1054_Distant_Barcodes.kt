@@ -4,7 +4,7 @@ class Question_1054_Distant_Barcodes {
 
     companion object {
 
-        fun runQuestion1054() {
+        fun runQuestion() {
             val inputIntArray = intArrayOf(1, 1, 1, 1, 2, 2, 3, 3)
             val resultList = rearrangeBarcodes(inputIntArray)
             var result = "["

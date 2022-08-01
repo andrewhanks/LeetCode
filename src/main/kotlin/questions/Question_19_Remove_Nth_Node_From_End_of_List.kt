@@ -6,7 +6,7 @@ class Question_19_Remove_Nth_Node_From_End_of_List {
 
     companion object {
 
-        fun runQuestion19() {
+        fun runQuestion() {
             val listNode = ListNode()
             listNode.`val` = 1
             listNode.next = ListNode(2)

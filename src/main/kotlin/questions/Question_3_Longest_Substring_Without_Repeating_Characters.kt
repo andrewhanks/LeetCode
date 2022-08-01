@@ -4,7 +4,7 @@ class Question_3_Longest_Substring_Without_Repeating_Characters {
 
     companion object {
 
-        fun runQuestion3() {
+        fun runQuestion() {
             val inputString = "abcabcbb"
             val result = lengthOfLongestSubstring(inputString)
             println("Question 3: $result")

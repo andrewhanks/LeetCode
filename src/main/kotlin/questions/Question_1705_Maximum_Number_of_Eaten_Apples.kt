@@ -6,7 +6,7 @@ class Question_1705_Maximum_Number_of_Eaten_Apples {
 
     companion object {
 
-        fun runQuestion1705() {
+        fun runQuestion() {
             val numberArray1 = intArrayOf(1, 2, 3, 5, 2)
             val numberArray2 = intArrayOf(3, 2, 1, 4, 2)
             val result = eatenApples(numberArray1, numberArray2)

@@ -4,7 +4,7 @@ class Question_1_Two_Sum {
 
     companion object {
 
-        fun runQuestion1() {
+        fun runQuestion() {
             val numberArray = intArrayOf(2, 7, 11, 15)
             val numberSum = 9
             val resultArray = twoSum(numberArray, numberSum)

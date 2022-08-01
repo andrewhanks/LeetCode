@@ -4,7 +4,7 @@ class Question_2216_Minimum_Deletions_to_Make_Array_Beautiful {
 
     companion object {
 
-        fun runQuestion2216() {
+        fun runQuestion() {
             val numberArray = intArrayOf(1, 1, 2, 3, 5)
             val result = minDeletion(numberArray)
             println("Question 1705: $result")

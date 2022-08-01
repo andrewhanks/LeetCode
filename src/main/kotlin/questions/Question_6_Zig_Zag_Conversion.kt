@@ -4,7 +4,7 @@ class Question_6_Zig_Zag_Conversion {
 
     companion object {
 
-        fun runQuestion6() {
+        fun runQuestion() {
             val inputString = "PAYPALISHIRING"
             val inputRows = 3
             val result = convert(inputString, inputRows)

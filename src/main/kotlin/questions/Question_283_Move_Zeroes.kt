@@ -4,7 +4,7 @@ class Question_283_Move_Zeroes {
 
     companion object {
 
-        fun runQuestion283() {
+        fun runQuestion() {
             val inputIntArray = intArrayOf(0, 1, 0, 3, 12)
             val resultList = moveZeroes(inputIntArray)
             var result = "["

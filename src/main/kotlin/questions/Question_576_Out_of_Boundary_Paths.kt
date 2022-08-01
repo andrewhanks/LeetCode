@@ -4,7 +4,7 @@ class Question_576_Out_of_Boundary_Paths {
 
     companion object {
 
-        fun runQuestion576() {
+        fun runQuestion() {
             val number1 = 2
             val number2 = 2
             val number3 = 2

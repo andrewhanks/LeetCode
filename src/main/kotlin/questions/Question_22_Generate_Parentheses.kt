@@ -4,7 +4,7 @@ class Question_22_Generate_Parentheses {
 
     companion object {
 
-        fun runQuestion22() {
+        fun runQuestion() {
             val input = 3
             val resultList = generateParenthesisWebSolution(input)
             var result = "["

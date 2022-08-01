@@ -4,7 +4,7 @@ class Question_4_Median_of_Two_Sorted_Arrays {
 
     companion object {
 
-        fun runQuestion4() {
+        fun runQuestion() {
             val numberArray1 = intArrayOf(1, 3)
             val numberArray2 = intArrayOf(2)
             val result = findMedianSortedArrays(numberArray1, numberArray2)

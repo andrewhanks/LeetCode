@@ -4,7 +4,7 @@ class Question_11_Container_With_Most_Water {
 
     companion object {
 
-        fun runQuestion11() {
+        fun runQuestion() {
             val numberArray = intArrayOf(1, 8, 6, 2, 5, 4, 8, 3, 7)
             val result = maxArea2(numberArray)
             println("Question 11: $result")

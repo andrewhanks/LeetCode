@@ -4,7 +4,7 @@ class Question_43_Multiply_Strings {
 
     companion object {
 
-        fun runQuestion43() {
+        fun runQuestion() {
             val stringNumber1 = "123"
             val stringNumber2 = "456"
             val result = multiply(stringNumber1, stringNumber2)

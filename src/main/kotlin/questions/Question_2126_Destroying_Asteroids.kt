@@ -4,7 +4,7 @@ class Question_2126_Destroying_Asteroids {
 
     companion object {
 
-        fun runQuestion2126() {
+        fun runQuestion() {
             val massArray = intArrayOf(3, 9, 19, 5, 21)
             val planetMass = 10
             val result = asteroidsDestroyed(planetMass, massArray)

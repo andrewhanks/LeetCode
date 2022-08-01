@@ -6,7 +6,7 @@ class Question_2_Add_Two_Numbers {
 
     companion object {
 
-        fun runQuestion2() {
+        fun runQuestion() {
             val listNode1 = ListNode()
             val listNode2 = ListNode()
             listNode1.`val` = 2

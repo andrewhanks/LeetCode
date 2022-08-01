@@ -6,7 +6,7 @@ class Question_23_Merge_k_Sorted_Lists {
 
     companion object {
 
-        fun runQuestion23() {
+        fun runQuestion() {
             var listNodeArray: Array<ListNode?> = Array(3) { null }
             val listNode1 = ListNode(1)
             listNode1.next = ListNode(4)

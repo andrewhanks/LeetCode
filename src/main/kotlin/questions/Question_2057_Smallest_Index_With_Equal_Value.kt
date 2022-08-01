@@ -4,7 +4,7 @@ class Question_2057_Smallest_Index_With_Equal_Value {
 
     companion object {
 
-        fun runQuestion2057() {
+        fun runQuestion() {
             val numberArray = intArrayOf(4, 3, 2, 1)
             val result = smallestEqual(numberArray)
             println("Question 2057: $result")

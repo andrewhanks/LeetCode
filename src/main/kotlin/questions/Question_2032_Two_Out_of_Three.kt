@@ -4,7 +4,7 @@ class Question_2032_Two_Out_of_Three {
 
     companion object {
 
-        fun runQuestion2032() {
+        fun runQuestion() {
             val numberArray1 = intArrayOf(1, 1, 3, 2)
             val numberArray2 = intArrayOf(2, 3)
             val numberArray3 = intArrayOf(3)
