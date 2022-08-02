@@ -26,5 +26,19 @@ class Question_215_Kth_Largest_Element_in_an_Array {
             }
             return result
         }
+
+        fun findKthLargestBaseOnBoundaries(nums: IntArray, k: Int): Int {
+            var tempK = k
+            val count = IntArray(2 * 10000 + 1)
+            for (i in nums.indices) {
+                // map -10000~10000 to 0~20000
+                count[nums[i] + 10000]++
+            }
+            for (i in count.indices.reversed()) {
+                tempK -= count[i]
+                if (tempK <= 0) return i - 10000
+            }
+            return -10000
+        }
     }
 }
