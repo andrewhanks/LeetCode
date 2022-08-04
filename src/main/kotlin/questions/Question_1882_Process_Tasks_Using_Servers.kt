@@ -9,7 +9,16 @@ class Question_1882_Process_Tasks_Using_Servers {
         fun runQuestion() {
             val numberArray1 = intArrayOf(3, 3, 2)
             val numberArray2 = intArrayOf(1, 2, 3, 2, 1, 2)
-            val result = assignTasksWithPriorityQueuesWebSolution(numberArray1, numberArray2)
+            val resultList = assignTasksWithPriorityQueuesWebSolution(numberArray1, numberArray2)
+            var result = "["
+            resultList.forEachIndexed { index, i ->
+                result += i
+                if (index == resultList.size - 1) {
+                    result += "]"
+                } else {
+                    result += ","
+                }
+            }
             println("Question 1882: $result")
         }
 
