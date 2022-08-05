@@ -35,11 +35,12 @@ fun main(args: Array<String>) {
 //    Question_1054_Distant_Barcodes.runQuestion()
 //    Question_1301_Number_of_Paths_with_Max_Score.runQuestion()
 //    Question_1346_Check_If_N_and_Its_Double_Exist.runQuestion()
+    Question_1405_Longest_Happy_String.runQuestion()
 //    Question_1705_Maximum_Number_of_Eaten_Apples.runQuestion()
 //    Question_1882_Process_Tasks_Using_Servers.runQuestion()
 //    Question_2032_Two_Out_of_Three.runQuestion()
 //    Question_2057_Smallest_Index_With_Equal_Value.runQuestion()
 //    Question_2126_Destroying_Asteroids.runQuestion()
 //    Question_2216_Minimum_Deletions_to_Make_Array_Beautiful.runQuestion()
-    Question_2337_Move_Pieces_to_Obtain_a_String.runQuestion()
+//    Question_2337_Move_Pieces_to_Obtain_a_String.runQuestion()
 }
