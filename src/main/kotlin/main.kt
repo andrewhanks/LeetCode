@@ -50,5 +50,6 @@ fun main(args: Array<String>) {
 //    Question_2126_Destroying_Asteroids.runQuestion()
 //    Question_2216_Minimum_Deletions_to_Make_Array_Beautiful.runQuestion()
 //    Question_2337_Move_Pieces_to_Obtain_a_String.runQuestion()
-    Question_2643_Row_With_Maximum_Ones.runQuestion()
+//    Question_2643_Row_With_Maximum_Ones.runQuestion()
+    Question_2685_Count_the_Number_of_Complete_Components.runQuestion()
 }
