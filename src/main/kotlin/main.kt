@@ -22,6 +22,7 @@ fun main(args: Array<String>) {
 //    Question_29_Divide_Two_Integers.runQuestion()
 //    Question_43_Multiply_Strings.runQuestion()
 //    Question_46_Permutations.runQuestion()
+    Question_98_Validate_Binary_Search_Tree.runQuestion()
 //    Question_139_Word_Break.runQuestion()
 //    Question_215_Kth_Largest_Element_in_an_Array.runQuestion()
 //    Question_283_Move_Zeroes.runQuestion()
@@ -53,5 +54,5 @@ fun main(args: Array<String>) {
 //    Question_2643_Row_With_Maximum_Ones.runQuestion()
 //    Question_2685_Count_the_Number_of_Complete_Components.runQuestion()
 //    Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements.runQuestion()
-    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
+//    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
 }
