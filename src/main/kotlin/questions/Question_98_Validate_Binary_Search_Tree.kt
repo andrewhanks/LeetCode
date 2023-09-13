@@ -31,6 +31,20 @@ class Question_98_Validate_Binary_Search_Tree {
         val resultArray: MutableList<Int> = mutableListOf()
 
         fun isValidBST(root: TreeNode?): Boolean {
+            return isValid(root, null, null)
+        }
+
+        fun isValid(root: TreeNode?, min: Int?, max: Int?): Boolean {
+            if (root?.`val` == null) {
+                return true
+            }
+            if ((min != null && root.`val`!! <= min) || (max != null && root.`val`!! >= max)) {
+                return false
+            }
+            return isValid(root.left, min, root.`val`) && isValid(root.right, root.`val`, max)
+        }
+
+        fun isValidBSTSlow(root: TreeNode?): Boolean {
             printFullBst(root)
             var isAscendingTree = true
             resultArray.sorted().forEachIndexed { index, i ->
