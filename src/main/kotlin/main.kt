@@ -52,5 +52,6 @@ fun main(args: Array<String>) {
 //    Question_2337_Move_Pieces_to_Obtain_a_String.runQuestion()
 //    Question_2643_Row_With_Maximum_Ones.runQuestion()
 //    Question_2685_Count_the_Number_of_Complete_Components.runQuestion()
-    Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements.runQuestion()
+//    Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements.runQuestion()
+    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
 }
