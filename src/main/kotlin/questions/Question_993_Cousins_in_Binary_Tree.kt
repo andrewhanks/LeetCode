@@ -1,7 +1,7 @@
 package questions
 
 import models.TreeNode
-import kotlin.math.pow
+import java.util.*
 
 class Question_993_Cousins_in_Binary_Tree {
 
@@ -35,8 +35,45 @@ class Question_993_Cousins_in_Binary_Tree {
         var yDepth = 0
 
         fun isCousins(root: TreeNode?, x: Int, y: Int): Boolean {
-            traversalTree(root, x, y, 0, null)
-            return xParent != yParent && xDepth == yDepth
+//            traversalTree(root, x, y, 0, null)
+//            return xParent != yParent && xDepth == yDepth
+            return traversalTreeUsingQueue(root, x, y)
+        }
+
+        private fun traversalTreeUsingQueue(root: TreeNode?, x: Int, y: Int): Boolean {
+            val queue: Queue<TreeNode> = LinkedList()
+            queue.add(root)
+            var sum = 0
+            while (queue.size > 0) {
+                println("queue.size = " + queue.size)
+                sum = 0
+                for (count in 0..queue.size - 1) {
+                    val node = queue.remove()
+                    println("node.`val` = " + node.`val`)
+                    if ((node.left?.`val` == x && node.right?.`val` == y) || (node.left?.`val` == y && node.right?.`val` == x)) {
+                        println("return false 1")
+                        return false
+                    }
+                    if (node.left?.`val` == x || node.right?.`val` == x) {
+                        sum++
+                    }
+                    if (node.left?.`val` == y || node.right?.`val` == y) {
+                        sum++
+                    }
+                    if (sum == 2) {
+                        println("return true")
+                        return true
+                    }
+                    if (node.left != null) {
+                        queue.add(node.left)
+                    }
+                    if (node.right != null) {
+                        queue.add(node.right)
+                    }
+                }
+            }
+            println("return false 2")
+            return false
         }
 
         private fun traversalTree(root: TreeNode?, x: Int, y: Int, depth: Int, parent: TreeNode?) {
