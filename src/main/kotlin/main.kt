@@ -66,22 +66,4 @@ fun main(args: Array<String>) {
 //    Question_2685_Count_the_Number_of_Complete_Components.runQuestion()
 //    Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements.runQuestion()
 //    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
-
-    fun removeDuplicates(s: String): String {
-        val charArray = s.toMutableList()
-        var removeItem = true
-        while (removeItem) {
-            removeItem=false
-            println("charArray = "+charArray)
-            for (count in 0..charArray.size - 2) {
-                if (charArray[count] == charArray[count + 1]) {
-                    charArray.removeAt(count)
-                    charArray.removeAt(count)
-                    removeItem=true
-                    break
-                }
-            }
-        }
-        return charArray.toString()
-    }
 }

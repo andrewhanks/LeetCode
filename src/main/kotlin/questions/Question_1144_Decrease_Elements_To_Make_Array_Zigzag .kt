@@ -1,6 +1,5 @@
 package questions
 
-import kotlin.math.abs
 import kotlin.math.min
 
 class Question_1144_Decrease_Elements_To_Make_Array_Zigzag {
