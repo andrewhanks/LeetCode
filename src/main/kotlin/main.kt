@@ -54,7 +54,7 @@ fun main(args: Array<String>) {
 //    Question_1260_Shift_2D_Grid.runQuestion()
 //    Question_1266_Minimum_Time_Visiting_All_Points.runQuestion()
 //    Question_1301_Number_of_Paths_with_Max_Score.runQuestion()
-    Question_1315_Sum_of_Nodes_with_Even_Valued_Grandparent.runQuestion()
+//    Question_1315_Sum_of_Nodes_with_Even_Valued_Grandparent.runQuestion()
 //    Question_1318_Minimum_Flips_to_Make_a_OR_b_Equal_to_c.runQuestion()
 //    Question_1346_Check_If_N_and_Its_Double_Exist.runQuestion()
 //    Question_1405_Longest_Happy_String.runQuestion()
@@ -73,4 +73,5 @@ fun main(args: Array<String>) {
 //    Question_2685_Count_the_Number_of_Complete_Components.runQuestion()
 //    Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements.runQuestion()
 //    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
+    Question_2733_Neither_Minimum_nor_Maximum.runQuestion()
 }
