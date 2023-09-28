@@ -31,5 +31,15 @@ class Question_122_Best_Time_to_Buy_and_Sell_Stock_II {
             }
             return result
         }
+
+        fun maxProfit2(prices: IntArray): Int {
+            var result = 0
+            for (count in 1..prices.size - 1) {
+                if (prices[count] > prices[count - 1]) {
+                    result = result + prices[count] - prices[count - 1]
+                }
+            }
+            return result
+        }
     }
 }
