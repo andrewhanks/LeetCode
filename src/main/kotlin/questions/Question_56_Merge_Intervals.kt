@@ -32,7 +32,7 @@ class Question_56_Merge_Intervals {
             if (']' != result.last()) {
                 result += "]"
             }
-            println("Question 1260: $result")
+            println("Question 56: $result")
         }
 
         fun merge(intervals: Array<IntArray>): Array<IntArray> {
