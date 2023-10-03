@@ -1,3 +1,4 @@
+import models.Node
 import models.TreeNode
 import java.util.*
 
@@ -58,6 +59,35 @@ class Utils {
             println("tempResult = $tempResult")
             tempResult = tempResult.removeSuffix(",")
             println("tempResult 2 = $tempResult")
+            return tempResult
+        }
+
+        fun printTreeNodeByLevelOrder(result: String, node: Node?): String {
+            if (null == node) {
+                return result
+            }
+            var tempResult = result
+            val queue: Queue<Node?> = LinkedList()
+            queue.add(node)
+
+            while (!queue.isEmpty()) {
+                val currentNode = queue.poll()
+                if (null != currentNode) {
+                    tempResult += currentNode.`val`
+                    tempResult += ","
+                    if (currentNode.next == null) {
+                        tempResult += "#"
+                        tempResult += ","
+                    }
+                    if (null != currentNode.left) {
+                        queue.add(currentNode.left)
+                    }
+                    if (null != currentNode.right) {
+                        queue.add(currentNode.right)
+                    }
+                }
+            }
+            tempResult = tempResult.removeSuffix(",")
             return tempResult
         }
     }
