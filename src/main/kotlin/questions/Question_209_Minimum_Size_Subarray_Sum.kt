@@ -12,7 +12,7 @@ class Question_209_Minimum_Size_Subarray_Sum {
             val target = 7
             val inpuArray = intArrayOf(2, 3, 1, 2, 4, 3)
             val result = minSubArrayLen(target, inpuArray)
-            println("Question 1024: $result")
+            println("Question 209: $result")
         }
 
         fun minSubArrayLen(target: Int, nums: IntArray): Int {

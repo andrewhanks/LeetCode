@@ -30,13 +30,28 @@ class Question_236_Lowest_Common_Ancestor_of_a_Binary_Tree {
             treeNode5.left = treeNode8
             treeNode5.right = treeNode9
             treeNodes = treeNode1
-            val p = TreeNode(5)
-            val q = TreeNode(4)
+            val p = treeNode2
+            val q = treeNode9
             val result = lowestCommonAncestor(treeNodes, p, q)
             println("Question 236: ${result?.`val`}")
         }
 
         fun lowestCommonAncestor(root: TreeNode?, p: TreeNode?, q: TreeNode?): TreeNode? {
+            if (root == null || root == p || root == q) {
+                return root
+            }
+            val left = lowestCommonAncestor(root?.left, p, q)
+            val right = lowestCommonAncestor(root?.right, p, q)
+            if (left == null) {
+                return right
+            }
+            if (right == null) {
+                return left
+            }
+            return root
+        }
+
+        fun lowestCommonAncestorSlow(root: TreeNode?, p: TreeNode?, q: TreeNode?): TreeNode? {
             val nodeList: MutableList<Int> = mutableListOf()
             generateInOrderList(root, nodeList)
             val queue: Queue<TreeNode?> = LinkedList()
