@@ -1,4 +1,5 @@
 import models.Node
+import models.RandomNode
 import models.TreeNode
 import java.util.*
 
@@ -86,6 +87,44 @@ class Utils {
                         queue.add(currentNode.right)
                     }
                 }
+            }
+            tempResult = tempResult.removeSuffix(",")
+            return tempResult
+        }
+
+        fun printRandomNode(result: String, node: RandomNode?): String {
+            if (null == node) {
+                return result
+            }
+            var current = node
+            var tempResult = result
+            val randomList: MutableList<Int?> = mutableListOf()
+            while (current != null) {
+                var tempCurrent = node
+                var count = 0
+                if (current.random?.`val` == null) {
+                    randomList.add(null)
+                    current = current.next
+                    continue
+                }
+                while (tempCurrent != null && current.random?.`val` != tempCurrent.`val`) {
+                    count++
+                    tempCurrent = tempCurrent.next
+                }
+                randomList.add(count)
+                current = current.next
+            }
+            current = node
+            var count = 0
+            while (current != null) {
+                tempResult += "["
+                tempResult += current.`val`
+                tempResult += ","
+                tempResult += randomList[count]
+                tempResult += "]"
+                tempResult += ","
+                current = current.next
+                count++
             }
             tempResult = tempResult.removeSuffix(",")
             return tempResult
