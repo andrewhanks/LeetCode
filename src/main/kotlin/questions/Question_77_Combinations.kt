@@ -1,5 +1,6 @@
 package questions
 
+
 class Question_77_Combinations {
 
     companion object {
@@ -55,6 +56,29 @@ class Question_77_Combinations {
                 val index = temp.size - 1
                 val value = temp.removeAt(index)
                 println("remove $value at ${index}")
+            }
+        }
+
+        fun combineBacktrace(n: Int, k: Int): List<List<Int>> {
+            val ans: MutableList<List<Int>> = ArrayList()
+            getAns(1, n, k, ArrayList(), ans)
+            return ans
+        }
+
+        private fun getAns(start: Int, n: Int, k: Int, temp: ArrayList<Int>, ans: MutableList<List<Int>>) {
+            //如果 temp 里的数字够了 k 个，就把它加入到结果中
+            if (temp.size == k) {
+                ans.add(ArrayList(temp))
+                return
+            }
+            //从 start 到 n
+            for (i in start..n) {
+                //将当前数字加入 temp
+                temp.add(i)
+                //进入递归
+                getAns(i + 1, n, k, temp, ans)
+                //将当前数字删除，进入下次 for 循环
+                temp.removeAt(temp.size - 1)
             }
         }
     }
