@@ -34,7 +34,7 @@ class Question_1253_Reconstruct_a_2_Row_Binary_Matrix {
             if (']' != result.last()) {
                 result += "]"
             }
-            println("Question 15: $result")
+            println("Question 1253: $result")
         }
 
         fun reconstructMatrix(upper: Int, lower: Int, colsum: IntArray): List<List<Int>> {
