@@ -1,4 +1,4 @@
-import questions.Question_77_Combinations
+import questions.*
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
@@ -37,7 +37,7 @@ fun main(args: Array<String>) {
 //    Question_71_Simplify_Path.runQuestion()
 //    Question_74_Search_a_2D_Matrix.runQuestion()
 //    Question_75_Sort_Colors.runQuestion()
-    Question_77_Combinations.runQuestion()
+//    Question_77_Combinations.runQuestion()
 //    Question_80_Remove_Duplicates_from_Sorted_Array_II.runQuestion()
 //    Question_98_Validate_Binary_Search_Tree.runQuestion()
 //    Question_102_Binary_Tree_Level_Order_Traversal.runQuestion()
@@ -58,8 +58,9 @@ fun main(args: Array<String>) {
 //    Question_200_Number_of_Islands.runQuestion()
 //    Question_201_Bitwise_AND_of_Numbers_Range.runQuestion()
 //    Question_215_Kth_Largest_Element_in_an_Array.runQuestion()
-//    Question_236_Lowest_Common_Ancestor_of_a_Binary_Tree.runQuestion()
 //    Question_209_Minimum_Size_Subarray_Sum.runQuestion()
+    Question_230_Kth_Smallest_Element_in_a_BST.runQuestion()
+//    Question_236_Lowest_Common_Ancestor_of_a_Binary_Tree.runQuestion()
 //    Question_274_H_Index.runQuestion()
 //    Question_283_Move_Zeroes.runQuestion()
 //    Question_287_Find_the_Duplicate_Number.runQuestion()
