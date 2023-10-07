@@ -26,7 +26,7 @@ class Question_230_Kth_Smallest_Element_in_a_BST {
             treeNodes = treeNode1
             val k = 3
             val result = kthSmallest(treeNodes, k)
-            println("Question 236: $result")
+            println("Question 230: $result")
         }
 
         fun kthSmallest(root: TreeNode?, k: Int): Int {
