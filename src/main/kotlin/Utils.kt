@@ -1,3 +1,4 @@
+import models.GraphNode
 import models.Node
 import models.RandomNode
 import models.TreeNode
@@ -125,6 +126,43 @@ class Utils {
                 tempResult += ","
                 current = current.next
                 count++
+            }
+            tempResult = tempResult.removeSuffix(",")
+            return tempResult
+        }
+
+        fun printGraphNode(result: String, node: GraphNode?): String {
+            if (null == node) {
+                return result
+            }
+            var current = node
+            var tempResult = result
+            val graphList: MutableList<GraphNode> = mutableListOf()
+            val queue: Queue<GraphNode> = LinkedList()
+            queue.add(current)
+            while (!queue.isEmpty()) {
+                val item = queue.remove()
+                if (item != null && !graphList.contains(item)) {
+                    graphList.add(item)
+                    item.neighbors.forEach {
+                        if (!graphList.contains(it)) {
+                            queue.add(it)
+                        }
+                    }
+                }
+            }
+            graphList.sortWith(Comparator { a, b ->
+                a.`val` - b.`val`
+            })
+            graphList.forEach { graphNode ->
+                tempResult += "["
+                graphNode.neighbors.forEach { neighbor ->
+                    tempResult += neighbor?.`val`
+                    tempResult += ","
+                }
+                tempResult = tempResult.removeSuffix(",")
+                tempResult += "]"
+                tempResult += ","
             }
             tempResult = tempResult.removeSuffix(",")
             return tempResult
