@@ -21,6 +21,21 @@ class Question_167_Two_Sum_II_Input_Array_Is_Sorted {
         }
 
         fun twoSum(numbers: IntArray, target: Int): IntArray {
+            var start = 0
+            var end = numbers.size - 1
+            while (start < end) {
+                if (numbers[start] + numbers[end] > target) {
+                    end--
+                } else if (numbers[start] + numbers[end] < target) {
+                    start++
+                } else {
+                    break
+                }
+            }
+            return intArrayOf(start + 1, end + 1)
+        }
+
+        fun twoSumTwoLoops(numbers: IntArray, target: Int): IntArray {
             val result: IntArray = IntArray(2) { 0 }
             for (i in 0..numbers.size - 1) {
                 for (j in i + 1..numbers.size - 1) {
