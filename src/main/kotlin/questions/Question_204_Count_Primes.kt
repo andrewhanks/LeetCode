@@ -30,5 +30,26 @@ class Question_204_Count_Primes {
             }
             return primeCount
         }
+
+        fun countPrimesSieveOfEratosthenesAlgorithm(n: Int): Int {
+            if (n == 0 || n == 1) {
+                return 0
+            }
+            val result: MutableList<Boolean> = MutableList(n) { true }
+            result[0] = false
+            result[1] = false
+            val sqrtNumber = sqrt((n - 1).toDouble()).toInt()
+            for (x in 2..sqrtNumber) {
+                if (result[x] == true) {
+                    var y = 2
+                    while (y * x <= n - 1) {
+                        result[y * x] = false
+                        y++
+                    }
+                }
+            }
+            //println(result)
+            return result.filter { it == true }.count()
+        }
     }
 }
