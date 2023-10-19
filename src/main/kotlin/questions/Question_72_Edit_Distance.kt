@@ -28,8 +28,8 @@ class Question_72_Edit_Distance {
                     if (word1[x - 1] == word2[y - 1]) {
                         result[x][y] = result[x - 1][y - 1]
                     } else {
-                        val insert = result[x - 1][y] + 1
-                        val delete = result[x][y - 1] + 1
+                        val insert = result[x][y - 1] + 1
+                        val delete = result[x - 1][y] + 1
                         val replace = result[x - 1][y - 1] + 1
                         result[x][y] = min(min(insert, delete), replace)
                     }
