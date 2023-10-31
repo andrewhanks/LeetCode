@@ -20,5 +20,29 @@ class Question_69_Sqrtx {
             }
             return 0
         }
+
+        fun mySqrtBinarySearch(x: Int): Int {
+            if (x == 0) {
+                return 0
+            }
+            var start = 1L
+            var end = x.toLong()
+            while (start < end) {
+                val mid = start + (end - start) / 2
+                println("start = $start, end = $end, mid = $mid")
+                if (x.toLong() == mid * mid) {
+                    return mid.toInt()
+                }
+                if (x.toLong() > mid * mid && x.toLong() < (mid + 1) * (mid + 1)) {
+                    return mid.toInt()
+                }
+                if (x.toLong() > mid * mid) {
+                    start = mid + 1
+                } else {
+                    end = mid - 1
+                }
+            }
+            return start.toInt()
+        }
     }
 }
