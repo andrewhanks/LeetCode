@@ -16,6 +16,18 @@ class Question_2607_Make_K_Subarray_Sums_Equal {
             println("Question 2607: $result")
         }
 
+//        The sum of all subarrays of size k is equal if:
+//
+//        arr[i] == arr[i + k]
+//        arr[i] == arr[i + 2 * k]
+//        and so on.
+//        As we roll a window of size k, we remove element arr[i] and add element arr[i + k].
+//
+//        For the sum to stay the same, the removed and added element must be the same. This can be also proven by a contradiction.
+//
+//        So, for each position i, we collect all elements in the k-cycle.
+//
+//        Then, we determine the median and perform operations to make all elements equal to that median.
         fun makeSubKSumEqual(arr: IntArray, k: Int): Long {
             var totalOperations = 0L
             for (count in 0..k - 1) {
