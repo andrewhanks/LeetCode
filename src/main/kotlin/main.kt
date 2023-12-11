@@ -196,6 +196,7 @@ fun main(args: Array<String>) {
 //    Question_2216_Minimum_Deletions_to_Make_Array_Beautiful.runQuestion()
 //    Question_2337_Move_Pieces_to_Obtain_a_String.runQuestion()
 //    Question_2460_Apply_Operations_to_an_Array.runQuestion()
+    Question_2522_Partition_String_Into_Substrings_With_Values_at_Most_K.runQuestion()
 //    Question_2525_Categorize_Box_According_to_Criteria.runQuestion()
 //    Question_2555_Maximize_Win_From_Two_Segments.runQuestion()
 //    Question_2607_Make_K_Subarray_Sums_Equal.runQuestion()
@@ -205,5 +206,5 @@ fun main(args: Array<String>) {
 //    Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements.runQuestion()
 //    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
 //    Question_2733_Neither_Minimum_nor_Maximum.runQuestion()
-    Question_2766_Relocate_Marbles.runQuestion()
+//    Question_2766_Relocate_Marbles.runQuestion()
 }
