@@ -200,9 +200,10 @@ fun main(args: Array<String>) {
 //    Question_2555_Maximize_Win_From_Two_Segments.runQuestion()
 //    Question_2607_Make_K_Subarray_Sums_Equal.runQuestion()
 //    Question_2643_Row_With_Maximum_Ones.runQuestion()
-    Question_2684_Maximum_Number_of_Moves_in_a_Grid.runQuestion()
+//    Question_2684_Maximum_Number_of_Moves_in_a_Grid.runQuestion()
 //    Question_2685_Count_the_Number_of_Complete_Components.runQuestion()
 //    Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements.runQuestion()
 //    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
 //    Question_2733_Neither_Minimum_nor_Maximum.runQuestion()
+    Question_2766_Relocate_Marbles.runQuestion()
 }
