@@ -1,3 +1,4 @@
+import questions.Question_2335_Minimum_Amount_of_Time_to_Fill_Cups
 import questions.Question_2381_Shifting_Letters_II
 import questions.Question_2449_Minimum_Number_of_Operations_to_Make_Arrays_Similar
 import questions.Question_2522_Partition_String_Into_Substrings_With_Values_at_Most_K
@@ -195,8 +196,9 @@ fun main(args: Array<String>) {
 //    Question_2057_Smallest_Index_With_Equal_Value.runQuestion()
 //    Question_2126_Destroying_Asteroids.runQuestion()
 //    Question_2216_Minimum_Deletions_to_Make_Array_Beautiful.runQuestion()
+    Question_2335_Minimum_Amount_of_Time_to_Fill_Cups.runQuestion()
 //    Question_2337_Move_Pieces_to_Obtain_a_String.runQuestion()
-    Question_2381_Shifting_Letters_II.runQuestion()
+//    Question_2381_Shifting_Letters_II.runQuestion()
 //    Question_2449_Minimum_Number_of_Operations_to_Make_Arrays_Similar.runQuestion()
 //    Question_2460_Apply_Operations_to_an_Array.runQuestion()
 //    Question_2522_Partition_String_Into_Substrings_With_Values_at_Most_K.runQuestion()
