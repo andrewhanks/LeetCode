@@ -1,7 +1,4 @@
-import questions.Question_2500_Delete_Greatest_Value_in_Each_Row
-import questions.Question_2571_Minimum_Operations_to_Reduce_an_Integer_to_0
-import questions.Question_2611_Mice_and_Cheese
-import questions.Question_2679_Sum_in_a_Matrix
+import questions.*
 import java.util.*
 import kotlin.math.max
 
@@ -210,10 +207,11 @@ fun main(args: Array<String>) {
 //    Question_2449_Minimum_Number_of_Operations_to_Make_Arrays_Similar.runQuestion()
 //    Question_2460_Apply_Operations_to_an_Array.runQuestion()
 //    Question_2500_Delete_Greatest_Value_in_Each_Row.runQuestion()
+    Question_2517_Maximum_Tastiness_of_Candy_Basket.runQuestion()
 //    Question_2522_Partition_String_Into_Substrings_With_Values_at_Most_K.runQuestion()
 //    Question_2525_Categorize_Box_According_to_Criteria.runQuestion()
 //    Question_2555_Maximize_Win_From_Two_Segments.runQuestion()
-    Question_2571_Minimum_Operations_to_Reduce_an_Integer_to_0.runQuestion()
+//    Question_2571_Minimum_Operations_to_Reduce_an_Integer_to_0.runQuestion()
 //    Question_2607_Make_K_Subarray_Sums_Equal.runQuestion()
 //    Question_2611_Mice_and_Cheese.runQuestion()
 //    Question_2643_Row_With_Maximum_Ones.runQuestion()
