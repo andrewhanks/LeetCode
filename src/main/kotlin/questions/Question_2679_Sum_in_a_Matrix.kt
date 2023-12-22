@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.max
+
 
 class Question_2679_Sum_in_a_Matrix {
 
@@ -13,7 +15,7 @@ class Question_2679_Sum_in_a_Matrix {
             println("Question 2679: $result")
         }
 
-        fun matrixSum(nums: Array<IntArray>): Int {
+        fun matrixSumWithListSorted(nums: Array<IntArray>): Int {
             var score = 0
             for (count in 0..nums.size - 1) {
                 nums[count].sortDescending()
@@ -27,6 +29,21 @@ class Question_2679_Sum_in_a_Matrix {
                 //println(temp1)
                 score += temp1[0]
                 //println(score)
+            }
+            return score
+        }
+
+        fun matrixSum(nums: Array<IntArray>): Int {
+            var score = 0
+            for (count in 0..nums.size - 1) {
+                nums[count].sortDescending()
+            }
+            for (y in 0..nums[0].size - 1) {
+                var max = 0
+                for (x in 0..nums.size - 1) {
+                    max = max(max, nums[x][y])
+                }
+                score += max
             }
             return score
         }
