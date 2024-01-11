@@ -18,6 +18,31 @@ class Question_300_Longest_Increasing_Subsequence {
             if (nums.size <= 1) {
                 return nums.size
             }
+            val result: IntArray = IntArray(nums.size)
+            var size = 0
+            for (x in nums) {
+                var left = 0
+                var right = size
+                while (left < right) {
+                    val mid = left + (right - left) / 2
+                    if (result[mid] < x) {
+                        left = mid + 1
+                    } else {
+                        right = mid
+                    }
+                }
+                result[left] = x
+                if (left == size) {
+                    size++
+                }
+            }
+            return size
+        }
+
+        fun lengthOfLISWithArray(nums: IntArray): Int {
+            if (nums.size <= 1) {
+                return nums.size
+            }
             val result: IntArray = IntArray(nums.size) { 1 }
             var ans = 0
             for (x in 1..nums.size - 1) {
