@@ -18,6 +18,25 @@ class Question_300_Longest_Increasing_Subsequence {
             if (nums.size <= 1) {
                 return nums.size
             }
+            val result: IntArray = IntArray(nums.size) { 1 }
+            var ans = 0
+            for (x in 1..nums.size - 1) {
+                for (y in 0..x - 1) {
+                    if (nums[y] >= nums[x]) {
+                        continue
+                    } else {
+                        result[x] = max(result[x], result[y] + 1)
+                    }
+                }
+                ans = max(ans, result[x])
+            }
+            return ans
+        }
+
+        fun lengthOfLISWithMutableList(nums: IntArray): Int {
+            if (nums.size <= 1) {
+                return nums.size
+            }
             val result: MutableList<Int> = MutableList(nums.size) { 1 }
             var ans = 0
             for (x in 1..nums.size - 1) {
