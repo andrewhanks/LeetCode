@@ -6,6 +6,8 @@ class Question_46_Permutations {
     companion object {
 
         fun runQuestion() {
+//            Input: nums = [1,2,3]
+//            Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
             val intArray = intArrayOf(1, 2, 3)
             val resultList = permute(intArray)
             var result = "["
@@ -31,6 +33,35 @@ class Question_46_Permutations {
         }
 
         fun permute(nums: IntArray): List<List<Int>> {
+            val temp: MutableList<Int> = mutableListOf()
+            val visited: MutableSet<Int> = mutableSetOf()
+            val result: MutableList<MutableList<Int>> = mutableListOf()
+            find(nums, visited, temp, result)
+            return result
+        }
+
+        fun find(
+            nums: IntArray,
+            visited: MutableSet<Int>,
+            temp: MutableList<Int>,
+            result: MutableList<MutableList<Int>>
+        ) {
+            if (temp.size == nums.size) {
+                result.add(ArrayList(temp))
+                return
+            }
+            for (num in nums) {
+                if (!visited.contains(num)) {
+                    temp.add(num)
+                    visited.add(num)
+                    find(nums, visited, temp, result)
+                    temp.remove(num)
+                    visited.remove(num)
+                }
+            }
+        }
+
+        fun permuteWebSolution(nums: IntArray): List<List<Int>> {
             val resultArray = ArrayList<List<Int>>()
             permuteArray(nums, 0, nums.size - 1, resultArray)
             return resultArray
