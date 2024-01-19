@@ -10,7 +10,7 @@ class Question_344_Reverse_String {
 //            Output: ["o","l","l","e","h"]
             val s = charArrayOf('h', 'e', 'l', 'l', 'o')
             val result = reverseString(s)
-            println("Question 621: $s")
+            println("Question 621: ${s.joinToString()}")
         }
 
         fun reverseString(s: CharArray): Unit {

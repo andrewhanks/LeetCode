@@ -149,7 +149,7 @@ fun main(args: Array<String>) {
 //    Question_530_Minimum_Absolute_Difference_in_BST.runQuestion()
 //    Question_560_Subarray_Sum_Equals_K.runQuestion()
 //    Question_576_Out_of_Boundary_Paths.runQuestion()
-    Question_621_Task_Scheduler.runQuestion()
+//    Question_621_Task_Scheduler.runQuestion()
 //    Question_637_Average_of_Levels_in_Binary_Tree.runQuestion()
 //    Question_652_Find_Duplicate_Subtrees.runQuestion()
 //    Question_704_Binary_Search.runQuestion()
