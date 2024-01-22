@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_496_Next_Greater_Element_I {
 
     companion object {
@@ -38,6 +40,30 @@ class Question_496_Next_Greater_Element_I {
                 }
             }
             return result.toIntArray()
+        }
+
+        fun nextGreaterElementWithMonotonicStack(nums1: IntArray, nums2: IntArray): IntArray {
+            val stack: Stack<Int> = Stack()
+            val result: MutableMap<Int, Int> = mutableMapOf()
+            for (count in nums2.size - 1 downTo 0) {
+                while (!stack.isEmpty() && stack.peek() <= nums2[count]) {
+                    stack.removeLast()
+                }
+                val ans = if (stack.isEmpty()) {
+                    -1
+                } else {
+                    stack.peek()
+                }
+                result.put(nums2[count], ans)
+                stack.add(nums2[count])
+            }
+            val finalResult = IntArray(nums1.size)
+            for ((key, value) in result) {
+                if (nums1.contains(key)) {
+                    finalResult[nums1.indexOf(key)] = value
+                }
+            }
+            return finalResult
         }
     }
 }
