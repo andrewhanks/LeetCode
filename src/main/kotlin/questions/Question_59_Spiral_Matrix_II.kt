@@ -32,7 +32,7 @@ class Question_59_Spiral_Matrix_II {
             if (']' != result.last()) {
                 result += "]"
             }
-            println("Question 57: $result")
+            println("Question 59: $result")
         }
 
         val RIGHT = 0
