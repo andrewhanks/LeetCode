@@ -47,5 +47,20 @@ class Question_206_Reverse_Linked_List {
             }
             return list[list.size - 1]
         }
+
+        fun reverseListReverseDirectly(head: ListNode?): ListNode? {
+            if (head == null) {
+                return null
+            }
+            var current = head
+            var previous: ListNode? = null
+            while (current != null) {
+                val next = current?.next
+                current?.next = previous
+                previous = current
+                current = next
+            }
+            return previous
+        }
     }
 }
