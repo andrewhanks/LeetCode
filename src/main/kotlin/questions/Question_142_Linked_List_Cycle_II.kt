@@ -48,5 +48,24 @@ class Question_142_Linked_List_Cycle_II {
             }
             return null
         }
+
+        fun detectCycleWithTwoPointers(head: ListNode?): ListNode? {
+            var slow: ListNode? = head
+            var fast: ListNode? = head
+
+            while (fast?.next != null) {
+                slow = slow?.next
+                fast = fast.next?.next
+                if (slow == fast) {
+                    slow = head
+                    while (slow != fast) {
+                        slow = slow?.next
+                        fast = fast?.next
+                    }
+                    return slow
+                }
+            }
+            return null
+        }
     }
 }
