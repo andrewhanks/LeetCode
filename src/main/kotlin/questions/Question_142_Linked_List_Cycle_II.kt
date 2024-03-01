@@ -49,6 +49,8 @@ class Question_142_Linked_List_Cycle_II {
             return null
         }
 
+
+        // solution: https://ithelp.ithome.com.tw/articles/10223721
         fun detectCycleWithTwoPointers(head: ListNode?): ListNode? {
             var slow: ListNode? = head
             var fast: ListNode? = head
