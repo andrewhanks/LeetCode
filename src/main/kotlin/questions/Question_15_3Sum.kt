@@ -7,7 +7,7 @@ class Question_15_3Sum {
 
         fun runQuestion() {
             val intArray = "-1,0,1,2,-1,-4".split(',').map { num -> num.toInt() }.toIntArray()
-            val resultList = threeSumWebSolution(intArray)
+            val resultList = threeSum(intArray)
             var result = "["
             resultList.forEachIndexed { firstIndex, firstI ->
                 resultList[firstIndex].forEachIndexed { secondIndex, secondI ->
@@ -34,52 +34,33 @@ class Question_15_3Sum {
         }
 
         fun threeSum(nums: IntArray): List<List<Int>> {
-            val resultList = ArrayList<List<Int>>()
+            nums.sort()
+            //println(nums.contentToString())
+            val result: MutableList<MutableList<Int>> = mutableListOf()
             for (i in 0..nums.size - 3) {
-                for (j in (i + 1)..nums.size - 2) {
-                    run thirdLoop@{
-                        nums.filterIndexed { index, i ->
-                            index > j
-                        }.find { it == -(nums[i] + nums[j]) }.let {
-                            if (null == it) {
-                                return@thirdLoop
-                            }
-                            val result = ArrayList<Int>()
-                            result.add(nums[i])
-                            result.add(nums[j])
-                            result.add(it)
-                            var position1TheSame = false
-                            var position2TheSame = false
-                            var position3TheSame = false
-                            run checkLoop@{
-                                resultList.forEach { list ->
-                                    position1TheSame = false
-                                    position2TheSame = false
-                                    position3TheSame = false
-                                    list.forEach {
-                                        if (!position1TheSame && it == nums[i]) {
-                                            position1TheSame = true
-                                        } else if (!position2TheSame && it == nums[j]) {
-                                            position2TheSame = true
-                                        } else if (!position3TheSame && it == it) {
-                                            position3TheSame = true
-                                        }
-                                    }
-                                    if (position1TheSame && position2TheSame && position3TheSame) {
-                                        return@checkLoop
-                                    }
-                                }
-                            }
-                            System.out.println("${nums[i]} ${nums[j]} ${it} : ${position1TheSame} ${position2TheSame} ${position3TheSame}")
-                            if (!(position1TheSame && position2TheSame && position3TheSame)) {
-                                resultList.add(result)
-                                return@thirdLoop
-                            }
+                var j = i + 1
+                var k = nums.size - 1
+                //println("i = $i, j = $j, k = $k")
+                while (j < k) {
+                    val sum = nums[i] + nums[j] + nums[k]
+                    //println("j = $j, k = $k, sum = $sum")
+                    if (sum == 0) {
+                        val tempResult: MutableList<Int> = mutableListOf()
+                        tempResult.add(nums[i])
+                        tempResult.add(nums[j])
+                        tempResult.add(nums[k])
+                        if (!result.contains(tempResult)) {
+                            result.add(tempResult)
                         }
+                        j++
+                    } else if (sum < 0) {
+                        j++
+                    } else {
+                        k--
                     }
                 }
             }
-            return resultList
+            return result
         }
 
         fun threeSumWebSolution(nums: IntArray): List<List<Int>> {
