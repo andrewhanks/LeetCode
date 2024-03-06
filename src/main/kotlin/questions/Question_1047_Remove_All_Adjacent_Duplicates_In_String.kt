@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_1047_Remove_All_Adjacent_Duplicates_In_String {
 
     companion object {
@@ -63,6 +65,26 @@ class Question_1047_Remove_All_Adjacent_Duplicates_In_String {
                 }
             }
             return tempS
+        }
+
+        fun removeDuplicatesWithStack(s: String): String {
+            val stack: Stack<Char> = Stack()
+            for (count in 0..s.length - 1) {
+                if (!stack.isEmpty()) {
+                    if (stack.peek() == s[count]) {
+                        stack.pop()
+                    } else {
+                        stack.add(s[count])
+                    }
+                } else {
+                    stack.add(s[count])
+                }
+            }
+            val result: StringBuilder = StringBuilder("")
+            while (!stack.isEmpty()) {
+                result.append(stack.pop())
+            }
+            return result.reversed().toString()
         }
     }
 }
