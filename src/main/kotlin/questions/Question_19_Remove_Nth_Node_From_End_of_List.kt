@@ -62,5 +62,31 @@ class Question_19_Remove_Nth_Node_From_End_of_List {
 
             return head
         }
+
+        fun removeNthFromEndSolution2(head: ListNode?, n: Int): ListNode? {
+            val result: MutableList<ListNode?> = mutableListOf()
+            var current = head
+            while (current != null) {
+                result.add(current)
+                current = current?.next
+            }
+            current = head
+            val previousOfDeleteNode = result.size - 1 - n
+            val nextOfDeleteNode = result.size - 1 - n + 2
+            if (result.size - 1 - n < 0) {
+                if (result.size == 1) {
+                    return null
+                } else {
+                    return result[1]
+                }
+            } else {
+                if (result.size - 1 - n + 2 <= result.size - 1) {
+                    result[previousOfDeleteNode]?.next = result[nextOfDeleteNode]
+                } else {
+                    result[previousOfDeleteNode]?.next = null
+                }
+            }
+            return current
+        }
     }
 }
