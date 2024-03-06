@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_20_Valid_Parentheses {
 
     companion object {
@@ -35,6 +37,34 @@ class Question_20_Valid_Parentheses {
                 return true
             } else {
                 return false
+            }
+        }
+
+        fun isValidWithStack(s: String): Boolean {
+            val stack: Stack<Char> = Stack()
+            for (count in 0..s.length - 1) {
+                if (s[count] == '(' || s[count] == '[' || s[count] == '{') {
+                    stack.add(s[count])
+                } else if (s[count] == ')' || s[count] == ']' || s[count] == '}') {
+                    if (stack.isEmpty()) {
+                        return false
+                    }
+                    println("s[count] = ${s[count]}, stack.peek() = ${stack.peek()}")
+                    if (s[count] == ')' && stack.peek() == '(') {
+                        stack.pop()
+                    } else if (s[count] == ']' && stack.peek() == '[') {
+                        stack.pop()
+                    } else if (s[count] == '}' && stack.peek() == '{') {
+                        stack.pop()
+                    } else {
+                        return false
+                    }
+                }
+            }
+            if (!stack.isEmpty()) {
+                return false
+            } else {
+                return true
             }
         }
     }
