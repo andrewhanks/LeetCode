@@ -26,6 +26,29 @@ class Question_541_Reverse_String_II {
             return result.toString()
         }
 
+        fun reverseStrSolution2(s: String, k: Int): String {
+            val n = s.length
+            var i = 0
+            val ans: StringBuilder = StringBuilder("")
+            while (i <= n - 1) {
+                if ((i / k) % 2 == 0) {
+                    if (i + k - 1 <= n - 1) {
+                        ans.append(s.substring(i..i + k - 1).reversed())
+                    } else {
+                        ans.append(s.substring(i..n - 1).reversed())
+                    }
+                } else {
+                    if (i + k - 1 <= n - 1) {
+                        ans.append(s.substring(i..i + k - 1))
+                    } else {
+                        ans.append(s.substring(i..n - 1))
+                    }
+                }
+                i += k
+            }
+            return ans.toString()
+        }
+
         fun reverseStrManually(s: String, k: Int): String {
             val str = s.toCharArray()
             val n = str.size
