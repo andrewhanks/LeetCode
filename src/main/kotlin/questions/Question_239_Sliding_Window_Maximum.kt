@@ -1,6 +1,14 @@
 package questions
 
+import java.util.*
+import kotlin.collections.ArrayDeque
+import kotlin.collections.ArrayList
+import kotlin.collections.MutableList
+import kotlin.collections.indices
+import kotlin.collections.mutableListOf
+import kotlin.collections.toIntArray
 import kotlin.math.max
+
 
 class Question_239_Sliding_Window_Maximum {
 
@@ -41,5 +49,27 @@ class Question_239_Sliding_Window_Maximum {
             }
             return result.toIntArray()
         }
+
+        fun maxSlidingWindowWithDeque(nums: IntArray, k: Int): IntArray {
+            val q = ArrayDeque<Int>() // stores *indices*
+            val res: MutableList<Int> = ArrayList()
+            for (i in nums.indices) {
+                while (!q.isEmpty() && nums[q.last()] <= nums[i]) {
+                    q.removeLast()
+                }
+                q.addLast(i)
+                // remove first element if it's outside the window
+                if (q.first() == i - k) {
+                    q.removeFirst()
+                }
+                // if window has k elements add to results (first k-1 windows have < k elements because we start from
+                // empty window and add 1 element each iteration)
+                if (i >= k - 1) {
+                    res.add(nums[q[0]])
+                }
+            }
+            return res.toIntArray()
+        }
+
     }
 }
