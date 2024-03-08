@@ -41,5 +41,39 @@ class Question_5_Longest_Palindromic_Substring {
             }
             return s.substring(longestBegin, longestBegin + maxLen)
         }
+
+        fun longestPalindromeExpandAroundCenter(s: String): String {
+            var result = ""
+            for (count in 0..s.length - 1) {
+                var add = 0
+                while (count - add >= 0 && count + add <= s.length - 1) {
+                    if (s[count - add] == s[count + add]) {
+                        if (add * 2 + 1 > result.length) {
+                            result = s.substring(count - add..count + add)
+                        }
+                    } else {
+                        break
+                    }
+                    add++
+                }
+            }
+            for (count in 0..s.length - 2) {
+                var add = 0
+                if (s[count] != s[count + 1]) {
+                    continue
+                }
+                while (count - add >= 0 && count + add + 1 <= s.length - 1) {
+                    if (s[count - add] == s[count + add + 1]) {
+                        if (add * 2 + 2 > result.length) {
+                            result = s.substring(count - add..count + add + 1)
+                        }
+                    } else {
+                        break
+                    }
+                    add++
+                }
+            }
+            return result
+        }
     }
 }
