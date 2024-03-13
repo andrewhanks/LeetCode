@@ -45,5 +45,28 @@ class Question_654_Maximum_Binary_Tree {
             construct(rightArray.toIntArray(), node, 2)
             return node
         }
+
+        fun constructMaximumBinaryTreeAnotherSolution(nums: IntArray): TreeNode? {
+            return construct(nums, 0, nums.size - 1)
+        }
+
+        fun construct(nums: IntArray, start: Int, end: Int): TreeNode? {
+            if (start > end) {
+                return null
+            }
+            val temp: MutableList<Int> = mutableListOf()
+            for (count in start..end) {
+                temp.add(nums[count])
+            }
+            var max = temp.maxOrNull()
+            if (max == null) {
+                return null
+            }
+            var index = nums.indexOf(max)
+            val node = TreeNode(max)
+            node?.left = construct(nums, start, index - 1)
+            node?.right = construct(nums, index + 1, end)
+            return node
+        }
     }
 }
