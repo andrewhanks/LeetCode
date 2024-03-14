@@ -69,5 +69,37 @@ class Question_98_Validate_Binary_Search_Tree {
             resultArray.add(root.`val`!!)
             printFullBst(root?.right)
         }
+
+        fun isValidBSTByInorderTraversal(root: TreeNode?): Boolean {
+            val result: MutableList<Int> = mutableListOf()
+            inorder(root, result)
+            val sortedResult = result.sorted()
+            var same = true
+            for (count in 0..result.size - 1) {
+                if (result[count] != sortedResult[count]) {
+                    same = false
+                }
+                if (count >= 1 && result[count] <= result[count - 1]) {
+                    same = false
+                }
+            }
+            if (same) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        fun inorder(root: TreeNode?, result: MutableList<Int>) {
+            if (root?.left != null) {
+                inorder(root?.left, result)
+            }
+            if (root?.`val` != null) {
+                result.add(root?.`val`!!)
+            }
+            if (root?.right != null) {
+                inorder(root?.right, result)
+            }
+        }
     }
 }
