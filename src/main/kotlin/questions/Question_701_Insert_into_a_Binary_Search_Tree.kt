@@ -33,26 +33,21 @@ class Question_701_Insert_into_a_Binary_Search_Tree {
             if (root == null) {
                 return TreeNode(`val`)
             }
-            insert(root, `val`)
-            return root
-        }
-
-        fun insert(root: TreeNode?, `val`: Int) {
-            if (root != null) {
-                if (`val` > root?.`val`!!) {
-                    if (root?.right == null) {
-                        root?.right = TreeNode(`val`)
-                    } else {
-                        insertIntoBST(root?.right, `val`)
-                    }
+            if (`val` > root?.`val`!!) {
+                if (root?.right == null) {
+                    root?.right = TreeNode(`val`)
                 } else {
-                    if (root?.left == null) {
-                        root?.left = TreeNode(`val`)
-                    } else {
-                        insertIntoBST(root?.left, `val`)
-                    }
+                    insertIntoBST(root?.right, `val`)
                 }
             }
+            if (`val` < root?.`val`!!) {
+                if (root?.left == null) {
+                    root?.left = TreeNode(`val`)
+                } else {
+                    insertIntoBST(root?.left, `val`)
+                }
+            }
+            return root
         }
     }
 }
