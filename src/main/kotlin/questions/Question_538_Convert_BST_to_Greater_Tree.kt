@@ -71,5 +71,25 @@ class Question_538_Convert_BST_to_Greater_Tree {
                 addValue(root?.right, result)
             }
         }
+
+        var sum = 0
+        fun convertBSTByReverseInorderTraversal(root: TreeNode?): TreeNode? {
+            if (root == null) {
+                return null
+            }
+            reversedInorder(root)
+            return root
+        }
+
+        fun reversedInorder(root: TreeNode?) {
+            if (root?.right != null) {
+                reversedInorder(root?.right)
+            }
+            root?.`val` = root?.`val`!! + sum
+            sum = root?.`val`!!
+            if (root?.left != null) {
+                reversedInorder(root?.left)
+            }
+        }
     }
 }
