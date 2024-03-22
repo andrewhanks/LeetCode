@@ -1,4 +1,6 @@
-import questions.*
+import questions.Question_17_Letter_Combinations_of_a_Phone_Number
+import questions.Question_40_Combination_Sum_II
+import java.util.*
 
 
 fun main(args: Array<String>) {
@@ -16,7 +18,7 @@ fun main(args: Array<String>) {
 //    Question_14_Longest_Common_Prefix.runQuestion()
 //    Question_15_3Sum.runQuestion()
 //    Question_16_3Sum_Closest.runQuestion()
-    Question_17_Letter_Combinations_of_a_Phone_Number.runQuestion()
+//    Question_17_Letter_Combinations_of_a_Phone_Number.runQuestion()
 //    Question_18_4Sum.runQuestion()
 //    Question_19_Remove_Nth_Node_From_End_of_List.runQuestion()
 //    Question_20_Valid_Parentheses.runQuestion()
@@ -33,6 +35,7 @@ fun main(args: Array<String>) {
 //    Question_35_Search_Insert_Position.runQuestion()
 //    Question_36_Valid_Sudoku.runQuestion()
 //    Question_39_Combination_Sum.runQuestion()
+    Question_40_Combination_Sum_II.runQuestion()
 //    Question_43_Multiply_Strings.runQuestion()
 //    Question_45_Jump_Game_II.runQuestion()
 //    Question_46_Permutations.runQuestion()
