@@ -39,6 +39,33 @@ class Question_39_Combination_Sum {
         fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {
             val result: MutableList<MutableList<Int>> = mutableListOf()
             val temp: MutableList<Int> = mutableListOf()
+            combination(candidates.sorted().toIntArray(), target, result, temp)
+            return result
+        }
+
+        fun combination(
+            candidates: IntArray,
+            target: Int,
+            result: MutableList<MutableList<Int>>,
+            temp: MutableList<Int>
+        ) {
+            val sum = temp.sum()
+            if (sum >= target) {
+                if (sum == target && !result.contains(temp.sorted())) {
+                    result.add(temp.toMutableList())
+                }
+                return
+            }
+            for (count in 0..candidates.size - 1) {
+                temp.add(candidates[count])
+                combination(candidates, target, result, temp)
+                temp.removeLast()
+            }
+        }
+
+        fun combinationSumOld(candidates: IntArray, target: Int): List<List<Int>> {
+            val result: MutableList<MutableList<Int>> = mutableListOf()
+            val temp: MutableList<Int> = mutableListOf()
             dp(candidates.sorted().toIntArray(), target, 0, result, temp)
             return result
         }
