@@ -39,11 +39,41 @@ class Question_39_Combination_Sum {
         fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {
             val result: MutableList<MutableList<Int>> = mutableListOf()
             val temp: MutableList<Int> = mutableListOf()
-            combination(candidates.sorted().toIntArray(), target, result, temp)
+            combination(candidates.sorted().toIntArray(), 0, target, result, temp)
             return result
         }
 
         fun combination(
+            candidates: IntArray,
+            index: Int,
+            target: Int,
+            result: MutableList<MutableList<Int>>,
+            temp: MutableList<Int>
+        ) {
+            if (target <= 0) {
+                if (0 == target && !result.contains(temp.sorted())) {
+                    result.add(temp.toMutableList())
+                }
+                return
+            }
+            for (count in index..candidates.size - 1) {
+                if (target - candidates[count] < 0) {
+                    return
+                }
+                temp.add(candidates[count])
+                combination(candidates, count, target - candidates[count], result, temp)
+                temp.removeAt(temp.size - 1)
+            }
+        }
+
+        fun combinationSumSlow(candidates: IntArray, target: Int): List<List<Int>> {
+            val result: MutableList<MutableList<Int>> = mutableListOf()
+            val temp: MutableList<Int> = mutableListOf()
+            combinationSlow(candidates.sorted().toIntArray(), target, result, temp)
+            return result
+        }
+
+        fun combinationSlow(
             candidates: IntArray,
             target: Int,
             result: MutableList<MutableList<Int>>,
@@ -58,7 +88,7 @@ class Question_39_Combination_Sum {
             }
             for (count in 0..candidates.size - 1) {
                 temp.add(candidates[count])
-                combination(candidates, target, result, temp)
+                combinationSlow(candidates, target, result, temp)
                 temp.removeLast()
             }
         }
