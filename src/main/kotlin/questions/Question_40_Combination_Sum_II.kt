@@ -56,6 +56,35 @@ class Question_40_Combination_Sum_II {
             result: MutableList<MutableList<Int>>,
             temp: MutableList<Int>
         ) {
+            val sum = temp.sum()
+            if (sum >= target) {
+                if (sum == target && !result.contains(temp)) {
+                    result.add(temp.toMutableList())
+                }
+                return
+            }
+            for (count in start..candidates.size - 1) {
+                if (count > start && candidates[count] == candidates[count - 1]) continue
+                temp.add(candidates[count])
+                combination(candidates, count + 1, target, result, temp)
+                temp.removeLast()
+            }
+        }
+
+        fun combinationSum2Solution2(candidates: IntArray, target: Int): List<List<Int>> {
+            val result: MutableList<MutableList<Int>> = mutableListOf()
+            val temp: MutableList<Int> = mutableListOf()
+            combinationSolution2(candidates.sorted().toIntArray(), 0, target, result, temp)
+            return result
+        }
+
+        fun combinationSolution2(
+            candidates: IntArray,
+            start: Int,
+            target: Int,
+            result: MutableList<MutableList<Int>>,
+            temp: MutableList<Int>
+        ) {
             if (target <= 0) {
                 if (target == 0 && !result.contains(temp)) {
                     result.add(temp.toMutableList())
@@ -66,7 +95,7 @@ class Question_40_Combination_Sum_II {
                 // if value is the same as previous one, skip
                 if (count > start && candidates[count] == candidates[count - 1]) continue
                 temp.add(candidates[count])
-                combination(candidates, count + 1, target - candidates[count], result, temp)
+                combinationSolution2(candidates, count + 1, target - candidates[count], result, temp)
                 temp.removeLast()
             }
         }
