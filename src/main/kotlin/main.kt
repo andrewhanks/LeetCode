@@ -1,6 +1,4 @@
-import questions.Question_17_Letter_Combinations_of_a_Phone_Number
-import questions.Question_40_Combination_Sum_II
-import java.util.*
+import questions.*
 
 
 fun main(args: Array<String>) {
@@ -35,10 +33,10 @@ fun main(args: Array<String>) {
 //    Question_35_Search_Insert_Position.runQuestion()
 //    Question_36_Valid_Sudoku.runQuestion()
 //    Question_39_Combination_Sum.runQuestion()
-    Question_40_Combination_Sum_II.runQuestion()
+//    Question_40_Combination_Sum_II.runQuestion()
 //    Question_43_Multiply_Strings.runQuestion()
 //    Question_45_Jump_Game_II.runQuestion()
-//    Question_46_Permutations.runQuestion()
+    Question_46_Permutations.runQuestion()
 //    Question_48_Rotate_Image.runQuestion()
 //    Question_49_Group_Anagrams.runQuestion()
 //    Question_50_Pow.runQuestion()

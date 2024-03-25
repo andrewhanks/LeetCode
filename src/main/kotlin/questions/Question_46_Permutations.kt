@@ -61,6 +61,35 @@ class Question_46_Permutations {
             }
         }
 
+        fun permuteOtherSolution(nums: IntArray): List<List<Int>> {
+            val result: MutableList<MutableList<Int>> = mutableListOf()
+            val temp: MutableList<Int> = mutableListOf()
+            val left = nums.sorted().toMutableList()
+            permutation(nums, result, temp, left)
+            return result
+        }
+
+        fun permutation(
+            nums: IntArray,
+            result: MutableList<MutableList<Int>>,
+            temp: MutableList<Int>,
+            left: MutableList<Int>
+        ) {
+            if (temp.size == nums.size) {
+                result.add(temp.toMutableList())
+                return
+            }
+            for (count in 0..left.size - 1) {
+                val current = left[count]
+                println("temp = ${temp}, left = ${left}, current = $current")
+                temp.add(current)
+                left.remove(current)
+                permutation(nums, result, temp, left.sorted().toMutableList())
+                temp.remove(current)
+                left.add(0, current)
+            }
+        }
+
         fun permuteWebSolution(nums: IntArray): List<List<Int>> {
             val resultArray = ArrayList<List<Int>>()
             permuteArray(nums, 0, nums.size - 1, resultArray)
