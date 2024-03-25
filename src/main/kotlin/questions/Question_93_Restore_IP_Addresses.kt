@@ -42,5 +42,45 @@ class Question_93_Restore_IP_Addresses {
             }
             return result
         }
+
+        fun restoreIpAddressesByBacktrace(s: String): List<String> {
+            if (s.length > 12 || s.length < 4) {
+                return listOf()
+            }
+            val result: MutableList<String> = mutableListOf()
+            val temp: MutableList<String> = mutableListOf()
+            backtrace(s, 0, result, temp)
+            return result
+        }
+
+        fun backtrace(s: String, start: Int, result: MutableList<String>, temp: MutableList<String>) {
+            if (temp.size == 4) {
+                if (s.length == start) {
+                    val finalString = StringBuilder()
+                    for (count in 0..temp.size - 1) {
+                        finalString.append(temp[count])
+                        if (count != temp.size - 1) {
+                            finalString.append(".")
+                        }
+                    }
+                    result.add(finalString.toString())
+                }
+                return
+            }
+            val end = if (start + 2 > s.length - 1) {
+                s.length - 1
+            } else {
+                start + 2
+            }
+            for (count in start..end) {
+                val cutString = s.substring(start..count)
+                val value = cutString.toIntOrNull()
+                if (value != null && (value >= 0 && value <= 255) && (cutString.length <= 1 || cutString[0] != '0')) {
+                    temp.add(cutString)
+                    backtrace(s, count + 1, result, temp)
+                    temp.removeAt(temp.size - 1)
+                }
+            }
+        }
     }
 }
