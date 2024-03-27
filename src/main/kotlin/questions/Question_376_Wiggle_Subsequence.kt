@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.max
+
 class Question_376_Wiggle_Subsequence {
 
     companion object {
@@ -13,6 +15,28 @@ class Question_376_Wiggle_Subsequence {
         }
 
         fun wiggleMaxLength(nums: IntArray): Int {
+            if (nums.size <= 1) {
+                return nums.size
+            }
+            val up: MutableList<Int> = MutableList(nums.size) { 1 }
+            val down: MutableList<Int> = MutableList(nums.size) { 1 }
+            for (count in 1..nums.size - 1) {
+                if (nums[count] > nums[count - 1]) {
+                    up[count] = down[count - 1] + 1
+                    down[count] = down[count - 1]
+                } else if (nums[count] < nums[count - 1]) {
+                    up[count] = up[count - 1]
+                    down[count] = up[count - 1] + 1
+                } else {
+                    up[count] = up[count - 1]
+                    down[count] = down[count - 1]
+                }
+            }
+            return max(up[up.size - 1], down[down.size - 1])
+        }
+
+        // https://bclin.tw/2022/07/04/leetcode-376/
+        fun wiggleMaxLengthByPeakAndValley(nums: IntArray): Int {
             if (nums.size <= 1) {
                 return nums.size
             }
