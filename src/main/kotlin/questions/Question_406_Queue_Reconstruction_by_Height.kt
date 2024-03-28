@@ -20,6 +20,21 @@ class Question_406_Queue_Reconstruction_by_Height {
             println("Question 406: ${result.contentDeepToString()}")
         }
 
+        fun reconstructQueueFast(people: Array<IntArray>): Array<IntArray> {
+            people.sortWith(Comparator { a, b ->
+                if (a[0] == b[0]) {
+                    a[1] - b[1]
+                } else {
+                    b[0] - a[0]
+                }
+            })
+            val result: MutableList<IntArray> = mutableListOf()
+            people.forEach {
+                result.add(it[1], it)
+            }
+            return result.toTypedArray()
+        }
+
         fun reconstructQueue(people: Array<IntArray>): Array<IntArray> {
             val sortedPeople = people.sortedBy { -it[0] }.sortedBy { it[1] }
             val result: MutableList<IntArray> = mutableListOf()
