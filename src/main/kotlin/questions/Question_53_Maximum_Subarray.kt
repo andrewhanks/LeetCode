@@ -8,6 +8,8 @@ class Question_53_Maximum_Subarray {
     companion object {
 
         fun runQuestion() {
+//            Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+//            Output: 6
             val intArray = intArrayOf(-2, 1, -3, 4, -1, 2, 1, -5, 4)
             val result = maxSubArray(intArray)
             println("Question 53: $result")
