@@ -13,6 +13,29 @@ class Question_53_Maximum_Subarray {
             println("Question 53: $result")
         }
 
+        fun maxSubArrayMySolution(nums: IntArray): Int {
+            var sum = 0
+            var max = 0
+            var allNegative = true
+            for (count in 0..nums.size - 1) {
+                if (nums[count] >= 0) {
+                    allNegative = false
+                    break
+                }
+            }
+            if (allNegative) {
+                return nums.max()
+            }
+            for (count in 0..nums.size - 1) {
+                sum += nums[count]
+                if (sum < 0) {
+                    sum = 0
+                }
+                max = max(max, sum)
+            }
+            return max
+        }
+
         fun maxSubArray(nums: IntArray): Int {
             var sum = 0
             var max = nums[0]
