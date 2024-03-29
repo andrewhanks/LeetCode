@@ -192,6 +192,7 @@ fun main(args: Array<String>) {
 //    Question_700_Search_in_a_Binary_Search_Tree.runQuestion()
 //    Question_701_Insert_into_a_Binary_Search_Tree.runQuestion()
 //    Question_704_Binary_Search.runQuestion()
+    Question_738_Monotone_Increasing_Digits.runQuestion()
 //    Question_743_Network_Delay_Time.runQuestion()
     Question_763_Partition_Labels.runQuestion()
 //    Question_781_Rabbits_in_Forest.runQuestion()
