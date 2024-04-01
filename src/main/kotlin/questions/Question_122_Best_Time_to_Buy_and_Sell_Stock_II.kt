@@ -12,6 +12,14 @@ class Question_122_Best_Time_to_Buy_and_Sell_Stock_II {
         }
 
         fun maxProfit(prices: IntArray): Int {
+            val diff: MutableList<Int> = mutableListOf()
+            for (count in 1..prices.size - 1) {
+                diff.add(prices[count] - prices[count - 1])
+            }
+            return diff.filter { it > 0 }.sum()
+        }
+
+        fun maxProfitOld(prices: IntArray): Int {
             var buyPrice = 100000
             var result = 0
             prices.forEachIndexed { index, value ->
