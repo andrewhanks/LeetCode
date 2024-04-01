@@ -5,7 +5,8 @@ class Question_122_Best_Time_to_Buy_and_Sell_Stock_II {
     companion object {
 
         fun runQuestion() {
-            // [7,1,5,3,6,4]
+//            Input: prices = [7,1,5,3,6,4]
+//            Output: 7
             val array = intArrayOf(7, 1, 5, 3, 6, 4)
             val result = maxProfit(array)
             println("Question 122: $result")
