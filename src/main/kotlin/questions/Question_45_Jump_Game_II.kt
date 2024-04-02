@@ -12,6 +12,30 @@ class Question_45_Jump_Game_II {
         }
 
         fun jump(nums: IntArray): Int {
+            var jump = 0
+            var currPos = 0
+            var farPos = 0
+            while (currPos < nums.size - 1) {
+                var endPos = nums[currPos] + currPos
+                if (endPos >= nums.size - 1) {
+                    jump++
+                    break
+                }
+                if (endPos > nums.size - 1) {
+                    endPos = nums.size - 1
+                }
+                for (count in currPos..endPos) {
+                    if (farPos <= nums[count] + count) {
+                        farPos = nums[count] + count
+                        currPos = count
+                    }
+                }
+                jump++
+            }
+            return jump
+        }
+
+        fun jumpOld(nums: IntArray): Int {
             var currentPosition = nums.size - 1
             var tempPosition = currentPosition
             var result = 0
