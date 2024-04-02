@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.max
+
 class Question_45_Jump_Game_II {
 
     companion object {
@@ -9,6 +11,20 @@ class Question_45_Jump_Game_II {
             val array = intArrayOf(2, 3, 0, 1, 4)
             val result = jump(array)
             println("Question 45: $result")
+        }
+
+        fun jumpWebSolution(nums: IntArray): Int {
+            var jump = 0
+            var endPos = 0
+            var farPos = 0
+            for (count in 0..nums.size - 2) {
+                farPos = max(farPos, nums[count] + count)
+                if (count == endPos) {
+                    endPos = farPos
+                    jump++
+                }
+            }
+            return jump
         }
 
         fun jump(nums: IntArray): Int {
