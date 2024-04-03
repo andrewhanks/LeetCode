@@ -45,7 +45,7 @@ fun main(args: Array<String>) {
 //    Question_53_Maximum_Subarray.runQuestion()
 //    Question_54_Spiral_Matrix.runQuestion()
 //    Question_55_Jump_Game.runQuestion()
-//    Question_56_Merge_Intervals.runQuestion()
+    Question_56_Merge_Intervals.runQuestion()
 //    Question_57_Insert_Interval.runQuestion()
 //    Question_58_Length_of_Last_Word.runQuestion()
 //    Question_59_Spiral_Matrix_II.runQuestion()

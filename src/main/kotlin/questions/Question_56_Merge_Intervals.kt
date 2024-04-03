@@ -1,6 +1,7 @@
 package questions
 
 import kotlin.math.max
+import kotlin.math.min
 
 
 class Question_56_Merge_Intervals {
@@ -36,6 +37,54 @@ class Question_56_Merge_Intervals {
         }
 
         fun merge(intervals: Array<IntArray>): Array<IntArray> {
+            intervals.sortBy { it[0] }
+            val result: MutableList<IntArray> = mutableListOf()
+            result.add(intervals[0])
+            for (count in 1..intervals.size - 1) {
+                val current = intervals[count]
+                var combined = false
+                val compared = result[result.size - 1]
+                if ((current[0] >= compared[0] && current[0] <= compared[1]) || (current[1] >= compared[0] && current[1] <= compared[1])) {
+                    compared[0] = min(current[0], compared[0])
+                    compared[1] = max(current[1], compared[1])
+                    combined = true
+                }
+                if (!combined) {
+                    result.add(intervals[count])
+                }
+            }
+            return result.toTypedArray()
+        }
+
+        fun mergeSlow(intervals: Array<IntArray>): Array<IntArray> {
+            intervals.sortWith(Comparator { a, b ->
+                if (a[0] == b[0]) {
+                    a[1] - b[1]
+                } else {
+                    a[0] - b[0]
+                }
+            })
+            val result: MutableList<IntArray> = mutableListOf()
+            for (count in 0..intervals.size - 1) {
+                val current = intervals[count]
+                var combined = false
+                for (i in 0..result.size - 1) {
+                    val compared = result[i]
+                    if ((current[0] >= compared[0] && current[0] <= compared[1]) || (current[1] >= compared[0] && current[1] <= compared[1])) {
+                        compared[0] = min(current[0], compared[0])
+                        compared[1] = max(current[1], compared[1])
+                        combined = true
+                        break
+                    }
+                }
+                if (!combined) {
+                    result.add(intervals[count])
+                }
+            }
+            return result.toTypedArray()
+        }
+
+        fun mergeOld(intervals: Array<IntArray>): Array<IntArray> {
             val result: MutableList<IntArray> = mutableListOf()
             intervals.sortBy { it[0] }
             result.add(intArrayOf(intervals[0][0], intervals[0][1]))
