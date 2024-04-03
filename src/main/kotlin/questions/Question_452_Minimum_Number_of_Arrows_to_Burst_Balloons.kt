@@ -1,5 +1,6 @@
 package questions
 
+import kotlin.math.max
 import kotlin.math.min
 
 
@@ -24,6 +25,35 @@ class Question_452_Minimum_Number_of_Arrows_to_Burst_Balloons {
         }
 
         fun findMinArrowShots(points: Array<IntArray>): Int {
+            points.sortWith(Comparator { a, b ->
+                if (a[0] == b[0]) {
+                    a[1] - b[1]
+                } else {
+                    a[0] - b[0]
+                }
+            })
+            // println(points.contentDeepToString())
+            val result: MutableList<IntArray> = mutableListOf()
+            for (count in 0..points.size - 1) {
+                val currentPoint = points[count]
+                var combined = false
+                for (point in result) {
+                    if ((currentPoint[0] >= point[0] && currentPoint[0] <= point[1]) || (currentPoint[1] >= point[0] && currentPoint[1] <= point[1])) {
+                        point[0] = max(currentPoint[0], point[0])
+                        point[1] = min(currentPoint[1], point[1])
+                        combined = true
+                        break
+                    }
+                }
+                if (!combined) {
+                    result.add(currentPoint)
+                }
+                // println(result.toTypedArray().contentDeepToString())
+            }
+            return result.size
+        }
+
+        fun findMinArrowShotsOld(points: Array<IntArray>): Int {
             points.sortWith(Comparator { a, b ->
                 if (a[0] > b[0]) {
                     1
