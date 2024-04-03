@@ -14,6 +14,34 @@ class Question_435_Non_overlapping_Intervals {
         }
 
         fun eraseOverlapIntervals(intervals: Array<IntArray>): Int {
+            intervals.sortWith(Comparator { a, b ->
+                if (a[0] == b[0]) {
+                    a[1] - b[1]
+                } else {
+                    a[0] - b[0]
+                }
+            })
+            println(intervals.contentDeepToString())
+            val result: MutableList<IntArray> = mutableListOf()
+            result.add(intervals[0])
+            var drop = 0
+            for (count in 1..intervals.size - 1) {
+                val interval = intervals[count]
+                val compared = result[result.size - 1]
+                if (interval[0] < compared[1] && interval[1] >= compared[1]) {
+                    drop++
+                } else if (interval[0] < compared[1] && interval[1] < compared[1]) {
+                    result[result.size - 1] = interval
+                    drop++
+                } else {
+                    result.add(interval)
+                }
+                // println("result = ${result.toTypedArray().contentDeepToString()}, drop = $drop")
+            }
+            return drop
+        }
+
+        fun eraseOverlapIntervalsOld(intervals: Array<IntArray>): Int {
             intervals.sortBy { it[1] }
             val covered = IntArray(2) { 0 }
             var dropCount = 0
