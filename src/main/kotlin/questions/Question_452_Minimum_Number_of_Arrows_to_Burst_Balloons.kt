@@ -34,6 +34,34 @@ class Question_452_Minimum_Number_of_Arrows_to_Burst_Balloons {
             })
             // println(points.contentDeepToString())
             val result: MutableList<IntArray> = mutableListOf()
+            result.add(points[0])
+            for (count in 1..points.size - 1) {
+                val currentPoint = points[count]
+                var combined = false
+                val point = result[result.size - 1]
+                if ((currentPoint[0] >= point[0] && currentPoint[0] <= point[1]) || (currentPoint[1] >= point[0] && currentPoint[1] <= point[1])) {
+                    point[0] = max(currentPoint[0], point[0])
+                    point[1] = min(currentPoint[1], point[1])
+                    combined = true
+                }
+                if (!combined) {
+                    result.add(currentPoint)
+                }
+                // println(result.toTypedArray().contentDeepToString())
+            }
+            return result.size
+        }
+
+        fun findMinArrowShotsSlow(points: Array<IntArray>): Int {
+            points.sortWith(Comparator { a, b ->
+                if (a[0] == b[0]) {
+                    a[1] - b[1]
+                } else {
+                    a[0] - b[0]
+                }
+            })
+            // println(points.contentDeepToString())
+            val result: MutableList<IntArray> = mutableListOf()
             for (count in 0..points.size - 1) {
                 val currentPoint = points[count]
                 var combined = false
