@@ -32,5 +32,22 @@ class Question_343_Integer_Break {
             }
             return max.toInt()
         }
+
+        fun integerBreakWebSolution(n: Int): Int {
+            var temp = n
+            if (temp == 2) {
+                return 1
+            }
+            if (temp == 3) {
+                return 2
+            }
+            var prod = 1
+            while (temp > 4) {
+                prod *= 3
+                temp -= 3
+            }
+            prod *= temp
+            return prod
+        }
     }
 }
