@@ -25,5 +25,19 @@ class Question_96_Unique_Binary_Search_Trees {
             }
             return sum
         }
+
+        fun numTreesIterative(n: Int): Int {
+            val result = IntArray(n + 1) { -1 }
+            result[0] = 1
+            result[1] = 1
+            for (count in 2..n) {
+                var sum = 0
+                for (i in 0..count - 1) {
+                    sum += result[i] * result[count - i - 1]
+                }
+                result[count] = sum
+            }
+            return result[n]
+        }
     }
 }
