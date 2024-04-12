@@ -8,6 +8,8 @@ class Question_62_Unique_Paths {
     companion object {
 
         fun runQuestion() {
+//            Input: m = 3, n = 7
+//            Output: 28
             val m = 3
             val n = 7
             val result = uniquePaths(m, n)
@@ -15,6 +17,24 @@ class Question_62_Unique_Paths {
         }
 
         fun uniquePaths(m: Int, n: Int): Int {
+            val result: Array<IntArray> = Array(m) { IntArray(n) { 0 } }
+            dp(m, n, result)
+            return result[m - 1][n - 1]
+        }
+
+        fun dp(m: Int, n: Int, result: Array<IntArray>): Int {
+            if (result[m - 1][n - 1] != 0) {
+                return result[m - 1][n - 1]
+            }
+            if (m == 1 || n == 1) {
+                result[m - 1][n - 1] = 1
+                return result[m - 1][n - 1]
+            }
+            result[m - 1][n - 1] = dp(m, n - 1, result) + dp(m - 1, n, result)
+            return result[m - 1][n - 1]
+        }
+
+        fun uniquePathsWebSolution(m: Int, n: Int): Int {
             var result: BigInteger = BigInteger.ONE
             if (m == 1 || n == 1) {
                 return result.toInt()
