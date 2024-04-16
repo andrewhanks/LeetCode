@@ -16,6 +16,9 @@ class Question_494_Target_Sum {
 
         fun findTargetSumWays(nums: IntArray, target: Int): Int {
             val sum = nums.sum()
+            if (sum < target || (sum - target) % 2 != 0) {
+                return 0
+            }
             val sum2 = (sum - target) / 2
             val result = Array(nums.size + 1) { Array(sum2 + 1) { 0 } }
             result[0][0] = 1
