@@ -34,6 +34,21 @@ class Question_279_Perfect_Squares {
             return dp[n]
         }
 
+        fun numSquaresIterative(n: Int): Int {
+            val dp = Array(n + 1) { 0 }
+
+            for (i in 0..n) {
+                dp[i] = i
+                var j = 1
+                while (j * j <= i) {
+                    dp[i] = min(dp[i], dp[i - j * j] + 1)
+                    j++
+                }
+            }
+
+            return dp[n]
+        }
+
         fun numSquaresWithMathTrick(n: Int): Int {
             // Math trick!!
             // Any number can be represented by 4 perfect squares
