@@ -1,4 +1,6 @@
-import questions.*
+import questions.Question_279_Perfect_Squares
+import questions.Question_474_Ones_and_Zeroes
+import kotlin.math.min
 
 
 fun main(args: Array<String>) {
@@ -146,6 +148,7 @@ fun main(args: Array<String>) {
 //    Question_242_Valid_Anagram.runQuestion()
 //    Question_257_Binary_Tree_Paths.runQuestion()
 //    Question_274_H_Index.runQuestion()
+    Question_279_Perfect_Squares.runQuestion()
 //    Question_283_Move_Zeroes.runQuestion()
 //    Question_287_Find_the_Duplicate_Number.runQuestion()
 //    Question_289_Game_of_Life.runQuestion()
@@ -177,7 +180,7 @@ fun main(args: Array<String>) {
 //    Question_454_4Sum_II.runQuestion()
 //    Question_455_Assign_Cookies.runQuestion()
 //    Question_459_Repeated_Substring_Pattern.runQuestion()
-    Question_474_Ones_and_Zeroes.runQuestion()
+//    Question_474_Ones_and_Zeroes.runQuestion()
 //    Question_491_Non_decreasing_Subsequences.runQuestion()
 //    Question_494_Target_Sum.runQuestion()
 //    Question_496_Next_Greater_Element_I.runQuestion()
