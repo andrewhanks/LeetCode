@@ -9,16 +9,40 @@ class Question_518_Coin_Change_II {
 //            Output: 4
             val amount = 5
             val coins = intArrayOf(1, 2, 5)
-            val result = changeTopDown(amount, coins)
+            val result = change(amount, coins)
             println("Question 518: $result")
+        }
+
+        fun change(amount: Int, coins: IntArray): Int {
+            val result: MutableMap<String, Int> = mutableMapOf()
+            return dpWithMap(amount, coins, 0, result)
+        }
+
+        fun dpWithMap(amount: Int, coins: IntArray, start: Int, result: MutableMap<String, Int>): Int {
+            if (amount < 0) {
+                return 0
+            }
+            if (amount == 0) {
+                return 1
+            }
+            val key = amount.toString() + "," + start.toString()
+            if (result.contains(key)) {
+                return result[key]!!
+            }
+            var sum = 0
+            for (count in start..coins.size - 1) {
+                sum += dpWithMap(amount - coins[count], coins, count, result)
+            }
+            result[key] = sum
+            return result[key]!!
         }
 
         fun changeTopDown(amount: Int, coins: IntArray): Int {
             val result: Array<IntArray> = Array(coins.size) { IntArray(amount + 1) { -1 } }
-            return dp(amount, coins, 0, result)
+            return dpWithTwoDimensionArray(amount, coins, 0, result)
         }
 
-        fun dp(amount: Int, coins: IntArray, start: Int, result: Array<IntArray>): Int {
+        fun dpWithTwoDimensionArray(amount: Int, coins: IntArray, start: Int, result: Array<IntArray>): Int {
             if (start > coins.size - 1) {
                 return 0
             }
@@ -31,8 +55,8 @@ class Question_518_Coin_Change_II {
             if (result[start][amount] != -1) {
                 return result[start][amount]
             }
-            val taken = dp(amount - coins[start], coins, start, result)
-            val notTaken = dp(amount, coins, start + 1, result)
+            val taken = dpWithTwoDimensionArray(amount - coins[start], coins, start, result)
+            val notTaken = dpWithTwoDimensionArray(amount, coins, start + 1, result)
             result[start][amount] = taken + notTaken
             return result[start][amount]
         }
