@@ -14,6 +14,32 @@ class Question_518_Coin_Change_II {
         }
 
         fun change(amount: Int, coins: IntArray): Int {
+            val result = Array(coins.size) { Array(amount + 1) { -1 } }
+            return dpTopDownWithTwoDimensionArray(amount, coins, coins.size - 1, result)
+        }
+
+        fun dpTopDownWithTwoDimensionArray(amount: Int, coins: IntArray, index: Int, result: Array<Array<Int>>): Int {
+            if (index < 0) {
+                return 0
+            }
+            if (amount < 0) {
+                return 0
+            }
+            if (amount == 0) {
+                result[index][amount] = 1
+                return result[index][amount]
+            }
+            if (result[index][amount] != -1) {
+                return result[index][amount]
+            }
+            val taken = dpTopDownWithTwoDimensionArray(amount - coins[index], coins, index, result)
+            val notTaken = dpTopDownWithTwoDimensionArray(amount, coins, index - 1, result)
+            // println("coins[index] = ${coins[index]}, taken = $taken, notTaken = $notTaken")
+            result[index][amount] = taken + notTaken
+            return result[index][amount]
+        }
+
+        fun changeWithMap(amount: Int, coins: IntArray): Int {
             val result: MutableMap<String, Int> = mutableMapOf()
             return dpWithMap(amount, coins, 0, result)
         }
@@ -37,12 +63,12 @@ class Question_518_Coin_Change_II {
             return result[key]!!
         }
 
-        fun changeTopDown(amount: Int, coins: IntArray): Int {
+        fun changeBottomUpWithTwoDimensionArray(amount: Int, coins: IntArray): Int {
             val result: Array<IntArray> = Array(coins.size) { IntArray(amount + 1) { -1 } }
-            return dpWithTwoDimensionArray(amount, coins, 0, result)
+            return dpBottomUpWithTwoDimensionArray(amount, coins, 0, result)
         }
 
-        fun dpWithTwoDimensionArray(amount: Int, coins: IntArray, start: Int, result: Array<IntArray>): Int {
+        fun dpBottomUpWithTwoDimensionArray(amount: Int, coins: IntArray, start: Int, result: Array<IntArray>): Int {
             if (start > coins.size - 1) {
                 return 0
             }
@@ -55,8 +81,8 @@ class Question_518_Coin_Change_II {
             if (result[start][amount] != -1) {
                 return result[start][amount]
             }
-            val taken = dpWithTwoDimensionArray(amount - coins[start], coins, start, result)
-            val notTaken = dpWithTwoDimensionArray(amount, coins, start + 1, result)
+            val taken = dpBottomUpWithTwoDimensionArray(amount - coins[start], coins, start, result)
+            val notTaken = dpBottomUpWithTwoDimensionArray(amount, coins, start + 1, result)
             result[start][amount] = taken + notTaken
             return result[start][amount]
         }
