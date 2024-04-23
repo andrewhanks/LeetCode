@@ -1,6 +1,5 @@
 package questions
 
-import java.util.*
 import kotlin.math.min
 
 
@@ -9,11 +8,51 @@ class Question_322_Coin_Change {
     companion object {
 
         fun runQuestion() {
-            val intArray = intArrayOf(186, 419, 83, 408)
-            val amount = 6249
+//            Input: coins = [1,2,5], amount = 11
+//            Output: 3
+            val intArray = intArrayOf(1, 2, 5)
+            val amount = 11
             val startTime = System.currentTimeMillis()
-            val result = coinChangeBottomUp(intArray, amount)
+            val result = coinChange(intArray, amount)
             println("Question 322: $result, spent time = ${System.currentTimeMillis() - startTime}")
+        }
+
+        fun coinChange(coins: IntArray, amount: Int): Int {
+            val result = Array(coins.size + 1) { Array(amount + 1) { -1 } }
+            val finalResult = dpWithTwoDimension(coins, amount, coins.size, result)
+            if (finalResult != 100000) {
+                return finalResult
+            } else {
+                return -1
+            }
+        }
+
+        fun dpWithTwoDimension(coins: IntArray, amount: Int, index: Int, result: Array<Array<Int>>): Int {
+            // println("index = $index, amount = $amount")
+            if (amount < 0) {
+                return 100000
+            }
+            if (amount == 0) {
+                result[index][amount] = 0
+                return result[index][amount]
+            }
+            if (index == 1) {
+                if (amount % coins[index - 1] == 0) {
+                    result[index][amount] = amount / coins[index - 1]
+                    return amount / coins[index - 1]
+                } else {
+                    result[index][amount] = 100000
+                    return 100000
+                }
+            }
+            if (result[index][amount] != -1) {
+                return result[index][amount]
+            }
+            val taken = dpWithTwoDimension(coins, amount - coins[index - 1], index, result) + 1
+            val notTaken = dpWithTwoDimension(coins, amount, index - 1, result)
+            // println("taken = $taken, notTaken = $notTaken")
+            result[index][amount] = min(taken, notTaken)
+            return result[index][amount]
         }
 
         fun coinChangeTopDown(coins: IntArray, amount: Int): Int {
