@@ -50,5 +50,19 @@ class Question_1035_Uncrossed_Lines {
             println(result.contentDeepToString())
             return result[nums1.size - 1][nums2.size - 1]
         }
+
+        fun maxUncrossedLinesAnotherSolution(nums1: IntArray, nums2: IntArray): Int {
+            val result = Array(nums1.size + 1) { IntArray(nums2.size + 1) { 0 } }
+            for (i in 1..nums1.size) {
+                for (j in 1..nums2.size) {
+                    if (nums1[i - 1] == nums2[j - 1]) {
+                        result[i][j] = result[i - 1][j - 1] + 1
+                    } else {
+                        result[i][j] = max(result[i - 1][j], result[i][j - 1])
+                    }
+                }
+            }
+            return result[nums1.size][nums2.size]
+        }
     }
 }
