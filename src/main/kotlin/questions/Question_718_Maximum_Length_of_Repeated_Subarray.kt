@@ -40,5 +40,19 @@ class Question_718_Maximum_Length_of_Repeated_Subarray {
             }
             return max
         }
+
+        fun findLengthAnotherSolution(nums1: IntArray, nums2: IntArray): Int {
+            val result = Array(nums1.size + 1) { IntArray(nums2.size + 1) { 0 } }
+            var max = 0
+            for (i in 1..nums1.size) {
+                for (j in 1..nums2.size) {
+                    if (nums1[i - 1] == nums2[j - 1]) {
+                        result[i][j] = result[i - 1][j - 1] + 1
+                        max = max(max, result[i][j])
+                    }
+                }
+            }
+            return max
+        }
     }
 }
