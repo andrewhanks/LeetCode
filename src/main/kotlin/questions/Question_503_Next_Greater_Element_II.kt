@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_503_Next_Greater_Element_II {
 
     companion object {
@@ -22,6 +24,20 @@ class Question_503_Next_Greater_Element_II {
                         break
                     }
                 }
+            }
+            return result
+        }
+
+        fun nextGreaterElementsWithStack(nums: IntArray): IntArray {
+            val result = IntArray(nums.size) { -1 }
+            val stack: Stack<Int> = Stack()
+            for (i in 0..nums.size * 2 - 1) {
+                val index = i % nums.size
+                while (!stack.isEmpty() && nums[stack.peek()] < nums[index]) {
+                    val temp = stack.removeLast()
+                    result[temp] = nums[index]
+                }
+                stack.add(index)
             }
             return result
         }
