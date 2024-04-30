@@ -7,13 +7,29 @@ class Question_1143_Longest_Common_Subsequence {
     companion object {
 
         fun runQuestion() {
-            val string1 = "pmjghexybyrgzczy"
-            val string2 = "hafcdqbgncrcbihkd"
-            val result = longestCommonSubsequence(string1, string2)
+//            Input: text1 = "abcde", text2 = "ace"
+//            Output: 3
+            val text1 = "abcde"
+            val text2 = "ace"
+            val result = longestCommonSubsequence(text1, text2)
             println("Question 1143: $result")
         }
 
         fun longestCommonSubsequence(text1: String, text2: String): Int {
+            val result = Array(text1.length + 1) { IntArray(text2.length + 1) { 0 } }
+            for (i in 1..text1.length) {
+                for (j in 1..text2.length) {
+                    if (text1[i - 1] == text2[j - 1]) {
+                        result[i][j] = result[i - 1][j - 1] + 1
+                    } else {
+                        result[i][j] = max(result[i - 1][j], result[i][j - 1])
+                    }
+                }
+            }
+            return result[text1.length][text2.length]
+        }
+
+        fun longestCommonSubsequenceOldSolution(text1: String, text2: String): Int {
             val resultArray = Array(text1.length) { Array(text2.length) { 0 } }
             for (x in 0..text1.length - 1) {
                 for (y in 0..text2.length - 1) {
