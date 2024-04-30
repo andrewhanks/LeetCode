@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_739_Daily_Temperatures {
 
     companion object {
@@ -21,6 +23,20 @@ class Question_739_Daily_Temperatures {
                         break
                     }
                 }
+            }
+            return result
+        }
+
+        fun dailyTemperaturesWithStack(temperatures: IntArray): IntArray {
+            val stack: Stack<Int> = Stack()
+            val result = IntArray(temperatures.size) { 0 }
+            for (count in 0..temperatures.size - 1) {
+                val temperature = temperatures[count]
+                while (!stack.isEmpty() && temperatures[stack.peek()] < temperature) {
+                    val day = stack.removeLast()
+                    result[day] = count - day
+                }
+                stack.add(count)
             }
             return result
         }
