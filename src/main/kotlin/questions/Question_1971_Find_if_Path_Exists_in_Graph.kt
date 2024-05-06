@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 
 class Question_1971_Find_if_Path_Exists_in_Graph {
 
@@ -46,6 +48,35 @@ class Question_1971_Find_if_Path_Exists_in_Graph {
                 val result = dfs(graph, tempDest, destination, temp)
                 if (result) {
                     return true
+                }
+            }
+            return false
+        }
+
+        fun validPathBfs(n: Int, edges: Array<IntArray>, source: Int, destination: Int): Boolean {
+            val temp: MutableSet<Int> = mutableSetOf()
+            val graph: List<MutableList<Int>> = List(n) { mutableListOf() }
+            for (count in 0..edges.size - 1) {
+                val first = edges[count][0]
+                val second = edges[count][1]
+                graph[first].add(second)
+                graph[second].add(first)
+            }
+            val queue: Queue<Int> = LinkedList()
+            queue.add(source)
+            temp.add(source)
+            while (!queue.isEmpty()) {
+                val node = queue.remove()
+                if (destination == node) {
+                    return true
+                }
+                for (count in 0..graph[node].size - 1) {
+                    val tempDest = graph[node][count]
+                    if (temp.contains(tempDest)) {
+                        continue
+                    }
+                    queue.add(tempDest)
+                    temp.add(tempDest)
                 }
             }
             return false
