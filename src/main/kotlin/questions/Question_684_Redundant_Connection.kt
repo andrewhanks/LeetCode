@@ -1,0 +1,60 @@
+package questions
+
+class Question_684_Redundant_Connection {
+
+    companion object {
+
+        fun runQuestion() {
+//            Input: edges = [[3,4],[1,2],[2,4],[3,5],[2,5]]
+//            Output: [2,5]
+            val edges =
+                arrayOf(intArrayOf(3, 4), intArrayOf(1, 2), intArrayOf(2, 4), intArrayOf(3, 5), intArrayOf(2, 5))
+            val result = findRedundantConnection(edges)
+            println("Question 2643: ${result.contentToString()}")
+        }
+
+        fun findRedundantConnection(edges: Array<IntArray>): IntArray {
+            val result: MutableList<MutableSet<Int>> = mutableListOf()
+            for (i in 0..edges.size - 1) {
+                var isContained = -1
+                var isCombined = false
+                for (j in 0..result.size - 1) {
+                    if (result[j].contains(edges[i][0]) || result[j].contains(edges[i][1])) {
+                        if (isContained == -1) {
+                            isContained = j
+                        } else {
+                            for (k in 0..result[j].size - 1) {
+                                result[isContained].add(result[j].elementAt(k))
+                            }
+                            result.remove(result[j])
+                            isCombined = true
+                            break
+                        }
+                    }
+                }
+                if (isCombined) {
+                    continue
+                }
+                // println("isContained = $isContained")
+                if (isContained == -1) {
+                    val newSet: MutableSet<Int> = mutableSetOf()
+                    newSet.add(edges[i][0])
+                    newSet.add(edges[i][1])
+                    result.add(newSet)
+                } else {
+                    if (result[isContained].contains(edges[i][0]) && result[isContained].contains(edges[i][1])) {
+                        return edges[i]
+                    } else {
+                        result[isContained].add(edges[i][0])
+                        result[isContained].add(edges[i][1])
+                    }
+                }
+                // println("result.size = ${result.size}")
+                // for(count in 0..result.size-1) {
+                //     println("result[$count] = ${result[count]}")
+                // }
+            }
+            return intArrayOf()
+        }
+    }
+}
