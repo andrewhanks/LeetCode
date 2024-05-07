@@ -56,5 +56,40 @@ class Question_684_Redundant_Connection {
             }
             return intArrayOf()
         }
+
+        fun findRedundantConnectionWithUnion(edges: Array<IntArray>): IntArray {
+            val result = IntArray(edges.size + 1) { 0 }
+            for (count in 0..result.size - 1) {
+                result[count] = count
+            }
+            for (edge in edges) {
+                val x = edge[0]
+                val y = edge[1]
+                if (isInUnion(x, y, result)) {
+                    return edge
+                }
+            }
+            return intArrayOf()
+        }
+
+        fun isInUnion(x: Int, y: Int, result: IntArray): Boolean {
+            val node1 = find(x, result)
+            val node2 = find(y, result)
+            // println("node1 = ${node1}, node2 = ${node2}")
+            if (node1 == node2) {
+                return true
+            }
+            result[node2] = node1
+            return false
+        }
+
+        fun find(x: Int, result: IntArray): Int {
+            if (result[x] == x) {
+                return x
+            } else {
+                result[x] = find(result[x], result)
+                return result[x]
+            }
+        }
     }
 }
