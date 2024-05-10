@@ -15,6 +15,23 @@ class Question_123_Best_Time_to_Buy_and_Sell_Stock_III {
         }
 
         fun maxProfit(prices: IntArray): Int {
+            val result = Array(5) { IntArray(prices.size) { 0 } }
+            result[0][0] = 0
+            result[1][0] = -prices[0]
+            result[2][0] = 0
+            result[3][0] = -prices[0]
+            result[4][0] = 0
+            for (count in 1..prices.size - 1) {
+                result[0][count] = 0
+                result[1][count] = max(result[1][count - 1], result[0][count - 1] - prices[count])
+                result[2][count] = max(result[2][count - 1], result[1][count - 1] + prices[count])
+                result[3][count] = max(result[3][count - 1], result[2][count - 1] - prices[count])
+                result[4][count] = max(result[4][count - 1], result[3][count - 1] + prices[count])
+            }
+            return result[4][result[4].size - 1]
+        }
+
+        fun maxProfitAnotherSolution(prices: IntArray): Int {
 //            First assume that we have no money, so buy1 means that we have to borrow money from others,
 //            we want to borrow less so that we have to make our balance as max as we can(because this is negative).
 //            sell1 means we decide to sell the stock, after selling it we have price[i] money and we have to give back the money we owed,
