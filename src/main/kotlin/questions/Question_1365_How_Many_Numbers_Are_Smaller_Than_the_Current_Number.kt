@@ -26,5 +26,25 @@ class Question_1365_How_Many_Numbers_Are_Smaller_Than_the_Current_Number {
             }
             return result
         }
+
+        fun smallerNumbersThanCurrentFast(nums: IntArray): IntArray {
+            val temp = IntArray(101) { 0 }
+            for (num in nums) {
+                temp[num]++
+            }
+            for (count in 1..temp.size - 1) {
+                temp[count] += temp[count - 1]
+            }
+            // println(temp.contentToString())
+            val result = IntArray(nums.size) { 0 }
+            for (count in 0..nums.size - 1) {
+                if (nums[count] == 0) {
+                    continue
+                }
+                result[count] = temp[nums[count] - 1]
+            }
+            // println(result.contentToString())
+            return result
+        }
     }
 }
