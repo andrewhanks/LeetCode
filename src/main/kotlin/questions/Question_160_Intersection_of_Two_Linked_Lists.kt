@@ -69,5 +69,24 @@ class Question_160_Intersection_of_Two_Linked_Lists {
             }
             return null
         }
+
+        fun getIntersectionNodeWebSolution(headA: ListNode?, headB: ListNode?): ListNode? {
+            var tempA = headA
+            var tempB = headB
+            while (tempA != tempB) {
+                tempA = if (tempA != null) {
+                    tempA?.next
+                } else {
+                    headB
+                }
+                tempB = if (tempB != null) {
+                    tempB?.next
+                } else {
+                    headA
+                }
+                // println("tempA = ${tempA?.`val`}, tempB = ${tempB?.`val`}")
+            }
+            return tempA
+        }
     }
 }
