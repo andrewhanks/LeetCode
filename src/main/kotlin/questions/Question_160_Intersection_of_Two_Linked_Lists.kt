@@ -39,6 +39,23 @@ class Question_160_Intersection_of_Two_Linked_Lists {
         }
 
         fun getIntersectionNode(headA: ListNode?, headB: ListNode?): ListNode? {
+            val result: MutableSet<ListNode> = mutableSetOf()
+            var tempA = headA
+            while (tempA != null) {
+                result.add(tempA)
+                tempA = tempA?.next
+            }
+            var tempB = headB
+            while (tempB != null) {
+                if (result.contains(tempB)) {
+                    return tempB
+                }
+                tempB = tempB?.next
+            }
+            return null
+        }
+
+        fun getIntersectionNodeSlow(headA: ListNode?, headB: ListNode?): ListNode? {
             var tempA = headA
             while (tempA != null) {
                 var tempB = headB
