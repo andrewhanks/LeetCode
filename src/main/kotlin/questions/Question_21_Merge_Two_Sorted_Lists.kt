@@ -27,7 +27,7 @@ class Question_21_Merge_Two_Sorted_Lists {
             }
             result = result + "," + tempResultList.`val`
             result += "]"
-            println("Question 2: $result")
+            println("Question 21: $result")
         }
 
         fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
