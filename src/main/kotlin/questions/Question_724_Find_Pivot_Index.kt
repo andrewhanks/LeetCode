@@ -30,5 +30,22 @@ class Question_724_Find_Pivot_Index {
             }
             return -1
         }
+
+        fun pivotIndexWithSumArray(nums: IntArray): Int {
+            val left = IntArray(nums.size) { 0 }
+            val right = IntArray(nums.size) { 0 }
+            left[0] = nums[0]
+            right[nums.size - 1] = nums[nums.size - 1]
+            for (count in 1..nums.size - 1) {
+                left[count] = left[count - 1] + nums[count]
+                right[nums.size - 1 - count] = right[nums.size - 1 - (count - 1)] + nums[nums.size - 1 - count]
+            }
+            for (count in 0..nums.size - 1) {
+                if (left[count] == right[count]) {
+                    return count
+                }
+            }
+            return -1
+        }
     }
 }
