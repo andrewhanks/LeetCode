@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_844_Backspace_String_Compare {
 
     companion object {
@@ -11,6 +13,30 @@ class Question_844_Backspace_String_Compare {
             val t = "ad#c"
             val result = backspaceCompare(s, t)
             println("Question 844: $result")
+        }
+
+        fun backspaceCompareWithStack(s: String, t: String): Boolean {
+            val stackS: Stack<Char> = Stack()
+            val stackT: Stack<Char> = Stack()
+            for (count in 0..s.length - 1) {
+                if (s[count] != '#') {
+                    stackS.add(s[count])
+                } else {
+                    if (!stackS.isEmpty()) {
+                        stackS.pop()
+                    }
+                }
+            }
+            for (count in 0..t.length - 1) {
+                if (t[count] != '#') {
+                    stackT.add(t[count])
+                } else {
+                    if (!stackT.isEmpty()) {
+                        stackT.pop()
+                    }
+                }
+            }
+            return stackS == stackT
         }
 
         fun backspaceCompare(s: String, t: String): Boolean {
