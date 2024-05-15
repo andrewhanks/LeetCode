@@ -12,6 +12,7 @@ class Question_31_Next_Permutation {
             println("Question 31: ${nums.contentToString()}")
         }
 
+        // https://leetcode.wang/leetCode-31-Next-Permutation.html
         fun nextPermutation(nums: IntArray): Unit {
             var insert = nums.size - 1
             while (insert >= 1 && nums[insert] <= nums[insert - 1]) {
