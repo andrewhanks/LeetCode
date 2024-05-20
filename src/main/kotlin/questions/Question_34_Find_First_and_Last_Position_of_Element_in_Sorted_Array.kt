@@ -23,6 +23,34 @@ class Question_34_Find_First_and_Last_Position_of_Element_in_Sorted_Array {
         }
 
         fun searchRange(nums: IntArray, target: Int): IntArray {
+            val left = binarySearch(nums, target, true)
+            val right = binarySearch(nums, target, false)
+            return intArrayOf(left, right)
+        }
+
+        fun binarySearch(nums: IntArray, target: Int, left: Boolean): Int {
+            var start = 0
+            var end = nums.size - 1
+            var index = -1
+            while (start <= end) {
+                val mid = start + (end - start) / 2
+                if (target > nums[mid]) {
+                    start = mid + 1
+                } else if (target < nums[mid]) {
+                    end = mid - 1
+                } else {
+                    index = mid
+                    if (left) {
+                        end = mid - 1
+                    } else {
+                        start = mid + 1
+                    }
+                }
+            }
+            return index
+        }
+
+        fun searchRangeLinearSearch(nums: IntArray, target: Int): IntArray {
             val result: IntArray = IntArray(2) { -1 }
             for (count in 0..nums.size - 1) {
                 if (result[0] == -1 && target == nums[count]) {
