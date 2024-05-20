@@ -25,8 +25,36 @@ class Question_129_Sum_Root_to_Leaf_Numbers {
             println("Question 129: $result")
         }
 
-        var sum = 0
         fun sumNumbers(root: TreeNode?): Int {
+            val result: MutableList<Int> = mutableListOf()
+            val temp: MutableList<Int> = mutableListOf()
+            dfs(root, result, temp)
+            return result.sum()
+        }
+
+        fun dfs(root: TreeNode?, result: MutableList<Int>, temp: MutableList<Int>) {
+            if (root == null) {
+                return
+            }
+            temp.add(root?.`val`!!)
+            if (root?.left != null) {
+                dfs(root?.left, result, temp)
+            }
+            if (root?.right != null) {
+                dfs(root?.right, result, temp)
+            }
+            if (root?.left == null && root?.right == null) {
+                var tempSum = 0
+                for (count in 0..temp.size - 1) {
+                    tempSum = tempSum * 10 + temp[count]
+                }
+                result.add(tempSum)
+            }
+            temp.removeAt(temp.size - 1)
+        }
+
+        var sum = 0
+        fun sumNumbersOldSolution(root: TreeNode?): Int {
             if (root == null) {
                 return 0
             }
