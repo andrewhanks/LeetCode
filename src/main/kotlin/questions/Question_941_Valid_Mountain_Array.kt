@@ -40,5 +40,17 @@ class Question_941_Valid_Mountain_Array {
             }
             return true
         }
+
+        fun validMountainArrayWithTwoPointers(arr: IntArray): Boolean {
+            var i = 0
+            var j = arr.size - 1
+            while (i < arr.size - 1 && arr[i] < arr[i + 1]) {
+                i++
+            }
+            while (j > 0 && arr[j] < arr[j - 1]) {
+                j--
+            }
+            return i < arr.size - 1 && i == j && j > 0
+        }
     }
 }
