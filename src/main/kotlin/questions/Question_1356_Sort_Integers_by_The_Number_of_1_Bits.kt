@@ -13,6 +13,21 @@ class Question_1356_Sort_Integers_by_The_Number_of_1_Bits {
         }
 
         fun sortByBits(arr: IntArray): IntArray {
+            arr.sort()
+            return arr.sortedBy { bitCount(it) }.toIntArray()
+        }
+
+        fun bitCount(n: Int): Int {
+            var count = 0
+            var temp = n
+            while (temp > 0) {
+                temp = temp and (temp - 1)
+                count++
+            }
+            return count
+        }
+
+        fun sortByBitsWithMap(arr: IntArray): IntArray {
             val temp: MutableMap<Int, MutableList<Int>> = mutableMapOf()
             for (count in 0..arr.size - 1) {
                 val binaryString = arr[count].toString(2)
