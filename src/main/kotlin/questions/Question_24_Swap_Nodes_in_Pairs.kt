@@ -31,6 +31,30 @@ class Question_24_Swap_Nodes_in_Pairs {
         }
 
         fun swapPairs(head: ListNode?): ListNode? {
+            if (head == null) {
+                return null
+            }
+            val result: MutableList<ListNode> = mutableListOf()
+            var current = head
+            while (current != null) {
+                result.add(current)
+                current = current?.next
+            }
+            var count = 0
+            while (count < result.size - 1) {
+                val temp = result[count]
+                result[count] = result[count + 1]
+                result[count + 1] = temp
+                count += 2
+            }
+            for (count in 1..result.size - 1) {
+                result[count - 1]?.next = result[count]
+            }
+            result[result.size - 1]?.next = null
+            return result[0]
+        }
+
+        fun swapPairsWithoutList(head: ListNode?): ListNode? {
             var current = head
             var previous: ListNode? = null
             var count = 0
