@@ -5,9 +5,37 @@ class Question_5_Longest_Palindromic_Substring {
     companion object {
 
         fun runQuestion() {
+//            Input: s = "babad"
+//            Output: "bab"
             val inputString = "babad"
-            val result = longestPalindromeWebSolution(inputString)
+            val result = longestPalindrome(inputString)
             println("Question 5: $result")
+        }
+
+        fun longestPalindrome(s: String): String {
+            var result = ""
+            for(i in 0..s.length-1) {
+                for(j in 0..i) {
+                    val temp = s.substring(j..i)
+                    if(check(temp) && temp.length>result.length) {
+                        result = temp
+                    }
+                }
+            }
+            return result
+        }
+
+        fun check(s:String) :Boolean{
+            var i=0
+            var j=s.length-1
+            while(i<j) {
+                if(s[i]!=s[j]) {
+                    return false
+                }
+                i++
+                j--
+            }
+            return true
         }
 
         // Recording whether substrings of input are Palindrome from 1 to s.length characters
