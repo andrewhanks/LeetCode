@@ -45,5 +45,32 @@ class Question_925_Long_Pressed_Name {
             }
             return true
         }
+
+        fun isLongPressedNameWithTwoPointers(name: String, typed: String): Boolean {
+            var i = 0
+            var j = 0
+            while (i <= name.length - 1 && j <= typed.length - 1) {
+                if (name[i] == typed[j]) {
+                    i++
+                    j++
+                } else if (i >= 1 && name[i - 1] == typed[j]) {
+                    j++
+                } else {
+                    return false
+                }
+            }
+            while (j <= typed.length - 1) {
+                if (name[i - 1] == typed[j]) {
+                    j++
+                } else {
+                    return false
+                }
+            }
+            if (i < name.length) {
+                return false
+            } else {
+                return true
+            }
+        }
     }
 }
