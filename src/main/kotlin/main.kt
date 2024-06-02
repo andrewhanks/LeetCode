@@ -330,5 +330,6 @@ fun main(args: Array<String>) {
 //    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
 //    Question_2733_Neither_Minimum_nor_Maximum.runQuestion()
 //    Question_2766_Relocate_Marbles.runQuestion()
-    Question_3168_Minimum_Number_of_Chairs_in_a_Waiting_Room.runQuestion()
+//    Question_3168_Minimum_Number_of_Chairs_in_a_Waiting_Room.runQuestion()
+    Question_3169_Count_Days_Without_Meetings.runQuestion()
 }
