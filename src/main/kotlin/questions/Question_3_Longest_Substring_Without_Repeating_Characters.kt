@@ -1,16 +1,42 @@
 package questions
 
+import kotlin.math.max
+
 class Question_3_Longest_Substring_Without_Repeating_Characters {
 
     companion object {
 
         fun runQuestion() {
+//            Input: s = "abcabcbb"
+//            Output: 3
             val inputString = "abcabcbb"
             val result = lengthOfLongestSubstring(inputString)
             println("Question 3: $result")
         }
 
         fun lengthOfLongestSubstring(s: String): Int {
+            if (s.length == 0) {
+                return 0
+            }
+            var start = 0
+            var end = 0
+            var max = 0
+            for (count in 1..s.length - 1) {
+                val string = s.substring(start..count - 1)
+                if (!string.contains(s[count])) {
+                    end++
+                } else {
+                    max = max(max, end - start + 1)
+                    start = s.substring(0..count - 1).lastIndexOf(s[count]) + 1
+                    // println("start = $start")
+                    end = count
+                }
+            }
+            max = max(max, end - start + 1)
+            return max
+        }
+
+        fun lengthOfLongestSubstringOldSolution(s: String): Int {
             var position = 0
             var length = 0
             if (s.length <= 1) {
