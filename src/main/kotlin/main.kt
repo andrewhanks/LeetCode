@@ -1,6 +1,7 @@
 import questions.Question_132_Palindrome_Partitioning_II
 import questions.Question_3170_Lexicographically_Minimum_String_After_Removing_Stars
 import questions.Question_542_01_Matrix
+import questions.Question_973_K_Closest_Points_to_Origin
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
@@ -104,7 +105,7 @@ fun main(args: Array<String>) {
 //    Question_129_Sum_Root_to_Leaf_Numbers.runQuestion()
 //    Question_130_Surrounded_Regions.runQuestion()
 //    Question_131_Palindrome_Partitioning.runQuestion()
-    Question_132_Palindrome_Partitioning_II.runQuestion()
+//    Question_132_Palindrome_Partitioning_II.runQuestion()
 //    Question_133_Clone_Graph.runQuestion()
 //    Question_134_Gas_Station.runQuestion()
 //    Question_136_Single_Number.runQuestion()
@@ -250,6 +251,7 @@ fun main(args: Array<String>) {
 //    Question_925_Long_Pressed_Name.runQuestion()
 //    Question_941_Valid_Mountain_Array.runQuestion()
 //    Question_948_Bag_of_Tokens.runQuestion()
+    Question_973_K_Closest_Points_to_Origin.runQuestion()
 //    Question_977_Squares_of_a_Sorted_Array.runQuestion()
 //    Question_991_Broken_Calculator.runQuestion()
 //    Question_993_Cousins_in_Binary_Tree.runQuestion()
