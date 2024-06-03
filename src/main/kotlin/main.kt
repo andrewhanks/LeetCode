@@ -1,4 +1,5 @@
-import questions.*
+import questions.Question_3170_Lexicographically_Minimum_String_After_Removing_Stars
+import questions.Question_542_01_Matrix
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
@@ -203,6 +204,7 @@ fun main(args: Array<String>) {
 //    Question_530_Minimum_Absolute_Difference_in_BST.runQuestion()
 //    Question_538_Convert_BST_to_Greater_Tree.runQuestion()
 //    Question_541_Reverse_String_II.runQuestion()
+    Question_542_01_Matrix.runQuestion()
 //    Question_547_Number_of_Provinces.runQuestion()
 //    Question_560_Subarray_Sum_Equals_K.runQuestion()
 //    Question_576_Out_of_Boundary_Paths.runQuestion()
@@ -332,5 +334,5 @@ fun main(args: Array<String>) {
 //    Question_2766_Relocate_Marbles.runQuestion()
 //    Question_3168_Minimum_Number_of_Chairs_in_a_Waiting_Room.runQuestion()
 //    Question_3169_Count_Days_Without_Meetings.runQuestion()
-    Question_3170_Lexicographically_Minimum_String_After_Removing_Stars.runQuestion()
+//    Question_3170_Lexicographically_Minimum_String_After_Removing_Stars.runQuestion()
 }
