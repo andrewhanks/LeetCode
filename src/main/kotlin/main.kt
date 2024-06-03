@@ -1,7 +1,4 @@
-import questions.Question_132_Palindrome_Partitioning_II
-import questions.Question_3170_Lexicographically_Minimum_String_After_Removing_Stars
-import questions.Question_542_01_Matrix
-import questions.Question_973_K_Closest_Points_to_Origin
+import questions.*
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
@@ -50,7 +47,7 @@ fun main(args: Array<String>) {
 //    Question_54_Spiral_Matrix.runQuestion()
 //    Question_55_Jump_Game.runQuestion()
 //    Question_56_Merge_Intervals.runQuestion()
-//    Question_57_Insert_Interval.runQuestion()
+    Question_57_Insert_Interval.runQuestion()
 //    Question_58_Length_of_Last_Word.runQuestion()
 //    Question_59_Spiral_Matrix_II.runQuestion()
 //    Question_61_Rotate_List.runQuestion()
@@ -251,7 +248,7 @@ fun main(args: Array<String>) {
 //    Question_925_Long_Pressed_Name.runQuestion()
 //    Question_941_Valid_Mountain_Array.runQuestion()
 //    Question_948_Bag_of_Tokens.runQuestion()
-    Question_973_K_Closest_Points_to_Origin.runQuestion()
+//    Question_973_K_Closest_Points_to_Origin.runQuestion()
 //    Question_977_Squares_of_a_Sorted_Array.runQuestion()
 //    Question_991_Broken_Calculator.runQuestion()
 //    Question_993_Cousins_in_Binary_Tree.runQuestion()

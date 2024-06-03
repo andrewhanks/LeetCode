@@ -9,6 +9,8 @@ class Question_57_Insert_Interval {
     companion object {
 
         fun runQuestion() {
+//            Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
+//            Output: [[1,5],[6,9]]
             val intArray = arrayOf(intArrayOf(1, 3), intArrayOf(6, 9))
             val insertInterval = intArrayOf(2, 5)
             val resultList = insert(intArray, insertInterval)
@@ -38,6 +40,29 @@ class Question_57_Insert_Interval {
         }
 
         fun insert(intervals: Array<IntArray>, newInterval: IntArray): Array<IntArray> {
+            val result: MutableList<IntArray> = mutableListOf()
+            var added = false
+            for (count in 0..intervals.size - 1) {
+                if (intervals[count][1] < newInterval[0]) {
+                    result.add(intervals[count])
+                } else if (intervals[count][0] > newInterval[1]) {
+                    if (!added) {
+                        added = true
+                        result.add(newInterval)
+                    }
+                    result.add(intervals[count])
+                } else {
+                    newInterval[0] = min(newInterval[0], intervals[count][0])
+                    newInterval[1] = max(newInterval[1], intervals[count][1])
+                }
+            }
+            if (!added) {
+                result.add(newInterval)
+            }
+            return result.toTypedArray()
+        }
+
+        fun insertInsertToOriginalArray(intervals: Array<IntArray>, newInterval: IntArray): Array<IntArray> {
             val newIntervals = intervals.toMutableList()
             val result: MutableList<IntArray> = mutableListOf()
             newIntervals.add(newInterval)
