@@ -18,6 +18,25 @@ class Question_322_Coin_Change {
         }
 
         fun coinChange(coins: IntArray, amount: Int): Int {
+            val result = IntArray(amount + 1) { 10001 }
+            result[0] = 0
+            for (count in 1..result.size - 1) {
+                var min = 10001
+                coins.forEach {
+                    if (count >= it) {
+                        min = min(min, result[count - it] + 1)
+                    }
+                }
+                result[count] = min
+            }
+            return if (result[amount] == 10001) {
+                return -1
+            } else {
+                result[amount]
+            }
+        }
+
+        fun coinChangeWithTwoDimensionArray(coins: IntArray, amount: Int): Int {
             val result = Array(coins.size) { Array(amount + 1) { -1 } }
             val finalResult = dpWithTwoDimensionArray(coins, amount, coins.size - 1, result)
             if (finalResult != 100000) {
