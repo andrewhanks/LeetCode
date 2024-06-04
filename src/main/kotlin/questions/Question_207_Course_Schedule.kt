@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_207_Course_Schedule {
 
     companion object {
@@ -14,6 +16,43 @@ class Question_207_Course_Schedule {
         }
 
         fun canFinish(numCourses: Int, prerequisites: Array<IntArray>): Boolean {
+            val map: Array<Array<Boolean>> = Array(numCourses) { Array(numCourses) { false } }
+            val indegree = IntArray(numCourses) { 0 }
+            var result = 0
+            for (count in 0..prerequisites.size - 1) {
+                val course = prerequisites[count]
+                // set the map of available course after prerequisites course finished
+                map[course[1]][course[0]] = true
+                indegree[course[0]]++
+            }
+            // println("graph = ${graph.contentDeepToString()}")
+            // println("indegree = ${indegree.contentToString()}")
+            val queue: Queue<Int> = LinkedList()
+            for (count in 0..indegree.size - 1) {
+                if (indegree[count] == 0) {
+                    queue.add(count)
+                    result++
+                }
+            }
+            // println("result 1 = $result")
+            while (!queue.isEmpty()) {
+                val course = queue.remove()
+                for (count in 0..map[course].size - 1) {
+                    if (map[course][count]) {
+                        indegree[count]--
+                        // println("indegree[$course] = ${indegree[course]}")
+                        if (indegree[count] == 0) {
+                            queue.add(count)
+                            result++
+                        }
+                    }
+                }
+            }
+            // println("result = $result")
+            return result == numCourses
+        }
+
+        fun canFinishCheckCircle(numCourses: Int, prerequisites: Array<IntArray>): Boolean {
             // 为了将prerequisites转化为图结构，定义一个graph数组。
             // graph下标代表课程编号，值代表该课程所有先修课列表。
             // 初始化graph
