@@ -39,6 +39,25 @@ class Question_56_Merge_Intervals {
         fun merge(intervals: Array<IntArray>): Array<IntArray> {
             intervals.sortBy { it[0] }
             val result: MutableList<IntArray> = mutableListOf()
+            for (count in 0..intervals.size - 1) {
+                if (count == 0) {
+                    result.add(intervals[count])
+                } else {
+                    val lastIndex = result.size - 1
+                    if (intervals[count][0] >= result[lastIndex][0] && intervals[count][0] <= result[lastIndex][1]) {
+                        result[lastIndex][0] = min(result[lastIndex][0], intervals[count][0])
+                        result[lastIndex][1] = max(result[lastIndex][1], intervals[count][1])
+                    } else {
+                        result.add(intervals[count])
+                    }
+                }
+            }
+            return result.toTypedArray()
+        }
+
+        fun mergeOldSolution(intervals: Array<IntArray>): Array<IntArray> {
+            intervals.sortBy { it[0] }
+            val result: MutableList<IntArray> = mutableListOf()
             result.add(intervals[0])
             for (count in 1..intervals.size - 1) {
                 val current = intervals[count]
