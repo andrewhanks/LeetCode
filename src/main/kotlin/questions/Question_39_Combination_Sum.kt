@@ -39,11 +39,42 @@ class Question_39_Combination_Sum {
         fun combinationSum(candidates: IntArray, target: Int): List<List<Int>> {
             val result: MutableList<MutableList<Int>> = mutableListOf()
             val temp: MutableList<Int> = mutableListOf()
-            combination(candidates.sorted().toIntArray(), 0, target, result, temp)
+            cal(candidates.sorted().toIntArray(), target, result, temp, 0)
             return result
         }
 
-        fun combination(
+        fun cal(
+            candidates: IntArray,
+            target: Int,
+            result: MutableList<MutableList<Int>>,
+            temp: MutableList<Int>,
+            index: Int
+        ) {
+            val sum = temp.sum()
+            // println("temp = $temp, sum = $sum, target = $target")
+            if (sum >= target) {
+                // println("!result.contains(temp) = ${!result.contains(temp)}, sum==target = ${sum==target}")
+                val sortedTemp = temp.sorted()
+                if (sum == target) {
+                    result.add(sortedTemp.toMutableList())
+                }
+                return
+            }
+            for (count in index..candidates.size - 1) {
+                temp.add(candidates[count])
+                cal(candidates, target, result, temp, count)
+                temp.removeAt(temp.size - 1)
+            }
+        }
+
+        fun combinationSumOldSolution(candidates: IntArray, target: Int): List<List<Int>> {
+            val result: MutableList<MutableList<Int>> = mutableListOf()
+            val temp: MutableList<Int> = mutableListOf()
+            combinationOldSolution(candidates.sorted().toIntArray(), 0, target, result, temp)
+            return result
+        }
+
+        fun combinationOldSolution(
             candidates: IntArray,
             index: Int,
             target: Int,
@@ -61,7 +92,7 @@ class Question_39_Combination_Sum {
                     return
                 }
                 temp.add(candidates[count])
-                combination(candidates, count, target - candidates[count], result, temp)
+                combinationOldSolution(candidates, count, target - candidates[count], result, temp)
                 temp.removeAt(temp.size - 1)
             }
         }
