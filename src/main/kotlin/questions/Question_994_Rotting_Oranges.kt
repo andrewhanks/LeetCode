@@ -1,6 +1,7 @@
 package questions
 
 import java.util.*
+import kotlin.math.max
 
 
 class Question_994_Rotting_Oranges {
@@ -72,6 +73,45 @@ class Question_994_Rotting_Oranges {
                 }
             }
             return result
+        }
+
+        fun orangesRottingDfs(grid: Array<IntArray>): Int {
+            for (i in 0..grid.size - 1) {
+                for (j in 0..grid[0].size - 1) {
+                    if (grid[i][j] == 2) {
+                        dfs(grid, i, j, 2)
+                    }
+                }
+            }
+            // println(grid.contentDeepToString())
+            var max = 2
+            for (i in 0..grid.size - 1) {
+                for (j in 0..grid[0].size - 1) {
+                    if (grid[i][j] == 1) {
+                        return -1
+                    } else {
+                        max = max(max, grid[i][j])
+                    }
+                }
+            }
+            return max - 2
+        }
+
+        fun dfs(grid: Array<IntArray>, i: Int, j: Int, count: Int) {
+            if (i < 0 || i > grid.size - 1 || j < 0 || j > grid[0].size - 1) {
+                return
+            }
+            if (grid[i][j] > 1 && grid[i][j] < count) {
+                return
+            }
+            if (grid[i][j] == 0) {
+                return
+            }
+            grid[i][j] = count
+            dfs(grid, i - 1, j, count + 1)
+            dfs(grid, i + 1, j, count + 1)
+            dfs(grid, i, j - 1, count + 1)
+            dfs(grid, i, j + 1, count + 1)
         }
     }
 }
