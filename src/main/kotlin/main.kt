@@ -337,5 +337,6 @@ fun main(args: Array<String>) {
 //    Question_3168_Minimum_Number_of_Chairs_in_a_Waiting_Room.runQuestion()
 //    Question_3169_Count_Days_Without_Meetings.runQuestion()
 //    Question_3170_Lexicographically_Minimum_String_After_Removing_Stars.runQuestion()
-    Question_3178_Find_the_Child_Who_Has_the_Ball_After_K_Seconds.runQuestion()
+//    Question_3178_Find_the_Child_Who_Has_the_Ball_After_K_Seconds.runQuestion()
+    Question_3179_Find_the_N_th_Value_After_K_Seconds.runQuestion()
 }
