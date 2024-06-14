@@ -6,9 +6,47 @@ class Question_54_Spiral_Matrix {
     companion object {
 
         fun runQuestion() {
-            val intArray = arrayOf(intArrayOf(1, 2, 3, 4), intArrayOf(5, 6, 7, 8), intArrayOf(9, 10, 11, 12))
-            val result = spiralOrder(intArray)
+//            Input: matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+//            Output: [1,2,3,4,8,12,11,10,9,5,6,7]
+            val matrix = arrayOf(intArrayOf(1, 2, 3, 4), intArrayOf(5, 6, 7, 8), intArrayOf(9, 10, 11, 12))
+            val result = spiralOrder(matrix)
             println("Question 54: $result")
+        }
+
+        fun spiralOrder(matrix: Array<IntArray>): List<Int> {
+            val dir = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(-1, 0))
+            var curDir = 0
+            val moved = Array(matrix.size) { Array(matrix[0].size) { false } }
+            val result: MutableList<Int> = mutableListOf()
+            var x = 0
+            var y = 0
+            for (count in 0..matrix.size * matrix[0].size - 1) {
+                // println("x= $x, y = $y")
+                result.add(matrix[x][y])
+                moved[x][y] = true
+                val doesNeedToTurn = doesNeedToTurn(x, y, matrix, dir, curDir, moved)
+                // println("x+dir[curDir][0] = ${x+dir[curDir][0]}, y+dir[curDir][1] = ${y+dir[curDir][1]}, matrix.size-1 = ${matrix.size-1}, matrix[0].size-1 = ${matrix[0].size-1}, curDir = $curDir")
+                // println("doesNeedToTurn = $doesNeedToTurn")
+                if (doesNeedToTurn) {
+                    curDir = (curDir + 1) % 4
+                }
+                x += dir[curDir][0]
+                y += dir[curDir][1]
+            }
+            return result
+        }
+
+        fun doesNeedToTurn(
+            x: Int,
+            y: Int,
+            matrix: Array<IntArray>,
+            dir: Array<IntArray>,
+            curDir: Int,
+            moved: Array<Array<Boolean>>
+        ): Boolean {
+            return x + dir[curDir][0] > matrix.size - 1 || x + dir[curDir][0] < 0 ||
+                    y + dir[curDir][1] > matrix[0].size - 1 || y + dir[curDir][1] < 0 ||
+                    moved[x + dir[curDir][0]][y + dir[curDir][1]]
         }
 
         val RIGHT: Int = 1
@@ -52,7 +90,7 @@ class Question_54_Spiral_Matrix {
             }
         }
 
-        fun spiralOrder(matrix: Array<IntArray>): List<Int> {
+        fun spiralOrderOldSolution(matrix: Array<IntArray>): List<Int> {
             val result: MutableList<Int> = mutableListOf()
             var rightCount = 0
             var downCount = 0
