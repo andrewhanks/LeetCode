@@ -5,12 +5,44 @@ class Question_8_String_to_Integer {
     companion object {
 
         fun runQuestion() {
+//            Input: s = "42"
+//            Output: 42
             val inputString = "42"
             val result = myAtoi(inputString)
             println("Question 8: $result")
         }
 
-        fun myAtoi(str: String): Int {
+        fun myAtoi(s: String): Int {
+            val stringBuilder = StringBuilder(s.trim())
+            var temp = StringBuilder("")
+            var count = 0
+            var isDigitInserted = false
+            while (count <= stringBuilder.length - 1) {
+                if (count == 0 && (stringBuilder[count] == '-' || stringBuilder[count] == '+')) {
+                    temp.append(stringBuilder[count])
+                } else if (!isDigitInserted && stringBuilder[count] == '0') {
+                } else if (stringBuilder[count].isDigit()) {
+                    isDigitInserted = true
+                    temp.append(stringBuilder[count])
+                } else {
+                    break
+                }
+                count++
+            }
+            // println("temp = $temp")
+            var result = if (temp.isEmpty() || (temp.length == 1 && temp.toString().toIntOrNull() == null)) {
+                0
+            } else if (temp.toString().toBigInteger() > Int.MAX_VALUE.toBigInteger()) {
+                Int.MAX_VALUE
+            } else if (temp.toString().toBigInteger() < Int.MIN_VALUE.toBigInteger()) {
+                Int.MIN_VALUE
+            } else {
+                temp.toString().toInt()
+            }
+            return result
+        }
+
+        fun myAtoiOldSolution(str: String): Int {
             var trimmedStr = str.trim()
             trimLoop@ for (tempCount in 1..trimmedStr.length - 1) {
                 if (!trimmedStr[tempCount].isDigit()) {
