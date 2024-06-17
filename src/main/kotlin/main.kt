@@ -342,5 +342,6 @@ fun main(args: Array<String>) {
 //    Question_3179_Find_the_N_th_Value_After_K_Seconds.runQuestion()
 //    Question_3180_Maximum_Total_Reward_Using_Operations_I.runQuestion()
 //    Question_3184_Count_Pairs_That_Form_a_Complete_Day_I.runQuestion()
-    Question_3185_Count_Pairs_That_Form_a_Complete_Day_II.runQuestion()
+//    Question_3185_Count_Pairs_That_Form_a_Complete_Day_II.runQuestion()
+    Question_3186_Maximum_Total_Damage_With_Spell_Casting.runQuestion()
 }
