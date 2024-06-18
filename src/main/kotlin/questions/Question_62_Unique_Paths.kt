@@ -17,6 +17,16 @@ class Question_62_Unique_Paths {
         }
 
         fun uniquePaths(m: Int, n: Int): Int {
+            val result = Array(m) { IntArray(n) { 1 } }
+            for (i in 1..result.size - 1) {
+                for (j in 1..result[i].size - 1) {
+                    result[i][j] = result[i - 1][j] + result[i][j - 1]
+                }
+            }
+            return result[m - 1][n - 1]
+        }
+
+        fun uniquePathsTopDown(m: Int, n: Int): Int {
             val result: Array<IntArray> = Array(m) { IntArray(n) { 0 } }
             dp(m, n, result)
             return result[m - 1][n - 1]
