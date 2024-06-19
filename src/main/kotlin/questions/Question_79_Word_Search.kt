@@ -19,6 +19,52 @@ class Question_79_Word_Search {
         }
 
         fun exist(board: Array<CharArray>, word: String): Boolean {
+            for (i in 0..board.size - 1) {
+                for (j in 0..board[i].size - 1) {
+                    if (board[i][j] == word[0]) {
+                        // println("board[$i][$j] = ${board[i][j]}")
+                        if (check(board, word, 0, i, j, Array(board.size) { Array(board[i].size) { false } })) {
+                            return true
+                        }
+                    }
+                }
+            }
+            return false
+        }
+
+        fun check(
+            board: Array<CharArray>,
+            word: String,
+            index: Int,
+            i: Int,
+            j: Int,
+            searched: Array<Array<Boolean>>
+        ): Boolean {
+            if (index > word.length - 1) {
+                return true
+            }
+            if (i < 0 || i > board.size - 1 || j < 0 || j > board[0].size - 1) {
+                return false
+            }
+            if (searched[i][j]) {
+                return false
+            }
+            if (word[index] != board[i][j]) {
+                return false
+            }
+            searched[i][j] = true
+            val up = check(board, word, index + 1, i - 1, j, searched)
+            val down = check(board, word, index + 1, i + 1, j, searched)
+            val left = check(board, word, index + 1, i, j - 1, searched)
+            val right = check(board, word, index + 1, i, j + 1, searched)
+            if (!up && !down && !left && !right) {
+                searched[i][j] = false
+            }
+            // println("up = $up, down = $down, left = $left, right = $right, board[$i][$j] = ${board[i][j]}")
+            return up || down || left || right
+        }
+
+        fun existOldSolution(board: Array<CharArray>, word: String): Boolean {
             val path: Array<IntArray> = Array(board.size) { IntArray(board[0].size) { 0 } }
             for (i in 0..board.size - 1) {
                 for (j in 0..board[i].size - 1) {
@@ -32,7 +78,7 @@ class Question_79_Word_Search {
             return false
         }
 
-//        0->no move
+        //        0->no move
 //        1->from up
 //        2->from right
 //        3->from down
