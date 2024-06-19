@@ -1,13 +1,45 @@
 package questions
 
+import kotlin.math.max
+import kotlin.math.min
+
 class Question_11_Container_With_Most_Water {
 
     companion object {
 
         fun runQuestion() {
+//            Input: height = [1,8,6,2,5,4,8,3,7]
+//            Output: 49
             val numberArray = intArrayOf(1, 8, 6, 2, 5, 4, 8, 3, 7)
-            val result = maxArea2(numberArray)
+            val result = maxArea(numberArray)
             println("Question 11: $result")
+        }
+
+        fun maxArea(height: IntArray): Int {
+            val map: MutableMap<Int, IntArray> = mutableMapOf()
+            for (count in 0..height.size - 1) {
+                if (!map.contains(height[count])) {
+                    map.put(height[count], intArrayOf(count, count))
+                } else {
+                    map[height[count]]!![0] = min(map[height[count]]!![0]!!, count)
+                    map[height[count]]!![1] = max(map[height[count]]!![1]!!, count)
+                }
+            }
+            var max = 0
+            val range = IntArray(2) { -1 }
+            map.keys.toList().sortedDescending().forEach {
+                // println("map[$it]!! = ${map[it]!!.contentToString()}")
+                if (range[0] == -1 || range[1] == -1) {
+                    range[0] = map[it]!![0]
+                    range[1] = map[it]!![1]
+                } else {
+                    range[0] = min(range[0], map[it]!![0])
+                    range[1] = max(range[1], map[it]!![1])
+                }
+                max = max(max, (range[1] - range[0]) * it)
+                // println("max = $max")
+            }
+            return max
         }
 
         // brute force
