@@ -17,6 +17,29 @@ class Question_621_Task_Scheduler {
         }
 
         fun leastInterval(tasks: CharArray, n: Int): Int {
+            val map: MutableMap<Char, Int> = mutableMapOf()
+            var max = 0
+            for (count in 0..tasks.size - 1) {
+                if (!map.contains(tasks[count])) {
+                    map.put(tasks[count], 1)
+                } else {
+                    map[tasks[count]] = map[tasks[count]]!! + 1
+                }
+                max = max(max, map[tasks[count]]!!)
+            }
+            val times = map.toList().filter { (key, value) -> value == max }.count()
+            var ans = 0
+            if ((tasks.size / max) < n + 1) {
+                ans = (max - 1) * (n + 1)
+                ans = ans + times
+            }
+            if (ans < tasks.size) {
+                ans = tasks.size
+            }
+            return ans
+        }
+
+        fun leastIntervalOldSolution(tasks: CharArray, n: Int): Int {
             val result: MutableMap<Char, Int> = mutableMapOf()
             for (count in 0..tasks.size - 1) {
                 if (result.contains(tasks[count])) {
