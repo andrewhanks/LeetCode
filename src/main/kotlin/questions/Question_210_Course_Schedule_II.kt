@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_210_Course_Schedule_II {
 
     companion object {
@@ -59,6 +61,39 @@ class Question_210_Course_Schedule_II {
             visited[currentCourse] = 2
             ans.add(currentCourse)
             return false
+        }
+
+        fun findOrderBFS(numCourses: Int, prerequisites: Array<IntArray>): IntArray {
+            val queue: Queue<Int> = LinkedList()
+            val result: MutableList<Int> = mutableListOf()
+            val indegree = Array(numCourses) { 0 }
+            for (pre in 0..prerequisites.size - 1) {
+                indegree[prerequisites[pre][0]]++
+            }
+            for (count in 0..indegree.size - 1) {
+                if (indegree[count] == 0) {
+                    queue.add(count)
+                    result.add(count)
+                }
+            }
+            while (!queue.isEmpty()) {
+                val course = queue.remove()
+                for (count in 0..prerequisites.size - 1) {
+                    if (prerequisites[count][1] == course) {
+                        val target = prerequisites[count][0]
+                        indegree[target]--
+                        if (indegree[target] == 0) {
+                            queue.add(target)
+                            result.add(target)
+                        }
+                    }
+                }
+            }
+            return if (result.size != numCourses) {
+                intArrayOf()
+            } else {
+                result.toIntArray()
+            }
         }
     }
 }
