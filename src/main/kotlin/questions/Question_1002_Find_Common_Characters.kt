@@ -12,7 +12,7 @@ class Question_1002_Find_Common_Characters {
 //            Output: ["e","l","l"]
             val words = arrayOf("bella", "label", "roller")
             val result = commonChars(words)
-            println("Question 212: $result")
+            println("Question 1002: $result")
         }
 
         fun commonChars(words: Array<String>): List<String> {
