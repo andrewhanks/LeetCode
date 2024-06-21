@@ -1,5 +1,8 @@
 package questions
 
+import java.util.*
+import kotlin.math.max
+
 class Question_128_Longest_Consecutive_Sequence {
 
     companion object {
@@ -13,6 +16,33 @@ class Question_128_Longest_Consecutive_Sequence {
         }
 
         fun longestConsecutive(nums: IntArray): Int {
+            val set: TreeSet<Int> = TreeSet()
+            for (num in nums) {
+                set.add(num)
+            }
+            var number = 1
+            var previous = 0
+            var max = 0
+            val list = set.toList()
+            for (count in 0..list.size - 1) {
+                if (count == 0) {
+                    previous = list[count]
+                    number = 1
+                    max = max(max, number)
+                } else {
+                    if (list[count] - previous == 1) {
+                        number++
+                        max = max(max, number)
+                    } else {
+                        number = 1
+                    }
+                    previous = list[count]
+                }
+            }
+            return max
+        }
+
+        fun longestConsecutiveOldSolution(nums: IntArray): Int {
             if (nums.size <= 1) {
                 return nums.size
             }
