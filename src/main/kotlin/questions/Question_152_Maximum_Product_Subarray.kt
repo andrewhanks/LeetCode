@@ -25,5 +25,27 @@ class Question_152_Maximum_Product_Subarray {
             }
             return max
         }
+
+        // https://leetcode.wang/leetcode-152-Maximum-Product-Subarray.html 解法二
+        fun maxProductLinearSolution(nums: IntArray): Int {
+            var max = 1.0
+            var ans = nums[0].toDouble()
+            for (count in 0..nums.size - 1) {
+                max = max * nums[count]
+                ans = max(max, ans)
+                if (max == 0.0) {
+                    max = 1.0
+                }
+            }
+            max = 1.0
+            for (count in nums.size - 1 downTo 0) {
+                max = max * nums[count]
+                ans = max(max, ans)
+                if (max == 0.0) {
+                    max = 1.0
+                }
+            }
+            return ans.toInt()
+        }
     }
 }
