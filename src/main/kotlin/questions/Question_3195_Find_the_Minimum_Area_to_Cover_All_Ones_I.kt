@@ -11,8 +11,7 @@ class Question_3195_Find_the_Minimum_Area_to_Cover_All_Ones_I {
         fun runQuestion() {
 //            Input: grid = [[0,1,0],[1,0,1]]
 //            Output: 6
-            val grid =
-                arrayOf(intArrayOf(0, 1, 0), intArrayOf(1, 0, 1))
+            val grid = arrayOf(intArrayOf(0, 1, 0), intArrayOf(1, 0, 1))
             val result = minimumArea(grid)
             println("Question 3195: $result")
         }

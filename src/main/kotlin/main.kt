@@ -353,5 +353,6 @@ fun main(args: Array<String>) {
 //    Question_3185_Count_Pairs_That_Form_a_Complete_Day_II.runQuestion()
 //    Question_3186_Maximum_Total_Damage_With_Spell_Casting.runQuestion()
 //    Question_3194_Minimum_Average_of_Smallest_and_Largest_Elements.runQuestion()
-    Question_3195_Find_the_Minimum_Area_to_Cover_All_Ones_I.runQuestion()
+//    Question_3195_Find_the_Minimum_Area_to_Cover_All_Ones_I.runQuestion()
+    Question_3196_Maximize_Total_Cost_of_Alternating_Subarrays.runQuestion()
 }
