@@ -1,7 +1,4 @@
-import models.GraphNode
-import models.Node
-import models.RandomNode
-import models.TreeNode
+import models.*
 import java.util.*
 
 class Utils {
@@ -166,6 +163,18 @@ class Utils {
             }
             tempResult = tempResult.removeSuffix(",")
             return tempResult
+        }
+
+        fun printListNode(listNode: ListNode?): String {
+            var result = "["
+            var current = listNode
+            while (current != null) {
+                result = result + current.`val` + ","
+                current = current.next
+            }
+            result = result.removeSuffix(",")
+            result += "]"
+            return result
         }
     }
 }
