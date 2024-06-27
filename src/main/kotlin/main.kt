@@ -2,7 +2,7 @@ import questions.*
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
-//    Question_2_Add_Two_Numbers.runQuestion()
+    Question_2_Add_Two_Numbers.runQuestion()
 //    Question_3_Longest_Substring_Without_Repeating_Characters.runQuestion()
 //    Question_4_Median_of_Two_Sorted_Arrays.runQuestion()
 //    Question_5_Longest_Palindromic_Substring.runQuestion()
@@ -188,7 +188,7 @@ fun main(args: Array<String>) {
 //    Question_416_Partition_Equal_Subset_Sum.runQuestion()
 //    Question_417_Pacific_Atlantic_Water_Flow.runQuestion()
 //    Question_421_Maximum_XOR_of_Two_Numbers_in_an_Array.runQuestion()
-    Question_424_Longest_Repeating_Character_Replacement.runQuestion()
+//    Question_424_Longest_Repeating_Character_Replacement.runQuestion()
 //    Question_433_Minimum_Genetic_Mutation.runQuestion()
 //    Question_435_Non_overlapping_Intervals.runQuestion()
 //    Question_438_Find_All_Anagrams_in_a_String.runQuestion()

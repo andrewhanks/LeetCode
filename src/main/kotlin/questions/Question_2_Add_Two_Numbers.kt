@@ -1,12 +1,15 @@
 package questions
 
 import models.ListNode
+import java.math.BigInteger
 
 class Question_2_Add_Two_Numbers {
 
     companion object {
 
         fun runQuestion() {
+//            Input: l1 = [2,4,3], l2 = [5,6,4]
+//            Output: [7,0,8]
             val listNode1 = ListNode()
             val listNode2 = ListNode()
             listNode1.`val` = 2
@@ -29,6 +32,37 @@ class Question_2_Add_Two_Numbers {
         }
 
         fun addTwoNumbers(l1: ListNode?, l2: ListNode?): ListNode? {
+            val number1 = transferToString(l1)
+            val number2 = transferToString(l2)
+            var total = number1.toBigInteger() + number2.toBigInteger()
+            var result: ListNode? = null
+            var previous: ListNode? = null
+            while (total != BigInteger.ZERO) {
+                val node = ListNode((total.mod(10.toBigInteger())).toInt())
+                total = total.divide(10.toBigInteger())
+                if (result == null) {
+                    result = node
+                }
+                previous?.next = node
+                previous = node
+            }
+            if (result == null) {
+                result = ListNode(0)
+            }
+            return result
+        }
+
+        fun transferToString(head: ListNode?): String {
+            val result = StringBuilder()
+            var current = head
+            while (current != null) {
+                result.append(current?.`val`)
+                current = current?.next
+            }
+            return result.reversed().toString()
+        }
+
+        fun addTwoNumbersCalculateDirectly(l1: ListNode?, l2: ListNode?): ListNode? {
             var tempL1 = l1
             var tempL2 = l2
             var temp: ListNode? = null
