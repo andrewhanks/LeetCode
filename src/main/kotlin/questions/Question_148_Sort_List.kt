@@ -7,6 +7,8 @@ class Question_148_Sort_List {
     companion object {
 
         fun runQuestion() {
+//            Input: head = [-1,5,3,4,0]
+//            Output: [-1,0,3,4,5]
             val listNode1 = ListNode(-1)
             val listNode2 = ListNode(5)
             listNode1.next = listNode2
@@ -30,6 +32,29 @@ class Question_148_Sort_List {
         }
 
         fun sortList(head: ListNode?): ListNode? {
+            var current = head
+            val store: MutableList<ListNode> = mutableListOf()
+            while (current != null) {
+                store.add(current)
+                current = current?.next
+            }
+            store.sortBy { it?.`val`!! }
+            var result: ListNode? = null
+            for (count in 0..store.size - 1) {
+                if (result == null) {
+                    result = store[count]
+                    current = result
+                    current?.next = null
+                } else {
+                    current?.next = store[count]
+                    current = store[count]
+                    current?.next = null
+                }
+            }
+            return result
+        }
+
+        fun sortListOldSolution(head: ListNode?): ListNode? {
             var currentNode = head
             val arrayForSort: MutableList<Int> = mutableListOf()
             while (currentNode != null && currentNode?.`val` != null) {
