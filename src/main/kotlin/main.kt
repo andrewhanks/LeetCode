@@ -2,7 +2,7 @@ import questions.*
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
-    Question_2_Add_Two_Numbers.runQuestion()
+//    Question_2_Add_Two_Numbers.runQuestion()
 //    Question_3_Longest_Substring_Without_Repeating_Characters.runQuestion()
 //    Question_4_Median_of_Two_Sorted_Arrays.runQuestion()
 //    Question_5_Longest_Palindromic_Substring.runQuestion()
@@ -45,7 +45,7 @@ fun main(args: Array<String>) {
 //    Question_52_N_Queens_II.runQuestion()
 //    Question_53_Maximum_Subarray.runQuestion()
 //    Question_54_Spiral_Matrix.runQuestion()
-//    Question_55_Jump_Game.runQuestion()
+    Question_55_Jump_Game.runQuestion()
 //    Question_56_Merge_Intervals.runQuestion()
 //    Question_57_Insert_Interval.runQuestion()
 //    Question_58_Length_of_Last_Word.runQuestion()

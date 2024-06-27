@@ -16,6 +16,17 @@ class Question_55_Jump_Game {
 
         fun canJump(nums: IntArray): Boolean {
             var max = 0
+            for (count in 0..nums.size - 1) {
+                if (max < count) {
+                    return false
+                }
+                max = max(max, count + nums[count])
+            }
+            return true
+        }
+
+        fun canJumpOldSolution(nums: IntArray): Boolean {
+            var max = 0
             for (count in 0..nums.size - 2) {
                 if (nums[count] == 0 && max <= count) {
                     return false
