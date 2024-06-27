@@ -17,6 +17,21 @@ class Question_424_Longest_Repeating_Character_Replacement {
 
         fun characterReplacement(s: String, k: Int): Int {
             val record = IntArray(26) { 0 }
+            var start = 0
+            var maxResult = 0
+            for (end in 0..s.length - 1) {
+                record[s[end] - 'A']++
+                while ((end - start + 1) - record.max() > k) {
+                    record[s[start] - 'A']--
+                    start++
+                }
+                maxResult = max(maxResult, end - start + 1)
+            }
+            return maxResult
+        }
+
+        fun characterReplacementWebSolution(s: String, k: Int): Int {
+            val record = IntArray(26) { 0 }
             var maxOriginalCount = 0
             var start = 0
             var maxResult = 0
