@@ -14,6 +14,12 @@ class Question_215_Kth_Largest_Element_in_an_Array {
         }
 
         fun findKthLargest(nums: IntArray, k: Int): Int {
+            nums.sort()
+            nums.reverse()
+            return nums[k - 1]
+        }
+
+        fun findKthLargestOldSolution(nums: IntArray, k: Int): Int {
             val numQueue: PriorityQueue<Int> = PriorityQueue { a, b ->
                 b - a
             }
