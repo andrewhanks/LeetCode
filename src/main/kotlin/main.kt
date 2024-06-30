@@ -362,5 +362,6 @@ fun main(args: Array<String>) {
 //    Question_3194_Minimum_Average_of_Smallest_and_Largest_Elements.runQuestion()
 //    Question_3195_Find_the_Minimum_Area_to_Cover_All_Ones_I.runQuestion()
 //    Question_3196_Maximize_Total_Cost_of_Alternating_Subarrays.runQuestion()
-    Question_3200_Maximum_Height_of_a_Triangle.runQuestion()
+//    Question_3200_Maximum_Height_of_a_Triangle.runQuestion()
+    Question_3201_Find_the_Maximum_Length_of_Valid_Subsequence_I.runQuestion()
 }
