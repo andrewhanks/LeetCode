@@ -54,5 +54,27 @@ class Question_48_Rotate_Image {
                 }
             }
         }
+
+        fun rotateWebSolution(matrix: Array<IntArray>): Unit {
+            val n = matrix.size
+
+            // Step 1: Transpose the matrix
+            for (i in 0..n - 1) {
+                for (j in i + 1..n - 1) {
+                    val temp = matrix[i][j]
+                    matrix[i][j] = matrix[j][i]
+                    matrix[j][i] = temp
+                }
+            }
+
+            // Step 2: Reverse each row
+            for (i in 0..n - 1) {
+                for (j in 0..n / 2 - 1) {
+                    val temp = matrix[i][j]
+                    matrix[i][j] = matrix[i][n - j - 1]
+                    matrix[i][n - j - 1] = temp
+                }
+            }
+        }
     }
 }
