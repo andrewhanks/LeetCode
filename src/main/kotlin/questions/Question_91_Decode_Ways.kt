@@ -41,5 +41,26 @@ class Question_91_Decode_Ways {
                 return result[index]
             }
         }
+
+        fun numDecodingsIterative(s: String): Int {
+            val result = IntArray(s.length + 1) { 0 }
+            result[0] = 1
+            result[1] = if (s[0] == '0') {
+                0
+            } else {
+                1
+            }
+            for (count in 2..result.size - 1) {
+                val oneDigit = s.substring(count - 1..count - 1).toInt()
+                val twoDigit = s.substring(count - 2..count - 1).toInt()
+                if (oneDigit != 0) {
+                    result[count] += result[count - 1]
+                }
+                if (twoDigit <= 26 && twoDigit >= 10) {
+                    result[count] += result[count - 2]
+                }
+            }
+            return result[result.size - 1]
+        }
     }
 }
