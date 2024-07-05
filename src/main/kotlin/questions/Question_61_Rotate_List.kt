@@ -30,6 +30,28 @@ class Question_61_Rotate_List {
         }
 
         fun rotateRight(head: ListNode?, k: Int): ListNode? {
+            if (head == null) {
+                return null
+            }
+            val stored: MutableList<ListNode> = mutableListOf()
+            var current = head
+            while (current != null) {
+                stored.add(current)
+                current = current?.next
+            }
+            val remain = k % stored.size
+            val start = (stored.size - remain) % stored.size
+            val result = stored[start]
+            current = result
+            for (count in start + 1..start + stored.size - 1) {
+                current?.next = stored[count % stored.size]
+                current = current?.next
+                current?.next = null
+            }
+            return result
+        }
+
+        fun rotateRightOldSolution(head: ListNode?, k: Int): ListNode? {
             if (head == null || head?.next == null) {
                 return head
             }
