@@ -7,7 +7,8 @@ class Question_153_Find_Minimum_in_Rotated_Sorted_Array {
     companion object {
 
         fun runQuestion() {
-            // [4,5,6,7,0,1,2]
+//            Input: nums = [4,5,6,7,0,1,2]
+//            Output: 0
             val numberArray = intArrayOf(4, 5, 6, 7, 0, 1, 2)
             val startTime = System.currentTimeMillis()
             val result = findMin(numberArray)
