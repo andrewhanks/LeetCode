@@ -370,5 +370,6 @@ fun main(args: Array<String>) {
 //    Question_3201_Find_the_Maximum_Length_of_Valid_Subsequence_I.runQuestion()
 //    Question_3202_Find_the_Maximum_Length_of_Valid_Subsequence_II.runQuestion()
 //    Question_3210_Find_the_Encrypted_String.runQuestion()
-    Question_3211_Generate_Binary_Strings_Without_Adjacent_Zeros.runQuestion()
+//    Question_3211_Generate_Binary_Strings_Without_Adjacent_Zeros.runQuestion()
+    Question_3212_Count_Submatrices_With_Equal_Frequency_of_X_and_Y.runQuestion()
 }
