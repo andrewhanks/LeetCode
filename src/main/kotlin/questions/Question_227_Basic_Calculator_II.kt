@@ -16,6 +16,47 @@ class Question_227_Basic_Calculator_II {
 
         fun calculate(s: String): Int {
             val temp = s.replace(" ", "")
+            val stack: Stack<Int> = Stack()
+            var number = 0
+            var prevOp = '+'
+            for (count in 0..temp.length - 1) {
+                if (temp[count].isDigit()) {
+                    number = number * 10 + (temp[count] - '0')
+                }
+                if (count == temp.length - 1 || !temp[count].isDigit()) {
+                    when (prevOp) {
+                        '+' -> {
+                            stack.add(number)
+                        }
+
+                        '-' -> {
+                            stack.add(-number)
+                        }
+
+                        '*' -> {
+                            val num = stack.removeLast()
+                            stack.add(num * number)
+                        }
+
+                        '/' -> {
+                            val num = stack.removeLast()
+                            stack.add(num / number)
+                        }
+                    }
+                    prevOp = temp[count]
+                    number = 0
+                }
+            }
+            // println(stack)
+            var ans = 0
+            while (!stack.isEmpty()) {
+                ans += stack.removeLast()
+            }
+            return ans
+        }
+
+        fun calculateUglySolution(s: String): Int {
+            val temp = s.replace(" ", "")
             // println(temp)
             val numberQueue: Queue<Int> = LinkedList()
             val operationQueue: Queue<Char> = LinkedList()
