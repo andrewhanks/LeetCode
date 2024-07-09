@@ -6,6 +6,8 @@ class Question_15_3Sum {
     companion object {
 
         fun runQuestion() {
+//            Input: nums = [-1,0,1,2,-1,-4]
+//            Output: [[-1,-1,2],[-1,0,1]]
             val intArray = "-1,0,1,2,-1,-4".split(',').map { num -> num.toInt() }.toIntArray()
             val resultList = threeSum(intArray)
             var result = "["
