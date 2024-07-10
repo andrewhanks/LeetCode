@@ -26,5 +26,9 @@ class Question_2546_Apply_Bitwise_Operations_to_Make_String_Equal {
                 return true
             }
         }
+
+        fun makeStringsEqualAnotherSolution(s: String, target: String): Boolean {
+            return s.contains('1') == target.contains('1')
+        }
     }
 }
