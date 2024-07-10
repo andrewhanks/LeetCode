@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.max
+
 class Question_2522_Partition_String_Into_Substrings_With_Values_at_Most_K {
 
     companion object {
@@ -14,6 +16,33 @@ class Question_2522_Partition_String_Into_Substrings_With_Values_at_Most_K {
         }
 
         fun minimumPartition(s: String, k: Int): Int {
+            val result: MutableList<Int> = mutableListOf()
+            var numCount = 0
+            var temp = k
+            while (temp != 0) {
+                temp = temp / 10
+                numCount++
+            }
+            var count = s.length - 1
+            result.add(count)
+            var ans = 0
+            while (count >= 0) {
+                var tempCount = max(0, result[result.size - 1] - numCount + 1)
+                val currentNumber = s.substring(tempCount..result[result.size - 1]).toInt()
+                if (currentNumber / 10 == 0 && currentNumber > k) {
+                    return -1
+                }
+                if (currentNumber > k) {
+                    tempCount++
+                }
+                count = tempCount - 1
+                result.add(count)
+                ans++
+            }
+            return ans
+        }
+
+        fun minimumPartitionOldSolution(s: String, k: Int): Int {
             var result = s
             val targetSize = k.toString().length
             var count = 0
