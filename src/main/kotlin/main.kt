@@ -1,7 +1,4 @@
-import questions.Question_1864_Minimum_Number_of_Swaps_to_Make_the_Binary_String_Alternating
-import questions.Question_3107_Minimum_Operations_to_Make_Median_of_Array_Equal_to_K
-import questions.Question_3147_Taking_Maximum_Energy_From_the_Mystic_Dungeon
-import kotlin.math.max
+import questions.*
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
@@ -271,6 +268,7 @@ fun main(args: Array<String>) {
 //    Question_918_Maximum_Sum_Circular_Subarray.runQuestion()
 //    Question_922_Sort_Array_By_Parity_II.runQuestion()
 //    Question_925_Long_Pressed_Name.runQuestion()
+    Question_926_Flip_String_to_Monotone_Increasing.runQuestion()
 //    Question_941_Valid_Mountain_Array.runQuestion()
 //    Question_948_Bag_of_Tokens.runQuestion()
 //    Question_973_K_Closest_Points_to_Origin.runQuestion()
@@ -321,7 +319,7 @@ fun main(args: Array<String>) {
 //    Question_1758_Minimum_Changes_To_Make_Alternating_Binary_String.runQuestion()
 //    Question_1769_Minimum_Number_of_Operations_to_Move_All_Balls_to_Each_Box.runQuestion()
 //    Question_1814_Count_Nice_Pairs_in_an_Array.runQuestion()
-    Question_1864_Minimum_Number_of_Swaps_to_Make_the_Binary_String_Alternating.runQuestion()
+//    Question_1864_Minimum_Number_of_Swaps_to_Make_the_Binary_String_Alternating.runQuestion()
 //    Question_1877_Minimize_Maximum_Pair_Sum_in_Array.runQuestion()
 //    Question_1882_Process_Tasks_Using_Servers.runQuestion()
 //    Question_1884_Egg_Drop_With_2_Eggs_and_N_Floors.runQuestion()
