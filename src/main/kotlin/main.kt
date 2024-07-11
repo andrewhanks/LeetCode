@@ -1,4 +1,6 @@
-import questions.*
+import questions.Question_3107_Minimum_Operations_to_Make_Median_of_Array_Equal_to_K
+import questions.Question_3147_Taking_Maximum_Energy_From_the_Mystic_Dungeon
+import kotlin.math.max
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
@@ -357,7 +359,8 @@ fun main(args: Array<String>) {
 //    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
 //    Question_2733_Neither_Minimum_nor_Maximum.runQuestion()
 //    Question_2766_Relocate_Marbles.runQuestion()
-    Question_3107_Minimum_Operations_to_Make_Median_of_Array_Equal_to_K.runQuestion()
+//    Question_3107_Minimum_Operations_to_Make_Median_of_Array_Equal_to_K.runQuestion()
+    Question_3147_Taking_Maximum_Energy_From_the_Mystic_Dungeon.runQuestion()
 //    Question_3168_Minimum_Number_of_Chairs_in_a_Waiting_Room.runQuestion()
 //    Question_3169_Count_Days_Without_Meetings.runQuestion()
 //    Question_3170_Lexicographically_Minimum_String_After_Removing_Stars.runQuestion()
