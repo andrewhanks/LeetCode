@@ -40,5 +40,27 @@ class Question_3147_Taking_Maximum_Energy_From_the_Mystic_Dungeon {
             // println(result.contentToString())
             return result.max()
         }
+
+        fun maximumEnergyDp(energy: IntArray, k: Int): Int {
+            val result = IntArray(energy.size) { -1 }
+            var max = Int.MIN_VALUE
+            for (count in 0..energy.size - 1) {
+                max = max(max, dp(energy, k, count, result))
+            }
+            return max
+        }
+
+        fun dp(energy: IntArray, k: Int, index: Int, result: IntArray): Int {
+            if (index >= energy.size) {
+                return 0
+            }
+            if (result[index] != -1) {
+                return result[index]
+            }
+            var ans = 0
+            ans = ans + energy[index] + dp(energy, k, index + k, result)
+            result[index] = ans
+            return result[index]
+        }
     }
 }
