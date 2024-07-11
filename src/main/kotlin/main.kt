@@ -1,3 +1,4 @@
+import questions.Question_1864_Minimum_Number_of_Swaps_to_Make_the_Binary_String_Alternating
 import questions.Question_3107_Minimum_Operations_to_Make_Median_of_Array_Equal_to_K
 import questions.Question_3147_Taking_Maximum_Energy_From_the_Mystic_Dungeon
 import kotlin.math.max
@@ -320,6 +321,7 @@ fun main(args: Array<String>) {
 //    Question_1758_Minimum_Changes_To_Make_Alternating_Binary_String.runQuestion()
 //    Question_1769_Minimum_Number_of_Operations_to_Move_All_Balls_to_Each_Box.runQuestion()
 //    Question_1814_Count_Nice_Pairs_in_an_Array.runQuestion()
+    Question_1864_Minimum_Number_of_Swaps_to_Make_the_Binary_String_Alternating.runQuestion()
 //    Question_1877_Minimize_Maximum_Pair_Sum_in_Array.runQuestion()
 //    Question_1882_Process_Tasks_Using_Servers.runQuestion()
 //    Question_1884_Egg_Drop_With_2_Eggs_and_N_Floors.runQuestion()
@@ -360,7 +362,7 @@ fun main(args: Array<String>) {
 //    Question_2733_Neither_Minimum_nor_Maximum.runQuestion()
 //    Question_2766_Relocate_Marbles.runQuestion()
 //    Question_3107_Minimum_Operations_to_Make_Median_of_Array_Equal_to_K.runQuestion()
-    Question_3147_Taking_Maximum_Energy_From_the_Mystic_Dungeon.runQuestion()
+//    Question_3147_Taking_Maximum_Energy_From_the_Mystic_Dungeon.runQuestion()
 //    Question_3168_Minimum_Number_of_Chairs_in_a_Waiting_Room.runQuestion()
 //    Question_3169_Count_Days_Without_Meetings.runQuestion()
 //    Question_3170_Lexicographically_Minimum_String_After_Removing_Stars.runQuestion()
