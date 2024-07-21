@@ -386,5 +386,6 @@ fun main(args: Array<String>) {
 //    Question_3210_Find_the_Encrypted_String.runQuestion()
 //    Question_3211_Generate_Binary_Strings_Without_Adjacent_Zeros.runQuestion()
 //    Question_3212_Count_Submatrices_With_Equal_Frequency_of_X_and_Y.runQuestion()
-    Question_3226_Number_of_Bit_Changes_to_Make_Two_Integers_Equal.runQuestion()
+//    Question_3226_Number_of_Bit_Changes_to_Make_Two_Integers_Equal.runQuestion()
+    Question_3227_Vowels_Game_in_a_String.runQuestion()
 }
