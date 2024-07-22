@@ -58,5 +58,27 @@ class Question_1604_Alert_Using_Same_Key_Card_Three_or_More_Times_in_a_One_Hour_
                 return false
             }
         }
+
+        fun alertNamesWithSlidingWindowSize3(keyName: Array<String>, keyTime: Array<String>): List<String> {
+            val stored: MutableMap<String, MutableList<String>> = mutableMapOf()
+            for (count in 0..keyName.size - 1) {
+                if (!stored.contains(keyName[count])) {
+                    stored.put(keyName[count], mutableListOf(keyTime[count]))
+                } else {
+                    stored[keyName[count]]!!.add(keyTime[count])
+                }
+            }
+            val result: MutableSet<String> = mutableSetOf()
+            for ((key, value) in stored) {
+                value.sort()
+                for (count in 0..value.size - 3) {
+                    if (!isLongerThanAnHour(value[count], value[count + 2])) {
+                        result.add(key)
+                        break
+                    }
+                }
+            }
+            return result.toList().sorted()
+        }
     }
 }
