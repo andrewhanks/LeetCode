@@ -311,6 +311,7 @@ fun main(args: Array<String>) {
 //    Question_1475_Final_Prices_With_a_Special_Discount_in_a_Shop.runQuestion()
 //    Question_1544_Make_The_String_Great.runQuestion()
 //    Question_1577_Number_of_Ways_Where_Square_of_Number_Is_Equal_to_Product_of_Two_Numbers.runQuestion()
+    Question_1604_Alert_Using_Same_Key_Card_Three_or_More_Times_in_a_One_Hour_Period.runQuestion()
 //    Question_1662_Check_If_Two_String_Arrays_are_Equivalent.runQuestion()
 //    Question_1688_Count_of_Matches_in_Tournament.runQuestion()
 //    Question_1705_Maximum_Number_of_Eaten_Apples.runQuestion()
@@ -388,5 +389,5 @@ fun main(args: Array<String>) {
 //    Question_3212_Count_Submatrices_With_Equal_Frequency_of_X_and_Y.runQuestion()
 //    Question_3226_Number_of_Bit_Changes_to_Make_Two_Integers_Equal.runQuestion()
 //    Question_3227_Vowels_Game_in_a_String.runQuestion()
-    Question_3228_Maximum_Number_of_Operations_to_Move_Ones_to_the_End.runQuestion()
+//    Question_3228_Maximum_Number_of_Operations_to_Move_Ones_to_the_End.runQuestion()
 }
