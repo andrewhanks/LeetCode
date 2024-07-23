@@ -1,6 +1,7 @@
 package questions
 
 import kotlin.math.max
+import kotlin.math.min
 
 class Question_962_Maximum_Width_Ramp {
 
@@ -27,6 +28,24 @@ class Question_962_Maximum_Width_Ramp {
                     }
                 }
                 // println("ans = $ans, rightStart = $rightStart, left = $left")
+            }
+            return ans
+        }
+
+        fun maxWidthRampBySort(nums: IntArray): Int {
+            val sorted: MutableList<Int> = mutableListOf()
+            for (count in 0..nums.size - 1) {
+                sorted.add(count)
+            }
+            sorted.sortWith(Comparator { a, b ->
+                nums[a] - nums[b]
+            })
+            // println("sorted = ${sorted}")
+            var minValueIndex = Int.MAX_VALUE
+            var ans = 0
+            for (count in 0..sorted.size - 1) {
+                minValueIndex = min(minValueIndex, sorted[count])
+                ans = max(ans, sorted[count] - minValueIndex)
             }
             return ans
         }
