@@ -2,6 +2,7 @@ package questions
 
 import models.TreeNode
 import java.util.*
+import kotlin.math.max
 
 
 class Question_1123_Lowest_Common_Ancestor_of_Deepest_Leaves {
@@ -75,6 +76,30 @@ class Question_1123_Lowest_Common_Ancestor_of_Deepest_Leaves {
                 return left
             }
             return root
+        }
+
+        fun lcaDeepestLeavesFastSolution(root: TreeNode?): TreeNode? {
+            if (root == null) {
+                return null
+            }
+            val left = getHeight(root?.left)
+            val right = getHeight(root?.right)
+            if (left > right) {
+                return lcaDeepestLeavesFastSolution(root?.left)
+            } else if (left < right) {
+                return lcaDeepestLeavesFastSolution(root?.right)
+            } else {
+                return root
+            }
+        }
+
+        fun getHeight(root: TreeNode?): Int {
+            if (root == null) {
+                return 0
+            }
+            val left = getHeight(root?.left) + 1
+            val right = getHeight(root?.right) + 1
+            return max(left, right)
         }
     }
 }
