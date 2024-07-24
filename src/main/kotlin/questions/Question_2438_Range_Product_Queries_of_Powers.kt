@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.pow
+
 
 class Question_2438_Range_Product_Queries_of_Powers {
 
@@ -47,6 +49,28 @@ class Question_2438_Range_Product_Queries_of_Powers {
                 ans[count] = multiple[queries[count][0]][queries[count][1]].toInt()
             }
             return ans
+        }
+
+        fun productQueriesWebSolution(n: Int, queries: Array<IntArray>): IntArray {
+            var n = n
+            val powers: MutableList<Long> = ArrayList()
+            for (i in 0..31) {
+                if ((n and 1) == 1) {
+                    powers.add(2.toDouble().pow(i).toLong())
+                }
+                n = n shr 1
+            }
+            val mod = 1000000007
+            val res = IntArray(queries.size)
+            for (i in res.indices) {
+                val q = queries[i]
+                var ans: Long = 1
+                for (j in q[0]..q[1]) {
+                    ans = (ans * powers[j]) % mod
+                }
+                res[i] = ans.toInt()
+            }
+            return res
         }
     }
 }
