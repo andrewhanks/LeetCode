@@ -11,7 +11,7 @@ class Question_3080_Mark_Elements_on_Array_by_Performing_Queries {
             val nums = intArrayOf(1, 2, 2, 1, 2, 3, 1)
             val queries = arrayOf(intArrayOf(1, 2), intArrayOf(3, 3), intArrayOf(4, 2))
             val result = unmarkedSumArray(nums, queries)
-            println("Question 57: ${result.contentToString()}")
+            println("Question 3080: ${result.contentToString()}")
         }
 
         fun unmarkedSumArray(nums: IntArray, queries: Array<IntArray>): LongArray {
