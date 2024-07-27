@@ -27,5 +27,22 @@ class Question_1524_Number_of_Sub_arrays_With_Odd_Sum {
             }
             return (oddPrefix * evenPrefix % mod).toInt()
         }
+
+        fun numOfSubarraysDp(arr: IntArray): Int {
+            val mod = 1000000007
+            val dp = Array(arr.size + 1) { LongArray(2) { 0 } }
+            var ans = 0L
+            for (count in 1..dp.size - 1) {
+                if (arr[count - 1] % 2 == 1) {
+                    dp[count][0] = dp[count - 1][1]
+                    dp[count][1] = dp[count - 1][0] + 1
+                } else {
+                    dp[count][0] = dp[count - 1][0] + 1
+                    dp[count][1] = dp[count - 1][1]
+                }
+                ans += dp[count][1]
+            }
+            return (ans % mod).toInt()
+        }
     }
 }
