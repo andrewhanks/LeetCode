@@ -254,6 +254,7 @@ fun main(args: Array<String>) {
 //    Question_763_Partition_Labels.runQuestion()
 //    Question_781_Rabbits_in_Forest.runQuestion()
 //    Question_787_Cheapest_Flights_Within_K_Stops.runQuestion()
+    Question_789_Escape_The_Ghosts.runQuestion()
 //    Question_797_All_Paths_From_Source_to_Target.runQuestion()
 //    Question_809_Expressive_Words.runQuestion()
 //    Question_841_Keys_and_Rooms.runQuestion()
@@ -312,7 +313,7 @@ fun main(args: Array<String>) {
 //    Question_1382_Balance_a_Binary_Search_Tree.runQuestion()
 //    Question_1405_Longest_Happy_String.runQuestion()
 //    Question_1475_Final_Prices_With_a_Special_Discount_in_a_Shop.runQuestion()
-    Question_1524_Number_of_Sub_arrays_With_Odd_Sum.runQuestion()
+//    Question_1524_Number_of_Sub_arrays_With_Odd_Sum.runQuestion()
 //    Question_1544_Make_The_String_Great.runQuestion()
 //    Question_1577_Number_of_Ways_Where_Square_of_Number_Is_Equal_to_Product_of_Two_Numbers.runQuestion()
 //    Question_1604_Alert_Using_Same_Key_Card_Three_or_More_Times_in_a_One_Hour_Period.runQuestion()
@@ -401,5 +402,5 @@ fun main(args: Array<String>) {
 //    Question_3228_Maximum_Number_of_Operations_to_Move_Ones_to_the_End.runQuestion()
 //    Question_3232_Find_if_Digit_Game_Can_Be_Won.runQuestion()
 //    Question_3233_Find_the_Count_of_Numbers_Which_Are_Not_Special.runQuestion()
-    Question_3234_Count_the_Number_of_Substrings_With_Dominant_Ones.runQuestion()
+//    Question_3234_Count_the_Number_of_Substrings_With_Dominant_Ones.runQuestion()
 }
