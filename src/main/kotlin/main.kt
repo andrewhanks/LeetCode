@@ -399,5 +399,6 @@ fun main(args: Array<String>) {
 //    Question_3226_Number_of_Bit_Changes_to_Make_Two_Integers_Equal.runQuestion()
 //    Question_3227_Vowels_Game_in_a_String.runQuestion()
 //    Question_3228_Maximum_Number_of_Operations_to_Move_Ones_to_the_End.runQuestion()
-    Question_3232_Find_if_Digit_Game_Can_Be_Won.runQuestion()
+//    Question_3232_Find_if_Digit_Game_Can_Be_Won.runQuestion()
+    Question_3233_Find_the_Count_of_Numbers_Which_Are_Not_Special.runQuestion()
 }
