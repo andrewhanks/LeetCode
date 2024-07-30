@@ -15,6 +15,18 @@ class Question_2766_Relocate_Marbles {
         }
 
         fun relocateMarbles(nums: IntArray, moveFrom: IntArray, moveTo: IntArray): List<Int> {
+            val set: MutableSet<Int> = mutableSetOf()
+            for (count in 0..nums.size - 1) {
+                set.add(nums[count])
+            }
+            for (count in 0..moveFrom.size - 1) {
+                set.remove(moveFrom[count])
+                set.add(moveTo[count])
+            }
+            return set.toList().sorted()
+        }
+
+        fun relocateMarblesOldSolution(nums: IntArray, moveFrom: IntArray, moveTo: IntArray): List<Int> {
             val temp = nums.distinct().toIntArray()
             for (step in 0..moveFrom.size - 1) {
                 for (position in 0..temp.size - 1) {
