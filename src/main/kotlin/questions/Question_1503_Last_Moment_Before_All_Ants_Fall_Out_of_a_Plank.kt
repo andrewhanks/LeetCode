@@ -40,5 +40,19 @@ class Question_1503_Last_Moment_Before_All_Ants_Fall_Out_of_a_Plank {
                 }
             }
         }
+
+        // Ant meet and change direction... that is NOT affect anything.
+        // So that question becomes how long the last ant walks from start point to the end of the plank!
+        fun getLastMomentAnotherSolution(n: Int, left: IntArray, right: IntArray): Int {
+            var min = Int.MAX_VALUE
+            if (!right.isEmpty()) {
+                min = right.min()
+            }
+            var max = Int.MIN_VALUE
+            if (!left.isEmpty()) {
+                max = left.max()
+            }
+            return max(n - min, max)
+        }
     }
 }
