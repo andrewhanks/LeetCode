@@ -61,5 +61,34 @@ class Question_1277_Count_Square_Submatrices_with_All_Ones {
             // println("allOnes = ${allOnes.contentDeepToString()}, dp = ${dp.contentDeepToString()}")
             return dp[dp.size - 1][dp[0].size - 1]
         }
+
+        fun countSquaresAnotherSolution(matrix: Array<IntArray>): Int {
+            val allOnes = Array(matrix.size) { IntArray(matrix[0].size) { 0 } }
+            var ans = 0
+            for (i in 0..matrix.size - 1) {
+                for (j in 0..matrix[i].size - 1) {
+                    if (matrix[i][j] == 1) {
+                        val up = if (i > 0) {
+                            allOnes[i - 1][j]
+                        } else {
+                            0
+                        }
+                        val left = if (j > 0) {
+                            allOnes[i][j - 1]
+                        } else {
+                            0
+                        }
+                        val upLeft = if (i > 0 && j > 0) {
+                            allOnes[i - 1][j - 1]
+                        } else {
+                            0
+                        }
+                        allOnes[i][j] = min(min(up, left), upLeft) + 1
+                        ans += allOnes[i][j]
+                    }
+                }
+            }
+            return ans
+        }
     }
 }
