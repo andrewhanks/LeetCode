@@ -37,5 +37,38 @@ class Question_2541_Minimum_Operations_to_Make_Array_Equal_II {
                 return -1
             }
         }
+
+        fun minOperationsAnotherSolution(nums1: IntArray, nums2: IntArray, k: Int): Long {
+            if (k == 0) {
+                for (count in 0..nums1.size - 1) {
+                    if (nums1[count] - nums2[count] != 0) {
+                        return -1
+                    }
+                }
+                return 0
+            }
+            var positive = 0L
+            var negative = 0L
+            for (count in 0..nums1.size - 1) {
+                if (nums1[count] > nums2[count]) {
+                    val diff = nums1[count] - nums2[count]
+                    if (diff % k != 0) {
+                        return -1
+                    }
+                    positive += diff
+                } else if (nums1[count] < nums2[count]) {
+                    val diff = nums2[count] - nums1[count]
+                    if (diff % k != 0) {
+                        return -1
+                    }
+                    negative += diff
+                }
+            }
+            if (positive == negative) {
+                return positive / k
+            } else {
+                return -1
+            }
+        }
     }
 }
