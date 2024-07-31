@@ -50,5 +50,33 @@ class Question_3132_Find_the_Integer_Added_to_Array_II {
             }
             return ans
         }
+
+        fun minimumAddedIntegerQuickerSolution(nums1: IntArray, nums2: IntArray): Int {
+            nums1.sort()
+            nums2.sort()
+            // println("nums1 = ${nums1.contentToString()}, nums2 = ${nums2.contentToString()}")
+            var ans = Int.MAX_VALUE
+            for (n1 in 0..nums1.size - 1) {
+                for (n2 in n1 + 1..nums1.size - 1) {
+                    val temp = nums1.filterIndexed { index, value ->
+                        index != n1 && index != n2
+                    }
+                    var isSameDiff = true
+                    val diff = nums2[0] - temp[0]
+                    // println("temp = $temp, nums2 = ${nums2.contentToString()}")
+                    for (count in 1..nums2.size - 1) {
+                        if ((nums2[count] - temp[count]) != diff) {
+                            isSameDiff = false
+                            break
+                        }
+                    }
+                    // println("isSameDiff = $isSameDiff")
+                    if (isSameDiff) {
+                        ans = min(ans, diff)
+                    }
+                }
+            }
+            return ans
+        }
     }
 }
