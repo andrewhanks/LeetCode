@@ -57,5 +57,21 @@ class Question_2425_Bitwise_XOR_of_All_Pairings {
             }
             return Integer.parseInt(result.toString(), 2)
         }
+
+        // https://home.gamer.com.tw/artwork.php?sn=5777643
+        fun xorAllNumsWebSolution(nums1: IntArray, nums2: IntArray): Int {
+            var ans = 0
+            if (nums1.size % 2 == 1) {
+                for (count in 0..nums2.size - 1) {
+                    ans = ans xor nums2[count]
+                }
+            }
+            if (nums2.size % 2 == 1) {
+                for (count in 0..nums1.size - 1) {
+                    ans = ans xor nums1[count]
+                }
+            }
+            return ans
+        }
     }
 }
