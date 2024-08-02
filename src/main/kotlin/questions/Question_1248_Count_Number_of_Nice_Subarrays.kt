@@ -6,6 +6,8 @@ class Question_1248_Count_Number_of_Nice_Subarrays {
     companion object {
 
         fun runQuestion() {
+//            Input: nums = [1,1,2,1,1], k = 3
+//            Output: 2
             val numberArray = intArrayOf(1, 1, 2, 1, 1)
             val number = 3
             val result = numberOfSubarrays(numberArray, number)
@@ -13,6 +15,38 @@ class Question_1248_Count_Number_of_Nice_Subarrays {
         }
 
         fun numberOfSubarrays(nums: IntArray, k: Int): Int {
+            var oddNum = if (nums[0] % 2 == 1) {
+                1
+            } else {
+                0
+            }
+            var ans = 0
+            var end = 0
+            for (start in 0..nums.size - 1) {
+                if (start > 0 && nums[start - 1] % 2 == 1) {
+                    oddNum--
+                }
+                while (end <= nums.size - 1 && oddNum < k) {
+                    end++
+                    if (end <= nums.size - 1 && nums[end] % 2 == 1) {
+                        oddNum++
+                    }
+                }
+                if (oddNum == k) {
+                    ans++
+                    // println("start = $start, end = $end")
+                    var tempEnd = end
+                    while (tempEnd + 1 <= nums.size - 1 && nums[tempEnd + 1] % 2 == 0) {
+                        ans++
+                        tempEnd++
+                        // println("start = $start, tempEnd = $tempEnd")
+                    }
+                }
+            }
+            return ans
+        }
+
+        fun numberOfSubarraysOldSolution(nums: IntArray, k: Int): Int {
             var result = 0
             val oddPosition: MutableList<Int> = mutableListOf()
             nums.forEachIndexed { index, value ->
