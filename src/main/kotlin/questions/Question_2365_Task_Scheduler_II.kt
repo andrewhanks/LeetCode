@@ -13,7 +13,7 @@ class Question_2365_Task_Scheduler_II {
             val tasks = intArrayOf(1, 2, 1, 2, 3, 1)
             val space = 3
             val result = taskSchedulerII(tasks, space)
-            println("Question 2488: $result")
+            println("Question 2365: $result")
         }
 
         fun taskSchedulerII(tasks: IntArray, space: Int): Long {
