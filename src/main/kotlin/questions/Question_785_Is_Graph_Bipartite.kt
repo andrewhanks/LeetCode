@@ -76,5 +76,33 @@ class Question_785_Is_Graph_Bipartite {
             // println("group1 = $group1, group2 = $group2, visited = $visited")
             return bipartite
         }
+
+        fun isBipartiteWithSaveGroupInVisitedArray(graph: Array<IntArray>): Boolean {
+            val visited = IntArray(graph.size) { -1 }
+            for (count in 0..visited.size - 1) {
+                if (visited[count] != -1) {
+                    continue
+                }
+                if (!addNodeToGroup(count, 0, graph, visited)) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        fun addNodeToGroup(node: Int, group: Int, graph: Array<IntArray>, visited: IntArray): Boolean {
+            visited[node] = group
+            for (j in 0..graph[node].size - 1) {
+                val target = graph[node][j]
+                if (visited[target] == group) {
+                    return false
+                } else if (visited[target] == -1) {
+                    if (!addNodeToGroup(target, 1 - group, graph, visited)) {
+                        return false
+                    }
+                }
+            }
+            return true
+        }
     }
 }
