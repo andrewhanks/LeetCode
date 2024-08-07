@@ -20,12 +20,59 @@ class Question_2684_Maximum_Number_of_Moves_in_a_Grid {
             println("Question 2684: $result")
         }
 
+        fun maxMoves(grid: Array<IntArray>): Int {
+            val result = Array(grid.size) { IntArray(grid[0].size) { 0 } }
+            var max = 0
+            for (y in 1..grid[0].size - 1) {
+                for (x in 0..grid.size - 1) {
+                    dp(grid, x, y, result)
+                    max = max(max, result[x][y])
+                }
+                if (max == 0) {
+                    return 0
+                }
+            }
+            println("result = ${result.contentDeepToString()}")
+            return max
+        }
+
+        fun dp(grid: Array<IntArray>, x: Int, y: Int, result: Array<IntArray>) {
+            val topLeft = if (x >= 1 && grid[x][y] > grid[x - 1][y - 1]) {
+                if (y > 1 && result[x - 1][y - 1] == 0) {
+                    0
+                } else {
+                    result[x - 1][y - 1] + 1
+                }
+            } else {
+                0
+            }
+            val left = if (grid[x][y] > grid[x][y - 1]) {
+                if (y > 1 && result[x][y - 1] == 0) {
+                    0
+                } else {
+                    result[x][y - 1] + 1
+                }
+            } else {
+                0
+            }
+            val bottomLeft = if (x <= grid.size - 2 && grid[x][y] > grid[x + 1][y - 1]) {
+                if (y > 1 && result[x + 1][y - 1] == 0) {
+                    0
+                } else {
+                    result[x + 1][y - 1] + 1
+                }
+            } else {
+                0
+            }
+            result[x][y] = max(left, max(topLeft, bottomLeft))
+        }
+
         var dirs = intArrayOf(-1, 0, 1)
         var m = 0
         var n: Int = 0
         var max: Int = 0
 
-        fun maxMoves(grid: Array<IntArray>): Int {
+        fun maxMovesOldSolution(grid: Array<IntArray>): Int {
             m = grid.size
             n = grid[0].size
             var dp: Array<IntArray> = Array(m) { IntArray(n) { -1 } }
