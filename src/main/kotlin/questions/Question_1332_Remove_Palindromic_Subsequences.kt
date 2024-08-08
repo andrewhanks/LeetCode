@@ -16,6 +16,13 @@ class Question_1332_Remove_Palindromic_Subsequences {
             if (isPalidrome(s)) {
                 return 1
             }
+            return 2
+        }
+
+        fun removePalindromeSubWithNotNecessaryCheck(s: String): Int {
+            if (isPalidrome(s)) {
+                return 1
+            }
             var numA = 0
             var numB = 0
             for (count in 0..s.length - 1) {
