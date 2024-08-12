@@ -377,7 +377,7 @@ fun main(args: Array<String>) {
 //    Question_2555_Maximize_Win_From_Two_Segments.runQuestion()
 //    Question_2567_Minimum_Score_by_Changing_Two_Elements.runQuestion()
 //    Question_2571_Minimum_Operations_to_Reduce_an_Integer_to_0.runQuestion()
-    Question_2580_Count_Ways_to_Group_Overlapping_Ranges.runQuestion()
+//    Question_2580_Count_Ways_to_Group_Overlapping_Ranges.runQuestion()
 //    Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements.runQuestion()
 //    Question_2607_Make_K_Subarray_Sums_Equal.runQuestion()
 //    Question_2611_Mice_and_Cheese.runQuestion()
@@ -422,4 +422,5 @@ fun main(args: Array<String>) {
 //    Question_3233_Find_the_Count_of_Numbers_Which_Are_Not_Special.runQuestion()
 //    Question_3234_Count_the_Number_of_Substrings_With_Dominant_Ones.runQuestion()
 //    Question_3243_Shortest_Distance_After_Road_Addition_Queries_I.runQuestion()
+    Question_3248_Snake_in_Matrix.runQuestion()
 }
