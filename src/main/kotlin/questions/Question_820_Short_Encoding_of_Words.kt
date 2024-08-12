@@ -33,5 +33,17 @@ class Question_820_Short_Encoding_of_Words {
             }
             return total + temp.size
         }
+
+        fun minimumLengthEncodingAnotherSolution(words: Array<String>): Int {
+            words.sortByDescending { it.length }
+            val stringBuilder = StringBuilder()
+            for (count in 0..words.size - 1) {
+                if (stringBuilder.indexOf(words[count] + "#") >= 0) {
+                } else {
+                    stringBuilder.append(words[count] + "#")
+                }
+            }
+            return stringBuilder.length
+        }
     }
 }
