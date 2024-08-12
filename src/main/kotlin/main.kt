@@ -422,5 +422,6 @@ fun main(args: Array<String>) {
 //    Question_3233_Find_the_Count_of_Numbers_Which_Are_Not_Special.runQuestion()
 //    Question_3234_Count_the_Number_of_Substrings_With_Dominant_Ones.runQuestion()
 //    Question_3243_Shortest_Distance_After_Road_Addition_Queries_I.runQuestion()
-    Question_3248_Snake_in_Matrix.runQuestion()
+//    Question_3248_Snake_in_Matrix.runQuestion()
+    Question_3249_Count_the_Number_of_Good_Nodes.runQuestion()
 }
