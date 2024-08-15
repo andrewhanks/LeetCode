@@ -16,6 +16,63 @@ class Question_3076_Shortest_Uncommon_Substring_in_an_Array {
         }
 
         fun shortestSubstrings(arr: Array<String>): Array<String> {
+            val map: MutableMap<String, Int> = mutableMapOf()
+            val result = Array(arr.size) { "" }
+            for (i in 0..arr.size - 1) {
+                val set: MutableSet<String> = mutableSetOf()
+                for (j in 0..arr[i].length - 1) {
+                    var subString = ""
+                    for (k in j..arr[i].length - 1) {
+                        subString += arr[i][k]
+                        set.add(subString)
+                    }
+                }
+                for (item in set) {
+                    map[item] = map.getOrDefault(item, 0) + 1
+                }
+            }
+            // println("map = $map")
+            for (i in 0..arr.size - 1) {
+                for (j in 0..arr[i].length - 1) {
+                    var subString = ""
+                    for (k in j..arr[i].length - 1) {
+                        subString += arr[i][k]
+                        if (map[subString] == 1) {
+                            // println("subString = $subString")
+                            if (result[i].isEmpty()) {
+                                result[i] = subString
+                                // println("result[i]=subString($subString)")
+                            } else {
+                                // println("result[$i] = ${result[i]}, subString = $subString")
+                                if (result[i].length > subString.length) {
+                                    result[i] = subString
+                                    // println("result[i]=subString($subString)")
+                                } else if (result[i].length == subString.length) {
+                                    val min = min(result[i].length, subString.length)
+                                    var isBefore = true
+                                    for (lengthCount in 0..min - 1) {
+                                        if (subString[lengthCount] - result[i][lengthCount] > 0) {
+                                            isBefore = false
+                                            break
+                                        } else if (subString[lengthCount] - result[i][lengthCount] < 0) {
+                                            isBefore = true
+                                            break
+                                        }
+                                    }
+                                    if (isBefore) {
+                                        result[i] = subString
+                                        // println("result[i]=subString($subString)")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return result
+        }
+
+        fun shortestSubstringsSlow(arr: Array<String>): Array<String> {
             val result = Array(arr.size) { "" }
             for (i in 0..arr.size - 1) {
                 val temp: MutableList<String> = mutableListOf()
