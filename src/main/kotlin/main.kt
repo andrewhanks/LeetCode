@@ -396,6 +396,7 @@ fun main(args: Array<String>) {
 //    Question_2766_Relocate_Marbles.runQuestion()
 //    Question_2860_Happy_Students.runQuestion()
 //    Question_3047_Find_the_Largest_Area_of_Square_Inside_Two_Rectangles.runQuestion()
+    Question_3076_Shortest_Uncommon_Substring_in_an_Array.runQuestion()
 //    Question_3080_Mark_Elements_on_Array_by_Performing_Queries.runQuestion()
 //    Question_3107_Minimum_Operations_to_Make_Median_of_Array_Equal_to_K.runQuestion()
 //    Question_3132_Find_the_Integer_Added_to_Array_II.runQuestion()
