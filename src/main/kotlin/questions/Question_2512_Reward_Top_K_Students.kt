@@ -1,5 +1,8 @@
 package questions
 
+import java.util.*
+import kotlin.Comparator
+
 
 class Question_2512_Reward_Top_K_Students {
 
@@ -18,7 +21,50 @@ class Question_2512_Reward_Top_K_Students {
             println("Question 2512: $result")
         }
 
+        // With Set and PriorityQueue
         fun topStudents(
+            positive_feedback: Array<String>,
+            negative_feedback: Array<String>,
+            report: Array<String>,
+            student_id: IntArray,
+            k: Int
+        ): List<Int> {
+            val positiveSet: MutableSet<String> = mutableSetOf()
+            val negativeSet: MutableSet<String> = mutableSetOf()
+            for (item in positive_feedback) {
+                positiveSet.add(item)
+            }
+            for (item in negative_feedback) {
+                negativeSet.add(item)
+            }
+            val scoreQueue: PriorityQueue<IntArray> = PriorityQueue { a, b ->
+                if (a[0] != b[0]) {
+                    b[0] - a[0]
+                } else {
+                    a[1] - b[1]
+                }
+            }
+            val result: MutableList<Int> = mutableListOf()
+            for (i in 0..report.size - 1) {
+                var score = 0
+                val sentences = report[i].split(" ")
+                for (j in 0..sentences.size - 1) {
+                    if (positiveSet.contains(sentences[j])) {
+                        score += 3
+                    }
+                    if (negativeSet.contains(sentences[j])) {
+                        score -= 1
+                    }
+                }
+                scoreQueue.add(intArrayOf(score, student_id[i]))
+            }
+            for (count in 0..k - 1) {
+                result.add(scoreQueue.remove()[1])
+            }
+            return result
+        }
+
+        fun topStudentsWithMapAndSecondArraySort(
             positive_feedback: Array<String>,
             negative_feedback: Array<String>,
             report: Array<String>,
@@ -62,7 +108,7 @@ class Question_2512_Reward_Top_K_Students {
             return result
         }
 
-        fun topStudentsWithSet(
+        fun topStudentsWithSetAndSecondArraySort(
             positive_feedback: Array<String>,
             negative_feedback: Array<String>,
             report: Array<String>,
