@@ -61,5 +61,49 @@ class Question_2512_Reward_Top_K_Students {
             }
             return result
         }
+
+        fun topStudentsWithSet(
+            positive_feedback: Array<String>,
+            negative_feedback: Array<String>,
+            report: Array<String>,
+            student_id: IntArray,
+            k: Int
+        ): List<Int> {
+            val positiveSet: MutableSet<String> = mutableSetOf()
+            val negativeSet: MutableSet<String> = mutableSetOf()
+            for (item in positive_feedback) {
+                positiveSet.add(item)
+            }
+            for (item in negative_feedback) {
+                negativeSet.add(item)
+            }
+            val score = IntArray(student_id.size) { 0 }
+            val result: MutableList<Int> = mutableListOf()
+            for (i in 0..report.size - 1) {
+                val sentences = report[i].split(" ")
+                for (j in 0..sentences.size - 1) {
+                    if (positiveSet.contains(sentences[j])) {
+                        score[i] += 3
+                    }
+                    if (negativeSet.contains(sentences[j])) {
+                        score[i] -= 1
+                    }
+                }
+            }
+            val temp = student_id.sortedWith(Comparator { a, b ->
+                if (score[student_id.indexOf(b)] != score[student_id.indexOf(a)]) {
+                    score[student_id.indexOf(b)] - score[student_id.indexOf(a)]
+                } else {
+                    a - b
+                }
+            })
+            // println("student_id = ${student_id.contentToString()}")
+            // println("score = ${score.contentToString()}")
+            // println("temp = $temp")
+            for (count in 0..k - 1) {
+                result.add(temp[count])
+            }
+            return result
+        }
     }
 }
