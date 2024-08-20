@@ -82,5 +82,36 @@ class Question_838_Push_Dominoes {
             }
             temp.clear()
         }
+
+        fun pushDominoesAnotherSolution(dominoes: String): String {
+            val dom = dominoes.toCharArray()
+            val queue: Queue<Int> = LinkedList()
+            for (count in 0..dom.size - 1) {
+                if (dom[count] == '.') {
+                    continue
+                }
+                queue.add(count)
+            }
+            while (!queue.isEmpty()) {
+                val index = queue.remove()
+                val current = dom[index]
+                if (current == 'R') {
+                    if (index + 1 <= dom.size - 1 && dom[index + 1] == '.') {
+                        if (index + 2 <= dom.size - 1 && dom[index + 2] == 'L') {
+                            queue.remove()
+                        } else {
+                            dom[index + 1] = 'R'
+                            queue.add(index + 1)
+                        }
+                    }
+                } else {
+                    if (index - 1 >= 0 && dom[index - 1] == '.') {
+                        dom[index - 1] = 'L'
+                        queue.add(index - 1)
+                    }
+                }
+            }
+            return String(dom)
+        }
     }
 }
