@@ -68,5 +68,52 @@ class Question_990_Satisfiability_of_Equality_Equations {
             result[variable] = find(result, result[variable]!!)
             return result[variable]!!
         }
+
+        fun equationsPossibleWithAlphabetArray(equations: Array<String>): Boolean {
+            val result = IntArray(26) { 0 }
+            for (count in 0..25) {
+                result[count] = count
+            }
+            for (count in 0..equations.size - 1) {
+                if (!equations[count].contains("==")) {
+                    continue
+                }
+                val var1 = equations[count][0]
+                val var2 = equations[count][3]
+                union(result, var1 - 'a', var2 - 'a', true)
+            }
+            // println("result = ${result.contentToString()}")
+            for (count in 0..equations.size - 1) {
+                if (!equations[count].contains("!=")) {
+                    continue
+                }
+                val var1 = equations[count][0]
+                val var2 = equations[count][3]
+                if (union(result, var1 - 'a', var2 - 'a', false)) {
+                    return false
+                }
+            }
+            return true
+        }
+
+        fun union(result: IntArray, var1: Int, var2: Int, doesNeedUnion: Boolean): Boolean {
+            val node1 = find(result, var1)
+            val node2 = find(result, var2)
+            if (node1 == node2) {
+                return true
+            }
+            if (doesNeedUnion) {
+                result[node2] = node1
+            }
+            return false
+        }
+
+        fun find(result: IntArray, variable: Int): Int {
+            if (result[variable] == variable) {
+                return result[variable]
+            }
+            result[variable] = find(result, result[variable])
+            return result[variable]
+        }
     }
 }
