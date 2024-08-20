@@ -1,6 +1,7 @@
 package questions
 
 import java.util.*
+import kotlin.math.max
 
 class Question_838_Push_Dominoes {
 
@@ -81,6 +82,44 @@ class Question_838_Push_Dominoes {
                 result.append(item)
             }
             temp.clear()
+        }
+
+        fun pushDominoesWithScore(dominoes: String): String {
+            val scores = IntArray(dominoes.length) { 0 }
+            val n = dominoes.length
+            var score = 0
+            for (count in 0..n - 1) {
+                if (dominoes[count] == 'R') {
+                    score = n
+                } else if (dominoes[count] == 'L') {
+                    score = 0
+                } else {
+                    score = max(score - 1, 0)
+                }
+                scores[count] += score
+            }
+            score = 0
+            for (count in n - 1 downTo 0) {
+                if (dominoes[count] == 'L') {
+                    score = n
+                } else if (dominoes[count] == 'R') {
+                    score = 0
+                } else {
+                    score = max(score - 1, 0)
+                }
+                scores[count] -= score
+            }
+            val result = StringBuilder()
+            for (count in 0..n - 1) {
+                if (scores[count] > 0) {
+                    result.append('R')
+                } else if (scores[count] < 0) {
+                    result.append('L')
+                } else {
+                    result.append('.')
+                }
+            }
+            return result.toString()
         }
 
         fun pushDominoesAnotherSolution(dominoes: String): String {
