@@ -1,5 +1,6 @@
 package questions
 
+import java.util.*
 import kotlin.math.max
 
 
@@ -29,6 +30,22 @@ class Question_2779_Maximum_Beauty_of_an_Array_After_Applying_Operation {
                     left++
                 }
                 max = max(max, right - left)
+            }
+            return max
+        }
+
+        fun maximumBeautyWithPriorityQueue(nums: IntArray, k: Int): Int {
+            nums.sort()
+            var max = 0
+            val priorityQueue: PriorityQueue<Int> = PriorityQueue { a, b ->
+                a - b
+            }
+            for (item in nums) {
+                while (!priorityQueue.isEmpty() && priorityQueue.peek() + k < item - k) {
+                    priorityQueue.remove()
+                }
+                priorityQueue.add(item)
+                max = max(max, priorityQueue.size)
             }
             return max
         }
