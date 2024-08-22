@@ -18,14 +18,14 @@ class Question_2344_Minimum_Deletions_to_Make_Array_Divisible {
 
         fun minOperations(nums: IntArray, numsDivide: IntArray): Int {
             val tempNums = nums.sorted().toMutableList()
-            var lcm = numsDivide[0]
+            var gcd = numsDivide[0]
             for (num in 1..numsDivide.size - 1) {
-                val num1 = min(lcm, numsDivide[num])
-                val num2 = max(lcm, numsDivide[num])
-                lcm = calculateLcm(num1, num2)
+                val num1 = min(gcd, numsDivide[num])
+                val num2 = max(gcd, numsDivide[num])
+                gcd = calculateLcm(num1, num2)
             }
             var count = 0
-            while (count <= tempNums.size - 1 && lcm % tempNums[count] != 0) {
+            while (count <= tempNums.size - 1 && gcd % tempNums[count] != 0) {
                 count++
             }
             if (count > nums.size - 1) {
