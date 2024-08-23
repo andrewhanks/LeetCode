@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_2375_Construct_Smallest_Number_From_DI_String {
 
     companion object {
@@ -52,6 +54,30 @@ class Question_2375_Construct_Smallest_Number_From_DI_String {
                 temp.removeAt(temp.size - 1)
                 used[count - 1] = false
             }
+        }
+
+        fun smallestNumberWithStack(pattern: String): String {
+            val stack: Stack<Int> = Stack()
+            var num = 1
+            val result = StringBuilder()
+            for (count in 0..pattern.length - 1) {
+                val ch = pattern[count]
+                if (ch == 'D') {
+                    stack.add(num)
+                    num++
+                } else {
+                    stack.add(num)
+                    num++
+                    while (stack.size > 0) {
+                        result.append(stack.removeLast())
+                    }
+                }
+            }
+            stack.add(num)
+            while (stack.size > 0) {
+                result.append(stack.removeLast())
+            }
+            return result.toString()
         }
     }
 }
