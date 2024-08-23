@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.max
+
 class Question_2275_Largest_Combination_With_Bitwise_AND_Greater_Than_Zero {
 
     companion object {
@@ -33,6 +35,22 @@ class Question_2275_Largest_Combination_With_Bitwise_AND_Greater_Than_Zero {
                 temp = temp / 2
                 count++
             }
+        }
+
+        fun largestCombinationWithBinaryOperation(candidates: IntArray): Int {
+            var max = 0
+            for (i in 0..31) {
+                var count = 0
+                for (j in 0..candidates.size - 1) {
+                    val compare = 1 shl i
+                    // println("candidates[$j] = ${candidates[j]}, compare = $compare, (candidates[j] and compare) = ${(candidates[j] and compare)}")
+                    if ((candidates[j] and compare) != 0) {
+                        count++
+                    }
+                }
+                max = max(max, count)
+            }
+            return max
         }
     }
 }
