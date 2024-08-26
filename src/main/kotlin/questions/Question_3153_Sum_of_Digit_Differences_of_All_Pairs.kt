@@ -31,5 +31,22 @@ class Question_3153_Sum_of_Digit_Differences_of_All_Pairs {
             }
             return ans / 2
         }
+
+        fun sumDigitDifferencesWithMap(nums: IntArray): Long {
+            val size = nums.size
+            var ans = 0L
+            while (nums[0] != 0) {
+                val map: MutableMap<Int, Int> = mutableMapOf()
+                for (count in 0..nums.size - 1) {
+                    map[nums[count] % 10] = map.getOrDefault(nums[count] % 10, 0) + 1
+                    nums[count] = nums[count] / 10
+                }
+                for ((key, value) in map) {
+                    val currentDigitCount = value.toLong() * (size - value)
+                    ans = ans + currentDigitCount
+                }
+            }
+            return ans / 2
+        }
     }
 }
