@@ -40,5 +40,38 @@ class Question_2024_Maximize_the_Confusion_of_an_Exam {
             }
             return max
         }
+
+        fun maxConsecutiveAnswersWithTAndFSeparately(answerKey: String, k: Int): Int {
+            var max = 0
+            var right = 0
+            var count = 0
+            for (left in 0..answerKey.length - 1) {
+                while (right <= answerKey.length - 1 && (answerKey[right] == 'T' || count < k)) {
+                    if (answerKey[right] == 'F') {
+                        count++
+                    }
+                    right++
+                }
+                max = max(max, right - left)
+                if (answerKey[left] == 'F') {
+                    count--
+                }
+            }
+            right = 0
+            count = 0
+            for (left in 0..answerKey.length - 1) {
+                while (right <= answerKey.length - 1 && (answerKey[right] == 'F' || count < k)) {
+                    if (answerKey[right] == 'T') {
+                        count++
+                    }
+                    right++
+                }
+                max = max(max, right - left)
+                if (answerKey[left] == 'T') {
+                    count--
+                }
+            }
+            return max
+        }
     }
 }
