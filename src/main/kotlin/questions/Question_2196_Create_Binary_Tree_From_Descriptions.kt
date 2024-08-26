@@ -58,5 +58,32 @@ class Question_2196_Create_Binary_Tree_From_Descriptions {
             }
             return node
         }
+
+        fun createBinaryTreeWithHashMapAndSet(descriptions: Array<IntArray>): TreeNode? {
+            val map: MutableMap<Int, TreeNode> = mutableMapOf()
+            val set: MutableSet<Int> = mutableSetOf()
+            for (count in 0..descriptions.size - 1) {
+                val parent = descriptions[count][0]
+                val child = descriptions[count][1]
+                val isLeft = descriptions[count][2]
+                val parentNode = map.getOrDefault(parent, TreeNode(parent))
+                val childNode = map.getOrDefault(child, TreeNode(child))
+                map[parent] = parentNode
+                map[child] = childNode
+                if (isLeft == 1) {
+                    parentNode.left = childNode
+                } else {
+                    parentNode.right = childNode
+                }
+                set.add(child)
+            }
+            // println("map = $map, set = $set")
+            for (count in 0..descriptions.size - 1) {
+                if (!set.contains(descriptions[count][0])) {
+                    return map[descriptions[count][0]]
+                }
+            }
+            return null
+        }
     }
 }
