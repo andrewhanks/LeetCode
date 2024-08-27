@@ -7,22 +7,54 @@ class Question_870_Advantage_Shuffle {
     companion object {
 
         fun runQuestion() {
-            val numberArray1 = intArrayOf(12, 24, 8, 32)
-            val numberArray2 = intArrayOf(13, 25, 32, 11)
-            val resultList = advantageCount(numberArray1, numberArray2)
-            var result = "["
-            resultList.forEachIndexed { index, i ->
-                result += i
-                if (index == resultList.size - 1) {
-                    result += "]"
-                } else {
-                    result += ","
-                }
-            }
-            println("Question 870: $result")
+//            Input: nums1 = [12,24,8,32], nums2 = [13,25,32,11]
+//            Output: [24,32,8,12]
+            val nums1 = intArrayOf(12, 24, 8, 32)
+            val nums2 = intArrayOf(13, 25, 32, 11)
+            val result = advantageCount(nums1, nums2)
+            println("Question 870: ${result.contentToString()}")
         }
 
         fun advantageCount(nums1: IntArray, nums2: IntArray): IntArray {
+            val nums1Sorted = nums1.sortedDescending()
+            val nums2IndexSorted = MutableList(nums2.size) { 0 }
+            for (count in 0..nums2IndexSorted.size - 1) {
+                nums2IndexSorted[count] = count
+            }
+            nums2IndexSorted.sortWith(Comparator { a, b ->
+                nums2[b] - nums2[a]
+            })
+            val stack: Stack<Int> = Stack()
+            var index1 = 0
+            var index2 = 0
+            val result = IntArray(nums1.size) { -1 }
+            while (index1 <= nums1Sorted.size - 1 && index2 <= nums2IndexSorted.size - 1) {
+                if (!stack.isEmpty() && nums1Sorted[index1] > nums2[stack.peek()]) {
+                    result[stack.removeLast()] = nums1Sorted[index1]
+                    if (index1 < nums1Sorted.size - 1) {
+                        index1++
+                    }
+                } else {
+                    stack.add(nums2IndexSorted[index2])
+                    index2++
+                }
+            }
+            if (!stack.isEmpty() && nums1Sorted[index1] > nums2[stack.peek()]) {
+                result[stack.removeLast()] = nums1Sorted[index1]
+                if (index1 < nums1Sorted.size - 1) {
+                    index1++
+                }
+            }
+            // println("result = ${result.contentToString()}, stack = $stack")
+            while (!stack.isEmpty()) {
+                result[stack.removeLast()] = nums1Sorted[index1]
+                index1++
+            }
+            // println("result = ${result.contentToString()}")
+            return result
+        }
+
+        fun advantageCountSlowSolution(nums1: IntArray, nums2: IntArray): IntArray {
             // 0: index, 1: value
             val nums2PQ: PriorityQueue<IntArray> = PriorityQueue { a, b ->
                 b[1] - a[1]
