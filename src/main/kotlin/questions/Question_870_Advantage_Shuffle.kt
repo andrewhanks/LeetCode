@@ -46,6 +46,33 @@ class Question_870_Advantage_Shuffle {
             return result
         }
 
+        fun advantageCountWithTreeMap(nums1: IntArray, nums2: IntArray): IntArray {
+            val map: TreeMap<Int, Int> = TreeMap()
+            for (count in 0..nums1.size - 1) {
+                map[nums1[count]] = map.getOrDefault(nums1[count], 0) + 1
+            }
+            val result = IntArray(nums2.size) { -1 }
+            for (count in 0..nums2.size - 1) {
+                var key = map.higherKey(nums2[count])
+                if (key != null) {
+                    result[count] = key
+                    decreaseKey(map, key)
+                } else {
+                    val firstKey = map.firstKey()
+                    result[count] = firstKey
+                    decreaseKey(map, firstKey)
+                }
+            }
+            return result
+        }
+
+        fun decreaseKey(map: TreeMap<Int, Int>, key: Int) {
+            map[key] = map[key]!! - 1
+            if (map[key]!! == 0) {
+                map.remove(key)
+            }
+        }
+
         fun advantageCountSlowSolution(nums1: IntArray, nums2: IntArray): IntArray {
             // 0: index, 1: value
             val nums2PQ: PriorityQueue<IntArray> = PriorityQueue { a, b ->
