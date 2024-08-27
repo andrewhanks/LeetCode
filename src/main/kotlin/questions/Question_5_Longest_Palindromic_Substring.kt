@@ -14,10 +14,10 @@ class Question_5_Longest_Palindromic_Substring {
 
         fun longestPalindrome(s: String): String {
             var result = ""
-            for(i in 0..s.length-1) {
-                for(j in 0..i) {
+            for (i in 0..s.length - 1) {
+                for (j in 0..i) {
                     val temp = s.substring(j..i)
-                    if(check(temp) && temp.length>result.length) {
+                    if (check(temp) && temp.length > result.length) {
                         result = temp
                     }
                 }
@@ -25,11 +25,11 @@ class Question_5_Longest_Palindromic_Substring {
             return result
         }
 
-        fun check(s:String) :Boolean{
-            var i=0
-            var j=s.length-1
-            while(i<j) {
-                if(s[i]!=s[j]) {
+        fun check(s: String): Boolean {
+            var i = 0
+            var j = s.length - 1
+            while (i < j) {
+                if (s[i] != s[j]) {
                     return false
                 }
                 i++

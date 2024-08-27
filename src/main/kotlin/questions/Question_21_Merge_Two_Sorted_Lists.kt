@@ -31,47 +31,47 @@ class Question_21_Merge_Two_Sorted_Lists {
         }
 
         fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
-            if(list1==null || list2==null) {
-                if(list1==null) {
+            if (list1 == null || list2 == null) {
+                if (list1 == null) {
                     return list2
-                }else if(list2==null) {
+                } else if (list2 == null) {
                     return list1
-                }else {
+                } else {
                     return null
                 }
             }
             var list1Curr = list1
             var list2Curr = list2
-            var newHead:ListNode? = null
-            var newCurr:ListNode? = null
-            while(list1Curr!=null || list2Curr!=null) {
-                if(list1Curr!=null && list2Curr!=null) {
+            var newHead: ListNode? = null
+            var newCurr: ListNode? = null
+            while (list1Curr != null || list2Curr != null) {
+                if (list1Curr != null && list2Curr != null) {
                     println("list1Curr.`val` = ${list1Curr.`val`}, list2Curr.`val` = ${list2Curr.`val`}")
-                    if(list1Curr.`val`<=list2Curr.`val`) {
-                        if(newHead==null) {
+                    if (list1Curr.`val` <= list2Curr.`val`) {
+                        if (newHead == null) {
                             newHead = list1Curr
                             newCurr = newHead
-                        }else {
+                        } else {
                             newCurr?.next = list1Curr
                             newCurr = newCurr?.next
                         }
                         list1Curr = list1Curr?.next
-                    }else {
-                        if(newHead==null) {
+                    } else {
+                        if (newHead == null) {
                             newHead = list2Curr
                             newCurr = newHead
-                        }else {
+                        } else {
                             newCurr?.next = list2Curr
                             newCurr = newCurr?.next
                         }
                         list2Curr = list2Curr?.next
                     }
-                }else if(list1Curr==null) {
+                } else if (list1Curr == null) {
                     println("list2Curr.`val` = ${list2Curr?.`val`}")
                     newCurr?.next = list2Curr
                     newCurr = newCurr?.next
                     list2Curr = list2Curr?.next
-                }else if(list2Curr==null) {
+                } else if (list2Curr == null) {
                     println("list1Curr.`val` = ${list1Curr?.`val`}")
                     newCurr?.next = list1Curr
                     newCurr = newCurr?.next
