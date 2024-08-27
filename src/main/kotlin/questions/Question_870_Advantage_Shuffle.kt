@@ -39,18 +39,10 @@ class Question_870_Advantage_Shuffle {
                     index2++
                 }
             }
-            if (!stack.isEmpty() && nums1Sorted[index1] > nums2[stack.peek()]) {
-                result[stack.removeLast()] = nums1Sorted[index1]
-                if (index1 < nums1Sorted.size - 1) {
-                    index1++
-                }
-            }
-            // println("result = ${result.contentToString()}, stack = $stack")
             while (!stack.isEmpty()) {
                 result[stack.removeLast()] = nums1Sorted[index1]
                 index1++
             }
-            // println("result = ${result.contentToString()}")
             return result
         }
 
