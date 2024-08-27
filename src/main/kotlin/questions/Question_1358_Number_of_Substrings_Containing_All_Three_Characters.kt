@@ -43,5 +43,23 @@ class Question_1358_Number_of_Substrings_Containing_All_Three_Characters {
             }
             return ans
         }
+
+        fun numberOfSubstringsWithCleanCode(s: String): Int {
+            val frequence = IntArray(3) { 0 }
+            var right = 0
+            var ans = 0
+            for (left in 0..s.length - 1) {
+                while (right <= s.length - 1 && (frequence[0] < 1 || frequence[1] < 1 || frequence[2] < 1)) {
+                    frequence[s[right] - 'a']++
+                    right++
+                }
+                if (frequence[0] < 1 || frequence[1] < 1 || frequence[2] < 1) {
+                    break
+                }
+                ans += (s.length - right + 1)
+                frequence[s[left] - 'a']--
+            }
+            return ans
+        }
     }
 }
