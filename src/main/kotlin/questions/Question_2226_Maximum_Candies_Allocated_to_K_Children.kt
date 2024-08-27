@@ -33,5 +33,23 @@ class Question_2226_Maximum_Candies_Allocated_to_K_Children {
             }
             return ans
         }
+
+        fun maximumCandiesWithDifferentMiddleCalculation(candies: IntArray, k: Long): Int {
+            var start = 0
+            var end = candies.max()
+            while (start < end) {
+                val mid = end - (end - start) / 2
+                var totalDivide = 0L
+                for (count in 0..candies.size - 1) {
+                    totalDivide += candies[count] / mid
+                }
+                if (totalDivide >= k) {
+                    start = mid
+                } else {
+                    end = mid - 1
+                }
+            }
+            return start
+        }
     }
 }
