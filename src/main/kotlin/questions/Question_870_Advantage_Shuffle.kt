@@ -46,6 +46,32 @@ class Question_870_Advantage_Shuffle {
             return result
         }
 
+        fun advantageCountWithTwoPointers(nums1: IntArray, nums2: IntArray): IntArray {
+            val priorityQueue: PriorityQueue<IntArray> = PriorityQueue { a, b ->
+                b[1] - a[1]
+            }
+            for (count in 0..nums2.size - 1) {
+                priorityQueue.add(intArrayOf(count, nums2[count]))
+            }
+            val nums1Sorted = nums1.sorted()
+            val result = IntArray(nums1.size) { -1 }
+            var i = 0
+            var j = nums1Sorted.size - 1
+            while (!priorityQueue.isEmpty()) {
+                val item = priorityQueue.remove()
+                val index = item[0]
+                val value = item[1]
+                if (nums1Sorted[j] > value) {
+                    result[index] = nums1Sorted[j]
+                    j--
+                } else {
+                    result[index] = nums1Sorted[i]
+                    i++
+                }
+            }
+            return result
+        }
+
         fun advantageCountWithTreeMap(nums1: IntArray, nums2: IntArray): IntArray {
             val map: TreeMap<Int, Int> = TreeMap()
             for (count in 0..nums1.size - 1) {
