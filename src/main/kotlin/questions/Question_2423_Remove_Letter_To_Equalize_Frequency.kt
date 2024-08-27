@@ -1,5 +1,8 @@
 package questions
 
+import kotlin.math.max
+import kotlin.math.min
+
 class Question_2423_Remove_Letter_To_Equalize_Frequency {
 
     companion object {
@@ -39,6 +42,38 @@ class Question_2423_Remove_Letter_To_Equalize_Frequency {
                 finalAns = finalAns || ans
             }
             return finalAns
+        }
+
+        fun equalFrequencyWithCheckingByMinAndMax(word: String): Boolean {
+            val result = IntArray(26) { 0 }
+            for (count in 0..word.length - 1) {
+                result[word[count] - 'a']++
+            }
+            for (i in 0..result.size - 1) {
+                if (result[i] <= 0) {
+                    continue
+                }
+                result[i]--
+                if (areAllFreqTheSame(result)) {
+                    return true
+                }
+                result[i]++
+            }
+            return false
+        }
+
+        fun areAllFreqTheSame(result: IntArray): Boolean {
+            var min = Int.MAX_VALUE
+            var max = Int.MIN_VALUE
+            for (count in 0..result.size - 1) {
+                if (result[count] <= 0) {
+                    continue
+                }
+                min = min(min, result[count])
+                max = max(max, result[count])
+            }
+            // println("min = $min, max = $max")
+            return min == max
         }
     }
 }
