@@ -13,6 +13,23 @@ class Question_69_Sqrtx {
         }
 
         fun mySqrt(x: Int): Int {
+            var start = 0
+            var end = x
+            if (x <= 1) {
+                return x
+            }
+            while (start < end) {
+                val mid = start.toLong() + (end - start) / 2
+                if (mid * mid <= x) {
+                    start = mid.toInt() + 1
+                } else {
+                    end = mid.toInt()
+                }
+            }
+            return start - 1
+        }
+
+        fun mySqrtWithBruteForce(x: Int): Int {
             for (count in 0..65536) {
                 if (count * count > x || count * count < 0) {
                     return count - 1
