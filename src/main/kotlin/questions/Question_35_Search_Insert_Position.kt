@@ -16,6 +16,20 @@ class Question_35_Search_Insert_Position {
 
         fun searchInsert(nums: IntArray, target: Int): Int {
             var start = 0
+            var end = nums.size
+            while (start < end) {
+                val mid = start + (end - start) / 2
+                if (nums[mid] < target) {
+                    start = mid + 1
+                } else {
+                    end = mid
+                }
+            }
+            return start
+        }
+
+        fun searchInsertOldSolution(nums: IntArray, target: Int): Int {
+            var start = 0
             var end = nums.size - 1
             while (start < end) {
                 val mid = (start + end) / 2
