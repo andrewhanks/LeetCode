@@ -21,6 +21,37 @@ class Question_2343_Query_Kth_Smallest_Trimmed_Number {
             for (i in 0..queries.size - 1) {
                 val order = queries[i][0]
                 val digits = queries[i][1]
+                val priorityQueue: PriorityQueue<Pair<Int, String>> = PriorityQueue { a, b ->
+                    val ret = a.second.compareTo(b.second)
+                    if (ret != 0) {
+                        ret
+                    } else {
+                        a.first - b.first
+                    }
+                }
+                for (j in 0..nums.size - 1) {
+                    val number = StringBuilder()
+                    if (digits < nums[j].length) {
+                        for (k in nums[j].length - digits..nums[j].length - 1) {
+                            number.append(nums[j][k])
+                        }
+                    } else {
+                        number.append(nums[j])
+                    }
+                    priorityQueue.add(Pair(j, number.toString()))
+                }
+                for (count in 0..order - 1) {
+                    result[i] = priorityQueue.remove().first
+                }
+            }
+            return result
+        }
+
+        fun smallestTrimmedNumbersWithArray(nums: Array<String>, queries: Array<IntArray>): IntArray {
+            val result = IntArray(queries.size) { 0 }
+            for (i in 0..queries.size - 1) {
+                val order = queries[i][0]
+                val digits = queries[i][1]
                 val priorityQueue: PriorityQueue<Array<String>> = PriorityQueue { a, b ->
                     var ret = 0
                     for (count in 0..a[1].length - 1) {
