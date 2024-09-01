@@ -68,5 +68,42 @@ class Question_1311_Get_Watched_Videos_by_Your_Friends {
             }
             return result
         }
+
+        fun watchedVideosByFriendsWithReturnSimplified(
+            watchedVideos: List<List<String>>,
+            friends: Array<IntArray>,
+            id: Int,
+            level: Int
+        ): List<String> {
+            val visited = Array(friends.size) { false }
+            val map: MutableMap<String, Int> = mutableMapOf()
+            var currentLevel = 0
+            val queue: Queue<Int> = LinkedList()
+            queue.add(id)
+            visited[id] = true
+            while (!queue.isEmpty()) {
+                val size = queue.size
+                for (i in 0..size - 1) {
+                    val node = queue.remove()
+                    if (currentLevel == level) {
+                        for (j in 0..watchedVideos[node].size - 1) {
+                            val video = watchedVideos[node][j]
+                            map[video] = map.getOrDefault(video, 0) + 1
+                        }
+                    } else {
+                        for (j in 0..friends[node].size - 1) {
+                            val friendId = friends[node][j]
+                            if (visited[friendId]) {
+                                continue
+                            }
+                            queue.add(friendId)
+                            visited[friendId] = true
+                        }
+                    }
+                }
+                currentLevel++
+            }
+            return map.toList().sortedBy { it.first }.sortedBy { it.second }.map { it.first }
+        }
     }
 }
