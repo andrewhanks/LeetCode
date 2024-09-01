@@ -31,13 +31,9 @@ class Question_2343_Query_Kth_Smallest_Trimmed_Number {
                 }
                 for (j in 0..nums.size - 1) {
                     val number = StringBuilder()
-                    if (digits < nums[j].length) {
-                        for (k in nums[j].length - digits..nums[j].length - 1) {
-                            number.append(nums[j][k])
-                        }
-                    } else {
-                        number.append(nums[j])
-                    }
+                    val start = nums[j].length - digits
+                    val end = nums[j].length - 1
+                    number.append(nums[j].substring(start..end))
                     priorityQueue.add(Pair(j, number.toString()))
                 }
                 for (count in 0..order - 1) {
