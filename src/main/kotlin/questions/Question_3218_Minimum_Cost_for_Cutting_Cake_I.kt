@@ -51,5 +51,37 @@ class Question_3218_Minimum_Cost_for_Cutting_Cake_I {
                         verticalMax
             }
         }
+
+        fun minimumCostQuicker(m: Int, n: Int, horizontalCut: IntArray, verticalCut: IntArray): Int {
+            horizontalCut.sortDescending()
+            verticalCut.sortDescending()
+            var horizontalPiece = 0
+            var verticalPiece = 0
+            var i = 0
+            var j = 0
+            var ans = 0
+            while (i < horizontalCut.size && j < verticalCut.size) {
+                if (horizontalCut[i] > verticalCut[j]) {
+                    ans += horizontalCut[i] * (horizontalPiece + 1)
+                    i++
+                    verticalPiece++
+                } else {
+                    ans += verticalCut[j] * (verticalPiece + 1)
+                    j++
+                    horizontalPiece++
+                }
+            }
+            while (i < horizontalCut.size) {
+                ans += horizontalCut[i] * (horizontalPiece + 1)
+                i++
+                verticalPiece++
+            }
+            while (j < verticalCut.size) {
+                ans += verticalCut[j] * (verticalPiece + 1)
+                j++
+                horizontalPiece++
+            }
+            return ans
+        }
     }
 }
