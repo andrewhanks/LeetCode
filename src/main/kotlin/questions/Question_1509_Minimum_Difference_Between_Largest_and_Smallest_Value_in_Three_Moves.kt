@@ -26,5 +26,18 @@ class Question_1509_Minimum_Difference_Between_Largest_and_Smallest_Value_in_Thr
             }
             return min
         }
+
+        fun minDifferenceQuicker(nums: IntArray): Int {
+            if (nums.size <= 3) {
+                return 0
+            }
+            nums.sort()
+            var min = Int.MAX_VALUE
+            for (count in 0..3) {
+                val currentMin = nums[nums.size - 4 + count] - nums[count]
+                min = min(min, currentMin)
+            }
+            return min
+        }
     }
 }
