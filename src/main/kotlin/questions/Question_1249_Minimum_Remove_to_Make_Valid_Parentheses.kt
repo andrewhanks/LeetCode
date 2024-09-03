@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_1249_Minimum_Remove_to_Make_Valid_Parentheses {
 
     companion object {
@@ -46,6 +48,29 @@ class Question_1249_Minimum_Remove_to_Make_Valid_Parentheses {
                 count--
             }
             return temp.toString()
+        }
+
+        fun minRemoveToMakeValidWithStack(s: String): String {
+            val stack: Stack<Int> = Stack()
+            for (count in 0..s.length - 1) {
+                if (s[count] == '(') {
+                    stack.add(count)
+                } else if (s[count] == ')') {
+                    if (!stack.isEmpty() && s[stack.peek()] == '(') {
+                        stack.removeLast()
+                    } else {
+                        stack.add(count)
+                    }
+                }
+            }
+            val ans = StringBuilder()
+            val set = stack.toMutableSet()
+            for (count in 0..s.length - 1) {
+                if (!set.contains(count)) {
+                    ans.append(s[count])
+                }
+            }
+            return ans.toString()
         }
     }
 }
