@@ -45,5 +45,23 @@ class Question_2222_Number_of_Ways_to_Select_Buildings {
             }
             return ans
         }
+
+        fun numberOfWaysWithDp(s: String): Long {
+            val tempS = "#" + s
+            val dp = Array(tempS.length) { Array(4) { Array(2) { 0L } } }
+            dp[0][0][0] = 1
+            dp[0][0][1] = 1
+            for (i in 1..dp.size - 1) {
+                for (j in 0..3) {
+                    for (k in 0..1) {
+                        dp[i][j][k] = dp[i - 1][j][k]
+                        if (j >= 1 && tempS[i] - '0' == k) {
+                            dp[i][j][k] += dp[i - 1][j - 1][1 - k]
+                        }
+                    }
+                }
+            }
+            return dp[tempS.length - 1][3][0] + dp[tempS.length - 1][3][1]
+        }
     }
 }
