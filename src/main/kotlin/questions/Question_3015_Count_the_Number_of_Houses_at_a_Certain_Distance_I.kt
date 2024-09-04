@@ -1,6 +1,8 @@
 package questions
 
 import java.util.*
+import kotlin.math.abs
+import kotlin.math.max
 import kotlin.math.min
 
 
@@ -98,6 +100,21 @@ class Question_3015_Count_the_Number_of_Houses_at_a_Certain_Distance_I {
                 }
             }
             return ans
+        }
+
+        fun countOfPairsWithCounting(n: Int, x: Int, y: Int): IntArray {
+            val result = IntArray(n) { 0 }
+            val additionalMin = min(x, y)
+            val additionalMax = max(x, y)
+            for (i in 1..n - 1) {
+                for (j in i + 1..n) {
+                    val distance1 = j - i
+                    val distance2 = abs(additionalMin - i) + 1 + abs(j - additionalMax)
+                    val min = min(distance1, distance2)
+                    result[min - 1] += 2
+                }
+            }
+            return result
         }
     }
 }
