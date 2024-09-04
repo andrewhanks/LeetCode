@@ -1,6 +1,7 @@
 package questions
 
 import java.util.*
+import kotlin.math.min
 
 
 class Question_3015_Count_the_Number_of_Houses_at_a_Certain_Distance_I {
@@ -48,7 +49,6 @@ class Question_3015_Count_the_Number_of_Houses_at_a_Certain_Distance_I {
                 val visited = Array(n + 1) { false }
                 queue.add(number)
                 visited[number] = true
-                val size = queue.size
                 var level = 0
                 while (!queue.isEmpty()) {
                     val size = queue.size
@@ -70,6 +70,34 @@ class Question_3015_Count_the_Number_of_Houses_at_a_Certain_Distance_I {
                 }
             }
             return result
+        }
+
+        fun countOfPairsWithFloydWarshallAlgorithm(n: Int, x: Int, y: Int): IntArray {
+            val result = Array(n) { IntArray(n) { 101 } }
+            for (i in 0..n - 2) {
+                result[i][i + 1] = 1
+                result[i + 1][i] = 1
+            }
+            result[x - 1][y - 1] = 1
+            result[y - 1][x - 1] = 1
+            for (k in 0..n - 1) {
+                for (i in 0..n - 1) {
+                    for (j in 0..n - 1) {
+                        result[i][j] = min(result[i][j], result[i][k] + result[k][j])
+                    }
+                }
+            }
+            // println("result = ${result.contentDeepToString()}")
+            val ans = IntArray(n) { 0 }
+            for (i in 0..n - 1) {
+                for (j in 0..n - 1) {
+                    if (i == j) {
+                        continue
+                    }
+                    ans[result[i][j] - 1]++
+                }
+            }
+            return ans
         }
     }
 }
