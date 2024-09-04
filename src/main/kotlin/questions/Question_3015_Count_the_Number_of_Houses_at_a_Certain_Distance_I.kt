@@ -102,7 +102,7 @@ class Question_3015_Count_the_Number_of_Houses_at_a_Certain_Distance_I {
             return ans
         }
 
-        fun countOfPairsWithCounting(n: Int, x: Int, y: Int): IntArray {
+        fun countOfPairsWithCountingMinDistance(n: Int, x: Int, y: Int): IntArray {
             val result = IntArray(n) { 0 }
             val additionalMin = min(x, y)
             val additionalMax = max(x, y)
