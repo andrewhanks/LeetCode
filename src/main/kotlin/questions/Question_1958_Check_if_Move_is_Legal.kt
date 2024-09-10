@@ -78,5 +78,43 @@ class Question_1958_Check_if_Move_is_Legal {
             }
             return true
         }
+
+        fun checkMoveWithDfs(board: Array<CharArray>, rMove: Int, cMove: Int, color: Char): Boolean {
+            val dirs = arrayOf(
+                intArrayOf(0, 1), intArrayOf(1, 1), intArrayOf(1, 0), intArrayOf(1, -1),
+                intArrayOf(0, -1), intArrayOf(-1, -1), intArrayOf(-1, 0), intArrayOf(-1, 1)
+            )
+            board[rMove][cMove] = color
+            for (dir in dirs) {
+                if (checkDfs(board, rMove, cMove, color, dir, 1)) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        fun checkDfs(board: Array<CharArray>, x: Int, y: Int, color: Char, dir: IntArray, len: Int): Boolean {
+            val currentX = x + dir[0]
+            val currentY = y + dir[1]
+            val currentLen = len + 1
+            if (currentX < 0 || currentY < 0 || currentX > board.size - 1 || currentY > board[0].size - 1) {
+                return false
+            }
+            if (board[currentX][currentY] == '.') {
+                return false
+            }
+            val oppositeColor = if (color == 'W') {
+                'B'
+            } else {
+                'W'
+            }
+            if (board[currentX][currentY] == oppositeColor) {
+                return checkDfs(board, currentX, currentY, color, dir, currentLen)
+            } else if (board[currentX][currentY] == color && currentLen >= 3) {
+                return true
+            } else {
+                return false
+            }
+        }
     }
 }
