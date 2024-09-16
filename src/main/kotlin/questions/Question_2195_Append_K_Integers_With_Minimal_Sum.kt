@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 
 class Question_2195_Append_K_Integers_With_Minimal_Sum {
 
@@ -31,6 +33,25 @@ class Question_2195_Append_K_Integers_With_Minimal_Sum {
             }
             var ans = (1 + k + smallerNumber) * (k + smallerNumber) / 2 - smallerTotal
             // println("smallerNumber = $smallerNumber, smallerTotal = $smallerTotal, ans = $ans")
+            return ans
+        }
+
+        fun minimalKSumWithSetAndBreak(nums: IntArray, k: Int): Long {
+            val set: TreeSet<Int> = TreeSet()
+            var smallerNumber = 0L
+            var smallerTotal = 0L
+            for (count in 0..nums.size - 1) {
+                set.add(nums[count])
+            }
+            for (num in set) {
+                if (num <= k + smallerNumber) {
+                    smallerNumber++
+                    smallerTotal += num
+                } else {
+                    break
+                }
+            }
+            var ans = (1 + k + smallerNumber) * (k + smallerNumber) / 2 - smallerTotal
             return ans
         }
     }
