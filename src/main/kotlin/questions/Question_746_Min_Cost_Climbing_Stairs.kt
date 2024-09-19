@@ -15,6 +15,20 @@ class Question_746_Min_Cost_Climbing_Stairs {
         }
 
         fun minCostClimbingStairs(cost: IntArray): Int {
+            val result = IntArray(cost.size + 1) { 0 }
+            result[0] = cost[0]
+            result[1] = cost[1]
+            for (count in 2..result.size - 1) {
+                if (count == result.size - 1) {
+                    result[count] = min(result[count - 2], result[count - 1])
+                } else {
+                    result[count] = min(result[count - 2], result[count - 1]) + cost[count]
+                }
+            }
+            return result[result.size - 1]
+        }
+
+        fun minCostClimbingStairsWithRecursive(cost: IntArray): Int {
             val result = IntArray(cost.size + 1) { -1 }
             return recursive(cost, cost.size, result)
         }
