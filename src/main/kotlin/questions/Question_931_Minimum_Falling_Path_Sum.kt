@@ -42,5 +42,36 @@ class Question_931_Minimum_Falling_Path_Sum {
             }
             return ans
         }
+
+        fun minFallingPathSumRecursive(matrix: Array<IntArray>): Int {
+            val result = Array(matrix.size) { IntArray(matrix[0].size) { 10001 } }
+            var ans = 10001
+            for (count in 0..result[0].size - 1) {
+                val current = dp(matrix, result, result.size - 1, count)
+                ans = min(ans, current)
+            }
+            // println("result = ${result.contentDeepToString()}")
+            return ans
+        }
+
+        fun dp(matrix: Array<IntArray>, result: Array<IntArray>, x: Int, y: Int): Int {
+            if (x < 0 || x > matrix.size - 1 || y < 0 || y > matrix[0].size - 1) {
+                return 10001
+            }
+            if (x == 0) {
+                return matrix[x][y]
+            }
+            if (result[x][y] != 10001) {
+                return result[x][y]
+            }
+            val dirs = arrayOf(intArrayOf(-1, -1), intArrayOf(-1, 0), intArrayOf(-1, 1))
+            var ret = 10001
+            for (dir in dirs) {
+                val current = dp(matrix, result, x + dir[0], y + dir[1])
+                ret = min(ret, current)
+            }
+            result[x][y] = ret + matrix[x][y]
+            return result[x][y]
+        }
     }
 }
