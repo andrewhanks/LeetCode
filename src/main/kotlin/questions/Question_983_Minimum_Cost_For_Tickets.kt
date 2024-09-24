@@ -1,5 +1,6 @@
 package questions
 
+import kotlin.math.max
 import kotlin.math.min
 
 
@@ -41,6 +42,28 @@ class Question_983_Minimum_Cost_For_Tickets {
                 result[i] = min
             }
             // println("result = ${result.contentToString()}")
+            return result[result.size - 1]
+        }
+
+        fun mincostTicketsAnotherSolution(days: IntArray, costs: IntArray): Int {
+            val result = IntArray(days[days.size - 1] + 1) { 0 }
+            val set: MutableSet<Int> = mutableSetOf()
+            val periods = intArrayOf(1, 7, 30)
+            for (count in 0..days.size - 1) {
+                set.add(days[count])
+            }
+            for (count in 1..result.size - 1) {
+                if (!set.contains(count)) {
+                    result[count] = result[count - 1]
+                    continue
+                }
+                var min = Int.MAX_VALUE
+                for (kind in 0..costs.size - 1) {
+                    val day = max(0, count - periods[kind])
+                    min = min(min, result[day] + costs[kind])
+                }
+                result[count] = min
+            }
             return result[result.size - 1]
         }
     }
