@@ -1,5 +1,6 @@
 package questions
 
+import kotlin.math.min
 import kotlin.math.sqrt
 
 class Question_650_2_Keys_Keyboard {
@@ -36,6 +37,22 @@ class Question_650_2_Keys_Keyboard {
                 }
             }
             return -1
+        }
+
+        fun minStepsGeneralSolution(n: Int): Int {
+            val result = IntArray(n + 1) { 0 }
+            for (i in 2..result.size - 1) {
+                var min = Int.MAX_VALUE
+                for (j in 2..i) {
+                    if (i % j != 0) {
+                        continue
+                    }
+                    min = min(min, result[i / j] + 1 + j - 1)
+                    break
+                }
+                result[i] = min
+            }
+            return result[result.size - 1]
         }
     }
 }
