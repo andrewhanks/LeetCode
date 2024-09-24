@@ -54,5 +54,31 @@ class Question_650_2_Keys_Keyboard {
             }
             return result[result.size - 1]
         }
+
+        fun minStepsWithRecursive(n: Int): Int {
+            val result = IntArray(n + 1) { -1 }
+            result[0] = 0
+            result[1] = 0
+            val ans = dp(n, result)
+            return ans
+        }
+
+        fun dp(n: Int, result: IntArray): Int {
+            if (n == 1) {
+                return 0
+            }
+            if (result[n] != -1) {
+                return result[n]
+            }
+            var min = Int.MAX_VALUE
+            for (count in 2..n) {
+                if (n % count != 0) {
+                    continue
+                }
+                min = min(min, dp(n / count, result) + count)
+            }
+            result[n] = min
+            return result[n]
+        }
     }
 }
