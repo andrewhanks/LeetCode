@@ -2,6 +2,7 @@ package questions
 
 import kotlin.math.abs
 import kotlin.math.max
+import kotlin.math.min
 
 class Question_1049_Last_Stone_Weight_II {
 
@@ -34,6 +35,26 @@ class Question_1049_Last_Stone_Weight_II {
             }
             // println("result = ${result.contentToString()}")
             return abs(max - (stones.sum() - max))
+        }
+
+        fun lastStoneWeightIIWithWebSolution(stones: IntArray): Int {
+            val set: MutableSet<Int> = mutableSetOf(0)
+            for (stone in stones) {
+                val tempSet = set.toMutableSet()
+                set.clear()
+                for (item in tempSet) {
+                    set.add(item + stone)
+                    set.add(item - stone)
+                }
+            }
+            // println("set = $set")
+            var min = Int.MAX_VALUE
+            for (item in set) {
+                if (item >= 0) {
+                    min = min(min, item)
+                }
+            }
+            return min
         }
 
         fun lastStoneWeightIIAnotherSolution(stones: IntArray): Int {
