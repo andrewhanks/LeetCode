@@ -1,5 +1,8 @@
 package questions
 
+import kotlin.math.abs
+import kotlin.math.max
+
 class Question_1049_Last_Stone_Weight_II {
 
     companion object {
@@ -13,6 +16,27 @@ class Question_1049_Last_Stone_Weight_II {
         }
 
         fun lastStoneWeightII(stones: IntArray): Int {
+            val half = stones.sum() / 2
+            val result = Array(half + 1) { false }
+            result[0] = true
+            var max = 0
+            for (stone in stones) {
+                val temp = result.toMutableList()
+                for (i in 0..result.size - 1) {
+                    if (i - stone < 0) {
+                        continue
+                    }
+                    if (temp[i - stone]) {
+                        result[i] = true
+                        max = max(max, i)
+                    }
+                }
+            }
+            // println("result = ${result.contentToString()}")
+            return abs(max - (stones.sum() - max))
+        }
+
+        fun lastStoneWeightIIAnotherSolution(stones: IntArray): Int {
             val sum = stones.sum()
             val half = sum / 2
             val result = Array(stones.size + 1) { Array(half + 1) { false } }
