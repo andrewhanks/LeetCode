@@ -13,6 +13,22 @@ class Question_70_Climbing_Stairs {
         }
 
         fun climbStairs(n: Int): Int {
+            val result = IntArray(n + 1) { 0 }
+            result[0] = 1
+            for (i in 1..result.size - 1) {
+                var count = 0
+                for (j in 1..2) {
+                    if (i - j < 0) {
+                        continue
+                    }
+                    count += result[i - j]
+                }
+                result[i] = count
+            }
+            return result[result.size - 1]
+        }
+
+        fun climbStairsOldSolution(n: Int): Int {
             if (n <= 2) {
                 return n
             }
