@@ -36,5 +36,33 @@ class Question_174_Dungeon_Game {
             result[0][0] = max(result[0][0], 1)
             return result[0][0]
         }
+
+        fun calculateMinimumHPWithRecursive(dungeon: Array<IntArray>): Int {
+            val result = Array(dungeon.size) { IntArray(dungeon[0].size) { -1 } }
+            var ans = dp(dungeon, result, 0, 0)
+            ans = ans - dungeon[0][0]
+            ans = max(ans, 1)
+            return ans
+        }
+
+        fun dp(dungeon: Array<IntArray>, result: Array<IntArray>, x: Int, y: Int): Int {
+            if (result[x][y] != -1) {
+                return result[x][y]
+            }
+            if (x == result.size - 1 && y == result[0].size - 1) {
+                return 1
+            } else if (x == result.size - 1) {
+                result[x][y] = dp(dungeon, result, x, y + 1) - dungeon[x][y + 1]
+            } else if (y == result[0].size - 1) {
+                result[x][y] = dp(dungeon, result, x + 1, y) - dungeon[x + 1][y]
+            } else {
+                result[x][y] = min(
+                    dp(dungeon, result, x + 1, y) - dungeon[x + 1][y],
+                    dp(dungeon, result, x, y + 1) - dungeon[x][y + 1]
+                )
+            }
+            result[x][y] = max(result[x][y], 1)
+            return result[x][y]
+        }
     }
 }
