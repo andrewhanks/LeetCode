@@ -15,6 +15,33 @@ class Question_494_Target_Sum {
         }
 
         fun findTargetSumWays(nums: IntArray, target: Int): Int {
+            val symbol = intArrayOf(1, -1)
+            val sum = nums.sum()
+            if (sum < target || target < -sum) {
+                return 0
+            }
+            val result = Array(nums.size) { IntArray(2 * sum + 1) { 0 } }
+            result[0][-nums[0] + sum]++
+            result[0][nums[0] + sum]++
+            for (i in 1..result.size - 1) {
+                for (j in 0..result[0].size - 1) {
+                    var ans = 0
+                    for (k in 0..symbol.size - 1) {
+                        val preX = i - 1
+                        val preY = j + symbol[k] * nums[i]
+                        if (preX < 0 || preX > result.size - 1 || preY < 0 || preY > result[0].size - 1) {
+                            continue
+                        }
+                        ans += result[preX][preY]
+                    }
+                    result[i][j] = ans
+                }
+            }
+            // println("result = ${result.contentDeepToString()}")
+            return result[result.size - 1][target + sum]
+        }
+
+        fun findTargetSumWaysOldSolution(nums: IntArray, target: Int): Int {
             val sum = nums.sum()
             if (sum < target || (sum - target) % 2 != 0) {
                 return 0
