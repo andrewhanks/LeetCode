@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.min
+
 
 class Question_1155_Number_of_Dice_Rolls_With_Target_Sum {
 
@@ -16,6 +18,30 @@ class Question_1155_Number_of_Dice_Rolls_With_Target_Sum {
         }
 
         fun numRollsToTarget(n: Int, k: Int, target: Int): Int {
+            val mod = 1000000007
+            val result = Array(n + 1) { IntArray(target + 1) { 0 } }
+            for (count in 1..min(k, target)) {
+                result[1][count] = 1
+            }
+            for (i in 2..result.size - 1) {
+                for (j in 1..result[0].size - 1) {
+                    var current = 0
+                    for (count in 1..k) {
+                        val preX = i - 1
+                        val preY = j - count
+                        if (preX < 0 || preY < 0) {
+                            continue
+                        }
+                        current += result[preX][preY]
+                        current = current % mod
+                    }
+                    result[i][j] = current
+                }
+            }
+            return result[result.size - 1][result[0].size - 1]
+        }
+
+        fun numRollsToTargetOldSolution(n: Int, k: Int, target: Int): Int {
             val result = Array(n + 1) { IntArray(target + 1) { -1 } }
             return calculate(n, k, target, result)
         }
