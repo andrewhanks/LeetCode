@@ -49,5 +49,30 @@ class Question_935_Knight_Dialer {
             }
             return ans.toInt()
         }
+
+        fun knightDialerAnotherSolution(n: Int): Int {
+            val mod = 1000000007
+            var dp = MutableList(10) { 1L }
+            for (i in 1..n - 1) {
+                val newDp = MutableList(10) { 0L }
+                newDp[0] = (dp[4] + dp[6]) % mod
+                newDp[1] = (dp[6] + dp[8]) % mod
+                newDp[2] = (dp[7] + dp[9]) % mod
+                newDp[3] = (dp[4] + dp[8]) % mod
+                newDp[4] = ((dp[0] + dp[3]) % mod + dp[9]) % mod
+                newDp[5] = 0
+                newDp[6] = ((dp[0] + dp[1]) % mod + dp[7]) % mod
+                newDp[7] = (dp[2] + dp[6]) % mod
+                newDp[8] = (dp[1] + dp[3]) % mod
+                newDp[9] = (dp[2] + dp[4]) % mod
+                dp = newDp
+            }
+            var ans = 0L
+            for (count in 0..9) {
+                ans += dp[count]
+                ans = ans % mod
+            }
+            return ans.toInt()
+        }
     }
 }
