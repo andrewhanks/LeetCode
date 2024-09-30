@@ -13,6 +13,27 @@ class Question_416_Partition_Equal_Subset_Sum {
         }
 
         fun canPartition(nums: IntArray): Boolean {
+            val sum = nums.sum()
+            if (sum % 2 == 1) {
+                return false
+            }
+            var dp = MutableList(sum / 2 + 1) { false }
+            dp[0] = true
+            for (i in 0..nums.size - 1) {
+                val newDp = dp.toMutableList()
+                for (j in 0..newDp.size - 1) {
+                    val pre = j - nums[i]
+                    if (pre < 0 || pre > newDp.size - 1) {
+                        continue
+                    }
+                    newDp[j] = dp[pre] || dp[j]
+                }
+                dp = newDp
+            }
+            return dp[dp.size - 1]
+        }
+
+        fun canPartitionWithSet(nums: IntArray): Boolean {
             val set: MutableSet<Int> = mutableSetOf()
             set.add(0)
             for (count in 0..nums.size - 1) {
