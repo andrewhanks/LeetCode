@@ -25,13 +25,29 @@ class Question_377_Combination_Sum_IV {
         }
 
         fun combinationSum4(nums: IntArray, target: Int): Int {
+            val result = IntArray(target + 1) { 0 }
+            result[0] = 1
+            for (i in 1..result.size - 1) {
+                var current = 0
+                for (j in 0..nums.size - 1) {
+                    if (i - nums[j] < 0) {
+                        continue
+                    }
+                    current += result[i - nums[j]]
+                }
+                result[i] = current
+            }
+            return result[result.size - 1]
+        }
+
+        fun combinationSum4OldSolution(nums: IntArray, target: Int): Int {
             val result = IntArray(target + 1) { -1 }
-            val ans = dp(nums, target, result)
+            val ans = dpOldSolution(nums, target, result)
 //            println(result.contentToString())
             return ans
         }
 
-        fun dp(nums: IntArray, target: Int, result: IntArray): Int {
+        fun dpOldSolution(nums: IntArray, target: Int, result: IntArray): Int {
             if (target < 0) {
                 return 0
             }
@@ -48,20 +64,20 @@ class Question_377_Combination_Sum_IV {
             }
             var sum = 0
             for (count in 0..nums.size - 1) {
-                sum += dp(nums, target - nums[count], result)
+                sum += dpOldSolution(nums, target - nums[count], result)
             }
             result[target] = sum
             return result[target]
         }
 
-        fun combinationSum4OldSolution(nums: IntArray, target: Int): Int {
+        fun combinationSum4OldSolution2(nums: IntArray, target: Int): Int {
             val result = Array(nums.size + 1) { Array(target + 1) { -1 } }
-            val returnValue = dpOldSolution(nums, target, nums.size, result)
+            val returnValue = dpOldSolution2(nums, target, nums.size, result)
             // println("returnValue = $returnValue, result = ${result.contentDeepToString()}")
             return result[result.size - 1][result[0].size - 1]
         }
 
-        fun dpOldSolution(nums: IntArray, target: Int, n: Int, result: Array<Array<Int>>): Int {
+        fun dpOldSolution2(nums: IntArray, target: Int, n: Int, result: Array<Array<Int>>): Int {
             if (target < 0 || n < 1) {
                 return 0
             }
@@ -72,7 +88,7 @@ class Question_377_Combination_Sum_IV {
             if (result[n][target] != -1) {
                 return result[n][target]
             }
-            result[n][target] = dpOldSolution(nums, target, n - 1, result) + dpOldSolution(
+            result[n][target] = dpOldSolution2(nums, target, n - 1, result) + dpOldSolution2(
                 nums,
                 target - nums[n - 1],
                 nums.size,
