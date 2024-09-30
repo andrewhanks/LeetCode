@@ -13,17 +13,31 @@ class Question_416_Partition_Equal_Subset_Sum {
         }
 
         fun canPartition(nums: IntArray): Boolean {
+            val set: MutableSet<Int> = mutableSetOf()
+            set.add(0)
+            for (count in 0..nums.size - 1) {
+                val oldSet = set.toMutableSet()
+                set.clear()
+                for (item in oldSet) {
+                    set.add(item + nums[count])
+                    set.add(item - nums[count])
+                }
+            }
+            return set.contains(0)
+        }
+
+        fun canPartitionWithRecursive(nums: IntArray): Boolean {
             val sum = nums.sum()
             if (sum % 2 == 1) {
                 return false
             }
             val result: Array<Array<Boolean?>> = Array(nums.size + 1) { Array(sum / 2 + 1) { null } }
-            val finalResult = dp(nums, result, result.size - 1, result[0].size - 1)
+            val finalResult = dpWithRecursive(nums, result, result.size - 1, result[0].size - 1)
             // println("result = ${result.contentDeepToString()}")
             return finalResult
         }
 
-        fun dp(nums: IntArray, result: Array<Array<Boolean?>>, i: Int, j: Int): Boolean {
+        fun dpWithRecursive(nums: IntArray, result: Array<Array<Boolean?>>, i: Int, j: Int): Boolean {
             if (j == 0) {
                 result[i][j] = true
                 return true
@@ -36,9 +50,10 @@ class Question_416_Partition_Equal_Subset_Sum {
                 return result[i][j]!!
             }
             if (nums[i - 1] <= j) {
-                result[i][j] = dp(nums, result, i - 1, j - nums[i - 1]) || dp(nums, result, i - 1, j)
+                result[i][j] =
+                    dpWithRecursive(nums, result, i - 1, j - nums[i - 1]) || dpWithRecursive(nums, result, i - 1, j)
             } else {
-                result[i][j] = dp(nums, result, i - 1, j)
+                result[i][j] = dpWithRecursive(nums, result, i - 1, j)
             }
             return result[i][j]!!
         }
