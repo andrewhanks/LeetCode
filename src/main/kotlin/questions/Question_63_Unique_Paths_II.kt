@@ -14,6 +14,33 @@ class Question_63_Unique_Paths_II {
         }
 
         fun uniquePathsWithObstacles(obstacleGrid: Array<IntArray>): Int {
+            if (obstacleGrid[obstacleGrid.size - 1][obstacleGrid[0].size - 1] == 1) {
+                return 0
+            }
+            var dirs = arrayOf(intArrayOf(-1, 0), intArrayOf(0, -1))
+            val dp = Array(obstacleGrid.size) { IntArray(obstacleGrid[0].size) { 0 } }
+            dp[0][0] = 1
+            for (i in 0..dp.size - 1) {
+                for (j in 0..dp[0].size - 1) {
+                    if (i == 0 && j == 0) {
+                        continue
+                    }
+                    var current = 0
+                    for (dir in dirs) {
+                        val prex = i + dir[0]
+                        val prey = j + dir[1]
+                        if (prex < 0 || prex > dp.size - 1 || prey < 0 || prey > dp[0].size - 1 || obstacleGrid[prex][prey] == 1) {
+                            continue
+                        }
+                        current += dp[prex][prey]
+                    }
+                    dp[i][j] = current
+                }
+            }
+            return dp[dp.size - 1][dp[0].size - 1]
+        }
+
+        fun uniquePathsWithObstaclesRecursive(obstacleGrid: Array<IntArray>): Int {
             if (obstacleGrid[0][0] == 1) {
                 return 0
             }
