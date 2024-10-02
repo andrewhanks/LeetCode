@@ -51,6 +51,33 @@ class Question_576_Out_of_Boundary_Paths {
             return ans.toInt()
         }
 
+        fun findPathsFromOutsideToInside(m: Int, n: Int, maxMove: Int, startRow: Int, startColumn: Int): Int {
+            val mod = 1000000007
+            val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(-1, 0))
+            var dp = MutableList(m) { MutableList(n) { 0L } }
+            for (i in 1..maxMove) {
+                val newDp = MutableList(m) { MutableList(n) { 0L } }
+                for (j in 0..dp.size - 1) {
+                    for (k in 0..dp[0].size - 1) {
+                        var current = 0L
+                        for (dir in dirs) {
+                            val prex = j + dir[0]
+                            val prey = k + dir[1]
+                            if (prex < 0 || prex > dp.size - 1 || prey < 0 || prey > dp[0].size - 1) {
+                                current += 1
+                            } else {
+                                current += dp[prex][prey]
+                            }
+                            current = current % mod
+                        }
+                        newDp[j][k] = current
+                    }
+                }
+                dp = newDp
+            }
+            return dp[startRow][startColumn].toInt()
+        }
+
         var dp: Array<Array<IntArray>> = arrayOf()
         var mod = 1000000007
         fun findPathsOldSolution(m: Int, n: Int, maxMove: Int, startRow: Int, startColumn: Int): Int {
