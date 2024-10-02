@@ -5,8 +5,10 @@ class Question_13_Roman_to_Integer {
     companion object {
 
         fun runQuestion() {
-            val input = "III"
-            val result = romanToInt(input)
+//            Input: s = "III"
+//            Output: 3
+            val s = "III"
+            val result = romanToInt(s)
             println("Question 13: $result")
         }
 
