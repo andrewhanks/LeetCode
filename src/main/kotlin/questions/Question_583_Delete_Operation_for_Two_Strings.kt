@@ -1,5 +1,6 @@
 package questions
 
+import kotlin.math.max
 import kotlin.math.min
 
 class Question_583_Delete_Operation_for_Two_Strings {
@@ -16,6 +17,23 @@ class Question_583_Delete_Operation_for_Two_Strings {
         }
 
         fun minDistance(word1: String, word2: String): Int {
+            val dp = Array(word1.length + 1) { IntArray(word2.length + 1) { 0 } }
+            for (i in 1..dp.size - 1) {
+                for (j in 1..dp[0].size - 1) {
+                    var current = 0
+                    if (word1[i - 1] == word2[j - 1]) {
+                        current = max(current, dp[i - 1][j - 1] + 1)
+                    } else {
+                        current = max(dp[i - 1][j], dp[i][j - 1])
+                    }
+                    dp[i][j] = current
+                }
+            }
+            // println("dp = ${dp.contentDeepToString()}")
+            return word1.length + word2.length - 2 * dp[dp.size - 1][dp[0].size - 1]
+        }
+
+        fun minDistanceOldSolution(word1: String, word2: String): Int {
             val result = Array(word1.length + 1) { IntArray(word2.length + 1) { 0 } }
             for (i in 0..word1.length) {
                 result[i][0] = i
