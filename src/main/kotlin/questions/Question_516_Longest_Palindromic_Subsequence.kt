@@ -28,5 +28,26 @@ class Question_516_Longest_Palindromic_Subsequence {
             }
             return result[s.length][s.length]
         }
+
+        fun longestPalindromeSubseqAnotherSolution(s: String): Int {
+            val temps = "#" + s
+            val dp = Array(temps.length) { IntArray(temps.length) { 0 } }
+            for (count in 1..dp.size - 1) {
+                dp[count][count] = 1
+            }
+            for (len in 2..temps.length - 1) {
+                for (i in 1..temps.length - 1 - len + 1) {
+                    val j = i + len - 1
+                    // temps: X X i X X j
+                    if (temps[i] == temps[j]) {
+                        dp[i][j] = dp[i + 1][j - 1] + 2
+                    } else {
+                        dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+                    }
+                }
+            }
+            // println("dp = ${dp.contentDeepToString()}")
+            return dp[1][dp[0].size - 1]
+        }
     }
 }
