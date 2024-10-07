@@ -13,6 +13,33 @@ class Question_5_Longest_Palindromic_Substring {
         }
 
         fun longestPalindrome(s: String): String {
+            val builder = StringBuilder()
+            for (count in 0..s.length - 1) {
+                if (count == 0) {
+                    builder.append("_")
+                }
+                builder.append(s[count])
+                builder.append("_")
+            }
+            var max = 0
+            var ans = ""
+            for (count in 0..builder.length - 1) {
+                var len = 0
+                while (count - len - 1 >= 0 && count + len + 1 <= builder.length - 1 &&
+                    builder[count - len - 1] == builder[count + len + 1]
+                ) {
+                    len++
+                }
+                // println("count = $count, len = $len")
+                if (len > max) {
+                    max = len
+                    ans = builder.substring(count - len..count + len)
+                }
+            }
+            return ans.replace("_", "")
+        }
+
+        fun longestPalindromeWithBruteForce(s: String): String {
             var result = ""
             for (i in 0..s.length - 1) {
                 for (j in 0..i) {
