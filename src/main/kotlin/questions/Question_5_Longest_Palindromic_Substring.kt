@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.min
+
 class Question_5_Longest_Palindromic_Substring {
 
     companion object {
@@ -37,6 +39,41 @@ class Question_5_Longest_Palindromic_Substring {
                 }
             }
             return ans.replace("_", "")
+        }
+
+        fun longestPalindromeWithManacherAlgorithm(s: String): String {
+            var temp = "#"
+            for(count in 0..s.length-1) {
+                temp = temp+s[count]+"#"
+            }
+            val result = IntArray(temp.length){0}
+            var maxRight = -1
+            var maxCenter = -1
+            for(i in 0..result.size-1) {
+                var len = 0
+                if(i<=maxRight) {
+                    val j = maxCenter-(i-maxCenter)
+                    len = min(result[j], maxRight-i)
+                    while(i-len-1>=0 && i+len+1<=result.size-1 && temp[i-len-1]==temp[i+len+1]) {
+                        len++
+                    }
+                }else {
+                    len = 0
+                    while(i-len-1>=0 && i+len+1<=result.size-1 && temp[i-len-1]==temp[i+len+1]) {
+                        len++
+                    }
+                }
+                result[i] = len
+            }
+            var maxLen = 0
+            var ans = ""
+            for(count in 0..result.size-1) {
+                if(result[count] > maxLen) {
+                    ans = temp.substring(count-result[count], count+result[count])
+                    maxLen = result[count]
+                }
+            }
+            return ans.replace("#", "")
         }
 
         fun longestPalindromeWithBruteForce(s: String): String {
