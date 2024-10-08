@@ -16,11 +16,30 @@ class Question_198_House_Robber {
         }
 
         fun rob(nums: IntArray): Int {
-            val result = IntArray(nums.size) { -1 }
-            return dp(nums, 0, result)
+            if (nums.size <= 1) {
+                return nums[0]
+            }
+            val result = IntArray(nums.size) { 0 }
+            result[0] = nums[0]
+            result[1] = max(result[0], nums[1])
+            for (count in 2..nums.size - 1) {
+                val rob = if (count >= 2) {
+                    result[count - 2] + nums[count]
+                } else {
+                    nums[count]
+                }
+                val notRob = result[count - 1]
+                result[count] = max(rob, notRob)
+            }
+            return result[result.size - 1]
         }
 
-        fun dp(nums: IntArray, index: Int, result: IntArray): Int {
+        fun robWithRecursive(nums: IntArray): Int {
+            val result = IntArray(nums.size) { -1 }
+            return dpWithRecursive(nums, 0, result)
+        }
+
+        fun dpWithRecursive(nums: IntArray, index: Int, result: IntArray): Int {
             if (index >= nums.size) {
                 return 0
             }
@@ -30,7 +49,8 @@ class Question_198_House_Robber {
             if (result[index] != -1) {
                 return result[index]
             }
-            val max = max(dp(nums, index + 2, result) + nums[index], dp(nums, index + 1, result))
+            val max =
+                max(dpWithRecursive(nums, index + 2, result) + nums[index], dpWithRecursive(nums, index + 1, result))
             result[index] = max
             return result[index]
         }
