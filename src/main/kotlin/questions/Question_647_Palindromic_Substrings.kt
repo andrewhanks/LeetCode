@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.min
+
 class Question_647_Palindromic_Substrings {
 
     companion object {
@@ -29,6 +31,41 @@ class Question_647_Palindromic_Substrings {
                     }
                     len++
                 }
+            }
+            return ans
+        }
+
+        fun countSubstringsWithManacherAlgorithm(s: String): Int {
+            var temp = "#"
+            for(count in 0..s.length-1) {
+                temp=temp+s[count]+"#"
+            }
+            val result = IntArray(temp.length){0}
+            var maxRight = -1
+            var maxCenter = -1
+            for(i in 0..result.size-1) {
+                var len = 0
+                if(i<=maxRight) {
+                    val j = maxCenter-(i-maxCenter)
+                    len = min(result[j], maxRight-i)
+                    while(i-len-1>=0 && i+len+1<=result.size-1 && temp[i-len-1]==temp[i+len+1]) {
+                        len++
+                    }
+                }else {
+                    len = 0
+                    while(i-len-1>=0 && i+len+1<=result.size-1 && temp[i-len-1]==temp[i+len+1]) {
+                        len++
+                    }
+                }
+                result[i] = len
+                if(i+result[i]>maxRight) {
+                    maxRight = i+result[i]
+                    maxCenter = i
+                }
+            }
+            var ans = 0
+            for(count in 0..result.size-1) {
+                ans+=(result[count]+1)/2
             }
             return ans
         }
