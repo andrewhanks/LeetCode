@@ -33,8 +33,7 @@ class Question_198_House_Robber {
             }
             val result = IntArray(nums.size) { 0 }
             result[0] = nums[0]
-            result[1] = max(result[0], nums[1])
-            for (count in 2..nums.size - 1) {
+            for (count in 1..nums.size - 1) {
                 val rob = if (count >= 2) {
                     result[count - 2] + nums[count]
                 } else {
