@@ -16,6 +16,18 @@ class Question_198_House_Robber {
         }
 
         fun rob(nums: IntArray): Int {
+            val rob = IntArray(nums.size) { 0 }
+            val notRob = IntArray(nums.size) { 0 }
+            rob[0] = nums[0]
+            notRob[0] = 0
+            for (count in 1..nums.size - 1) {
+                rob[count] = notRob[count - 1] + nums[count]
+                notRob[count] = max(rob[count - 1], notRob[count - 1])
+            }
+            return max(rob[rob.size - 1], notRob[notRob.size - 1])
+        }
+
+        fun robWithIterative(nums: IntArray): Int {
             if (nums.size <= 1) {
                 return nums[0]
             }
