@@ -8,8 +8,29 @@ class Question_647_Palindromic_Substrings {
 //            Input: s = "aaa"
 //            Output: 6
             val s = "aaa"
-            val result = countSubstringsBruteForce(s)
+            val result = countSubstrings(s)
             println("Question 647: $result")
+        }
+
+        fun countSubstrings(s: String): Int {
+            var temp = "#"
+            for (count in 0..s.length - 1) {
+                temp = temp + s[count] + "#"
+            }
+            var ans = 0
+            for (i in 0..temp.length - 1) {
+                if (temp[i] != '#') {
+                    ans++
+                }
+                var len = 0
+                while (i - len - 1 >= 0 && i + len + 1 <= temp.length - 1 && temp[i - len - 1] == temp[i + len + 1]) {
+                    if (temp[i - len - 1] != '#') {
+                        ans++
+                    }
+                    len++
+                }
+            }
+            return ans
         }
 
         fun countSubstringsDp(s: String): Int {
