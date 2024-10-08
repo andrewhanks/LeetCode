@@ -15,21 +15,21 @@ class Question_309_Best_Time_to_Buy_and_Sell_Stock_with_Cooldown {
         }
 
         fun maxProfit(prices: IntArray): Int {
-            val empty = IntArray(prices.size) { 0 }
+            val sold = IntArray(prices.size) { 0 }
             val hold = IntArray(prices.size) { 0 }
             val cooldown = IntArray(prices.size) { 0 }
-            empty[0] = 0
+            sold[0] = 0
             hold[0] = -prices[0]
             cooldown[0] = 0
-            for (count in 1..prices.size - 1) {
-                empty[count] = max(empty[count - 1], cooldown[count - 1])
-                hold[count] = max(hold[count - 1], empty[count - 1] - prices[count])
-                cooldown[count] = hold[count - 1] + prices[count]
+            for (i in 1..prices.size - 1) {
+                sold[i] = hold[i - 1] + prices[i]
+                hold[i] = max(hold[i - 1], cooldown[i - 1] - prices[i])
+                cooldown[i] = max(cooldown[i - 1], sold[i - 1])
             }
-            // println(empty.contentToString())
-            // println(hold.contentToString())
-            // println(cooldown.contentToString())
-            return max(empty[prices.size - 1], cooldown[prices.size - 1])
+            // println("sold = ${sold.contentToString()}")
+            // println("hold = ${hold.contentToString()}")
+            // println("cooldown = ${cooldown.contentToString()}")
+            return max(sold[sold.size - 1], cooldown[cooldown.size - 1])
         }
 
         fun maxProfitDp(prices: IntArray): Int {
