@@ -16,6 +16,30 @@ class Question_2611_Mice_and_Cheese {
         }
 
         fun miceAndCheese(reward1: IntArray, reward2: IntArray, k: Int): Int {
+            val diff = IntArray(reward1.size) { 0 }
+            for (count in 0..diff.size - 1) {
+                diff[count] = reward1[count] - reward2[count]
+            }
+            val result = MutableList(diff.size) { 0 }
+            for (count in 0..result.size - 1) {
+                result[count] = count
+            }
+            result.sortWith(Comparator { a, b ->
+                diff[b] - diff[a]
+            })
+            // println("result = ${result}")
+            var ans = 0
+            for (i in 0..result.size - 1) {
+                if (i < k) {
+                    ans += reward1[result[i]]
+                } else {
+                    ans += reward2[result[i]]
+                }
+            }
+            return ans
+        }
+
+        fun miceAndCheeseOldSolution(reward1: IntArray, reward2: IntArray, k: Int): Int {
             val diff: Array<IntArray> = Array(reward1.size) { IntArray(3) { 0 } }
             for (count in 0..diff.size - 1) {
                 diff[count][0] = reward1[count] - reward2[count]
