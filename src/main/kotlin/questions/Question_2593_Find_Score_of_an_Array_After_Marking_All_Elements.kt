@@ -1,17 +1,49 @@
 package questions
 
+import java.util.*
+
 class Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements {
 
     companion object {
 
         fun runQuestion() {
-            // [10,44,10,8,48,30,17,38,41,27,16,33,45,45,34,30,22,3,42,42]
-            val intArray = intArrayOf(10, 44, 10, 8, 48, 30, 17, 38, 41, 27, 16, 33, 45, 45, 34, 30, 22, 3, 42, 42)
+//            Input: nums = [2,3,5,1,3,2]
+//            Output: 5
+            val intArray = intArrayOf(2,3,5,1,3,2)
             val result = findScore(intArray)
             println("Question 2593: $result")
         }
 
         fun findScore(nums: IntArray): Long {
+            val queue: PriorityQueue<IntArray> = PriorityQueue { a, b ->
+                if (a[1] != b[1]) {
+                    a[1] - b[1]
+                } else {
+                    a[0] - b[0]
+                }
+            }
+            for (count in 0..nums.size - 1) {
+                queue.add(intArrayOf(count, nums[count]))
+            }
+            var visited = Array(nums.size) { false }
+            var ans = 0L
+            while (!queue.isEmpty()) {
+                val node = queue.remove()
+                if (visited[node[0]]) {
+                    continue
+                }
+                ans += node[1]
+                if (node[0] - 1 >= 0) {
+                    visited[node[0] - 1] = true
+                }
+                if (node[0] + 1 <= nums.size - 1) {
+                    visited[node[0] + 1] = true
+                }
+            }
+            return ans
+        }
+
+        fun findScoreOldSolution(nums: IntArray): Long {
             var finalScore = 0L
             val tempMarkArray = BooleanArray(nums.size)
 
