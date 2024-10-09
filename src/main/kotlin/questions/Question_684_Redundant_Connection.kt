@@ -10,7 +10,7 @@ class Question_684_Redundant_Connection {
             val edges =
                 arrayOf(intArrayOf(3, 4), intArrayOf(1, 2), intArrayOf(2, 4), intArrayOf(3, 5), intArrayOf(2, 5))
             val result = findRedundantConnection(edges)
-            println("Question 2643: ${result.contentToString()}")
+            println("Question 684: ${result.contentToString()}")
         }
 
         fun findRedundantConnection(edges: Array<IntArray>): IntArray {
