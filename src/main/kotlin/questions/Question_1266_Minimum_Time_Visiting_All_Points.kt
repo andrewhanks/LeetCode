@@ -6,6 +6,8 @@ class Question_1266_Minimum_Time_Visiting_All_Points {
     companion object {
 
         fun runQuestion() {
+//            Input: points = [[1,1],[3,4],[-1,0]]
+//            Output: 7
             val intArray = arrayOf(intArrayOf(1, 1), intArrayOf(3, 4), intArrayOf(-1, 0))
             val result = minTimeToVisitAllPoints(intArray)
             println("Question 1266: $result")
