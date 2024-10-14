@@ -11,8 +11,8 @@ class Question_1162_As_Far_from_Land_as_Possible {
         fun runQuestion() {
 //            Input: grid = [[1,0,1],[0,0,0],[1,0,1]]
 //            Output: 2
-            val intArray = arrayOf(intArrayOf(1, 0, 1), intArrayOf(0, 0, 0), intArrayOf(1, 0, 1))
-            val result = maxDistance(intArray)
+            val grid = arrayOf(intArrayOf(1, 0, 1), intArrayOf(0, 0, 0), intArrayOf(1, 0, 1))
+            val result = maxDistance(grid)
             println("Question 1162: $result")
         }
 
