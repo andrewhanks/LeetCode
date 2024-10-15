@@ -32,5 +32,24 @@ class Question_1922_Count_Good_Numbers {
             }
             return ret % mod
         }
+
+        fun countGoodNumbersWithIterative(n: Long): Int {
+            var ans = myPowWithIterative(5, (n + 1) / 2) * myPowWithIterative(4, n / 2)
+            return (ans % mod).toInt()
+        }
+
+        fun myPowWithIterative(base: Long, exponent: Long): Long {
+            var ret = 1L
+            var acc = base
+            var currExpo = exponent
+            while (currExpo != 0L) {
+                if (currExpo % 2 == 1L) {
+                    ret = ret * acc % mod
+                }
+                acc = acc * acc % mod
+                currExpo = currExpo / 2
+            }
+            return ret
+        }
     }
 }
