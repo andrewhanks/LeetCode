@@ -28,7 +28,28 @@ class Question_1339_Maximum_Product_of_Splitted_Binary_Tree {
             println("Question 1339: $result")
         }
 
+        var sum = 0L
+        var result = 0L
         fun maxProduct(root: TreeNode?): Int {
+            val mod = 1000000007
+            sum = calculateSum(root)
+            calculateSum(root)
+            return (result % mod).toInt()
+        }
+
+        fun calculateSum(node: TreeNode?): Long {
+            if (node == null) {
+                return 0L
+            }
+            val leftSum = calculateSum(node?.left)
+            val leftSplit = (sum - leftSum) * leftSum
+            val rightSum = calculateSum(node?.right)
+            val rightSplit = (sum - rightSum) * rightSum
+            result = max(result, max(leftSplit, rightSplit))
+            return node?.`val`!! + leftSum + rightSum
+        }
+
+        fun maxProductSlow(root: TreeNode?): Int {
             val mod = 1000000007
             val map: MutableMap<TreeNode, Long> = mutableMapOf()
             val queue: Queue<TreeNode> = LinkedList()
