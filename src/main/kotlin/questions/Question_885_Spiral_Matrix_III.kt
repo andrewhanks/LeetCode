@@ -56,5 +56,35 @@ class Question_885_Spiral_Matrix_III {
             }
             return result.toTypedArray()
         }
+
+        // x x x x x x x
+        // x 4 5 5 5 x x
+        // x 4 o 1 6 x x
+        // x 3 3 2 6 x x
+        // x x x x 6 x x
+        // x x x x x x x
+        fun spiralMatrixIIIWebSolution(rows: Int, cols: Int, rStart: Int, cStart: Int): Array<IntArray> {
+            val result: MutableList<IntArray> = mutableListOf()
+            result.add(intArrayOf(rStart, cStart))
+            val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(-1, 0))
+            var count = 1
+            var steps = 0
+            var currentX = rStart
+            var currentY = cStart
+            var currentDir = 0
+            while (count < rows * cols) {
+                for (step in 0..steps / 2) {
+                    currentX += dirs[currentDir][0]
+                    currentY += dirs[currentDir][1]
+                    if (currentX >= 0 && currentX <= rows - 1 && currentY >= 0 && currentY <= cols - 1) {
+                        result.add(intArrayOf(currentX, currentY))
+                        count++
+                    }
+                }
+                steps++
+                currentDir = (currentDir + 1) % 4
+            }
+            return result.toTypedArray()
+        }
     }
 }
