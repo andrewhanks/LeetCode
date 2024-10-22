@@ -18,6 +18,17 @@ class Question_1503_Last_Moment_Before_All_Ants_Fall_Out_of_a_Plank {
         }
 
         fun getLastMoment(n: Int, left: IntArray, right: IntArray): Int {
+            var max = 0
+            for (i in 0..left.size - 1) {
+                max = max(max, left[i])
+            }
+            for (i in 0..right.size - 1) {
+                max = max(max, n - right[i])
+            }
+            return max
+        }
+
+        fun getLastMomentOldSolution(n: Int, left: IntArray, right: IntArray): Int {
             if (left.isEmpty()) {
                 return n - right.min()
             } else if (right.isEmpty()) {
