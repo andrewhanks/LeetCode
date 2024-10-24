@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 
 class Question_1905_Count_Sub_Islands {
 
@@ -32,7 +34,7 @@ class Question_1905_Count_Sub_Islands {
             for (i in 0..grid2.size - 1) {
                 for (j in 0..grid2[0].size - 1) {
                     if (grid2[i][j] == 1) {
-                        if (check(grid1, grid2, i, j)) {
+                        if (checkBfs(grid1, grid2, i, j)) {
                             ans++
                         }
                     }
@@ -41,7 +43,48 @@ class Question_1905_Count_Sub_Islands {
             return ans
         }
 
-        fun check(grid1: Array<IntArray>, grid2: Array<IntArray>, x: Int, y: Int): Boolean {
+        fun checkBfs(grid1: Array<IntArray>, grid2: Array<IntArray>, x: Int, y: Int): Boolean {
+            val dirs = arrayOf(intArrayOf(0, 1), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(-1, 0))
+            val queue: Queue<IntArray> = LinkedList()
+            var ret = true
+            queue.add(intArrayOf(x, y))
+            grid2[x][y] = 0
+            while (!queue.isEmpty()) {
+                val size = queue.size
+                for (count in 0..size - 1) {
+                    val node = queue.remove()
+                    if (grid1[node[0]][node[1]] == 0) {
+                        ret = false
+                    }
+                    for (dir in dirs) {
+                        val nextX = node[0] + dir[0]
+                        val nextY = node[1] + dir[1]
+                        if (nextX < 0 || nextX > grid2.size - 1 || nextY < 0 || nextY > grid2[0].size - 1 || grid2[nextX][nextY] != 1) {
+                            continue
+                        }
+                        queue.add(intArrayOf(nextX, nextY))
+                        grid2[nextX][nextY] = 0
+                    }
+                }
+            }
+            return ret
+        }
+
+        fun countSubIslandsDfs(grid1: Array<IntArray>, grid2: Array<IntArray>): Int {
+            var ans = 0
+            for (i in 0..grid2.size - 1) {
+                for (j in 0..grid2[0].size - 1) {
+                    if (grid2[i][j] == 1) {
+                        if (checkDfs(grid1, grid2, i, j)) {
+                            ans++
+                        }
+                    }
+                }
+            }
+            return ans
+        }
+
+        fun checkDfs(grid1: Array<IntArray>, grid2: Array<IntArray>, x: Int, y: Int): Boolean {
             if (x < 0 || x > grid2.size - 1 || y < 0 || y > grid2[0].size - 1 || grid2[x][y] == 0) {
                 return true
             }
@@ -49,10 +92,10 @@ class Question_1905_Count_Sub_Islands {
                 return false
             }
             grid2[x][y] = 0
-            val right = check(grid1, grid2, x, y + 1)
-            val down = check(grid1, grid2, x + 1, y)
-            val left = check(grid1, grid2, x, y - 1)
-            val up = check(grid1, grid2, x - 1, y)
+            val right = checkDfs(grid1, grid2, x, y + 1)
+            val down = checkDfs(grid1, grid2, x + 1, y)
+            val left = checkDfs(grid1, grid2, x, y - 1)
+            val up = checkDfs(grid1, grid2, x - 1, y)
             return up && down && left && right
         }
     }
