@@ -54,5 +54,36 @@ class Question_767_Reorganize_String {
             }
             return ans.toString()
         }
+
+        fun reorganizeStringByAssignCharAtPosition(s: String): String {
+            val result = Array(26) { IntArray(2) { 0 } }
+            for (count in 0..s.length - 1) {
+                result[s[count] - 'a'][0] = s[count].toInt()
+                result[s[count] - 'a'][1]++
+            }
+            result.sortWith(Comparator { a, b ->
+                b[1] - a[1]
+            })
+            val currentCount = result[0][1]
+            val otherCount = s.length - currentCount
+            if (currentCount - otherCount > 1) {
+                return ""
+            }
+            val ans = StringBuilder(s)
+            var index = 0
+            var order = 0
+            for (count in 0..s.length - 1) {
+                if (result[order][1] == 0) {
+                    order++
+                }
+                ans[index] = result[order][0].toChar()
+                result[order][1]--
+                index += 2
+                if (index > ans.length - 1) {
+                    index = 1
+                }
+            }
+            return ans.toString()
+        }
     }
 }
