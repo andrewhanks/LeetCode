@@ -75,5 +75,37 @@ class Question_2074_Reverse_Nodes_in_Even_Length_Groups {
             }
             return head
         }
+
+        fun reverseEvenLengthGroupsByOnlyChangingValue(head: ListNode?): ListNode? {
+            val list: MutableList<Int> = mutableListOf()
+            var current = head
+            while (current != null) {
+                list.add(current?.`val`!!)
+                current = current?.next
+            }
+            var count = 0
+            var group = 2
+            current = head
+            while (count < list.size - 1) {
+                val temp: MutableList<Int> = mutableListOf()
+                val min = min(group, list.size - 1 - count)
+                if (min % 2 == 0) {
+                    for (i in count + min downTo count + 1) {
+                        temp.add(list[i])
+                    }
+                } else {
+                    for (i in count + 1..count + min) {
+                        temp.add(list[i])
+                    }
+                }
+                for (i in 0..temp.size - 1) {
+                    current = current?.next
+                    current?.`val` = temp[i]
+                    count++
+                }
+                group++
+            }
+            return head
+        }
     }
 }
