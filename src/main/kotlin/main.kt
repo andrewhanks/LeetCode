@@ -487,7 +487,7 @@ fun main(args: Array<String>) {
 //    Question_3029_Minimum_Time_to_Revert_Word_to_Initial_State_I.runQuestion()
 //    Question_3043_Find_the_Length_of_the_Longest_Common_Prefix.runQuestion()
 //    Question_3047_Find_the_Largest_Area_of_Square_Inside_Two_Rectangles.runQuestion()
-    Question_3071_Minimum_Operations_to_Write_the_Letter_Y_on_a_Grid.runQuestion()
+//    Question_3071_Minimum_Operations_to_Write_the_Letter_Y_on_a_Grid.runQuestion()
 //    Question_3076_Shortest_Uncommon_Substring_in_an_Array.runQuestion()
 //    Question_3080_Mark_Elements_on_Array_by_Performing_Queries.runQuestion()
 //    Question_3107_Minimum_Operations_to_Make_Median_of_Array_Equal_to_K.runQuestion()
@@ -524,4 +524,5 @@ fun main(args: Array<String>) {
 //    Question_3243_Shortest_Distance_After_Road_Addition_Queries_I.runQuestion()
 //    Question_3248_Snake_in_Matrix.runQuestion()
 //    Question_3249_Count_the_Number_of_Good_Nodes.runQuestion()
+    Question_3290_Maximum_Multiplication_Score.runQuestion()
 }
