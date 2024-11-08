@@ -55,5 +55,43 @@ class Question_1462_Course_Schedule_IV {
             }
             return result.toList()
         }
+
+        fun checkIfPrerequisiteWebSolution(
+            numCourses: Int,
+            prerequisites: Array<IntArray>,
+            queries: Array<IntArray>
+        ): List<Boolean> {
+            val next = Array(numCourses) { mutableSetOf<Int>() }
+            val degree = IntArray(numCourses) { 0 }
+            for (count in 0..prerequisites.size - 1) {
+                next[prerequisites[count][0]].add(prerequisites[count][1])
+                degree[prerequisites[count][1]]++
+            }
+            val queue: Queue<Int> = LinkedList()
+            val pre = Array(numCourses) { mutableSetOf<Int>() }
+            for (count in 0..numCourses - 1) {
+                pre[count].add(count)
+                if (degree[count] == 0) {
+                    queue.add(count)
+                }
+            }
+            while (!queue.isEmpty()) {
+                val cur = queue.remove()
+                for (item in next[cur]) {
+                    pre[item].addAll(pre[cur])
+                    degree[item]--
+                    if (degree[item] == 0) {
+                        queue.add(item)
+                    }
+                }
+            }
+            val ans = MutableList(queries.size) { false }
+            for (count in 0..queries.size - 1) {
+                if (pre[queries[count][1]].contains(queries[count][0])) {
+                    ans[count] = true
+                }
+            }
+            return ans.toList()
+        }
     }
 }
