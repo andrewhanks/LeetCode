@@ -12,6 +12,44 @@ class Question_2337_Move_Pieces_to_Obtain_a_String {
         }
 
         fun canChange(start: String, target: String): Boolean {
+            if (start.filter { it != '_' } != target.filter { it != '_' }) {
+                return false
+            }
+            val startL: MutableList<Int> = mutableListOf()
+            val startR: MutableList<Int> = mutableListOf()
+            val targetL: MutableList<Int> = mutableListOf()
+            val targetR: MutableList<Int> = mutableListOf()
+            for (count in 0..start.length - 1) {
+                if (start[count] == 'L') {
+                    startL.add(count)
+                } else if (start[count] == 'R') {
+                    startR.add(count)
+                }
+            }
+            for (count in 0..target.length - 1) {
+                if (target[count] == 'L') {
+                    targetL.add(count)
+                } else if (target[count] == 'R') {
+                    targetR.add(count)
+                }
+            }
+            for (count in 0..startL.size - 1) {
+                if (startL[count] < targetL[count]) {
+                    return false
+                }
+            }
+            for (count in 0..startR.size - 1) {
+                if (startR[count] > targetR[count]) {
+                    return false
+                }
+            }
+            if (startL.size != targetL.size || startR.size != targetR.size) {
+                return false
+            }
+            return true
+        }
+
+        fun canChangeOldSolution(start: String, target: String): Boolean {
             if (start.replace("_", "") != target.replace("_", "")) {
                 return false
             }
