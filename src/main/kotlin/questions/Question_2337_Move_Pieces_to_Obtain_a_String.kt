@@ -5,6 +5,8 @@ class Question_2337_Move_Pieces_to_Obtain_a_String {
     companion object {
 
         fun runQuestion() {
+//            Input: start = "_L__R__R_", target = "L______RR"
+//            Output: true
             val startString = "_L__R__R_"
             val targetString = "L______RR"
             val result = canChange(startString, targetString)
