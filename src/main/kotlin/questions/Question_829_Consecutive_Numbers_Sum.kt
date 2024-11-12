@@ -26,5 +26,21 @@ class Question_829_Consecutive_Numbers_Sum {
             }
             return ans
         }
+
+        // k, k+1, k+2, k+3, .., k+m-1
+        // (k+k+m-1)*m/2 = n
+        // k = (2n-m*(m-1))/2m, k is positive integer, m is positive integer
+        // m*(m-1) < 2n
+        fun consecutiveNumbersSumWithMath(n: Int): Int {
+            var ans = 0
+            var m = 1
+            while (m * (m - 1) < 2 * n) {
+                if ((2 * n - m * (m - 1)) / 2 % m == 0) {
+                    ans++
+                }
+                m++
+            }
+            return ans
+        }
     }
 }
