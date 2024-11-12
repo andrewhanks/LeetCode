@@ -41,5 +41,34 @@ class Question_2466_Count_Ways_To_Build_Good_Strings {
             }
             return ans.toInt()
         }
+
+        fun countGoodStringsByOneDimension(low: Int, high: Int, zero: Int, one: Int): Int {
+            val mod = 1000000007
+            val result = LongArray(high + 1) { 0L }
+            var ans = 0L
+            for (j in 1..result.size - 1) {
+                val addZeroNumber = if (j == zero) {
+                    1
+                } else if (j - zero > 0) {
+                    result[j - zero] % mod
+                } else {
+                    0
+                }
+                val addOneNumber = if (j == one) {
+                    1
+                } else if (j - one > 0) {
+                    result[j - one] % mod
+                } else {
+                    0
+                }
+                result[j] = addZeroNumber + addOneNumber
+                if (j >= low && j <= high) {
+                    ans += result[j]
+                    ans %= mod
+                }
+            }
+            // println("result = ${result.contentToString()}")
+            return ans.toInt()
+        }
     }
 }
