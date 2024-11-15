@@ -268,7 +268,7 @@ fun main(args: Array<String>) {
 //    Question_797_All_Paths_From_Source_to_Target.runQuestion()
 //    Question_809_Expressive_Words.runQuestion()
 //    Question_820_Short_Encoding_of_Words.runQuestion()
-    Question_829_Consecutive_Numbers_Sum.runQuestion()
+//    Question_829_Consecutive_Numbers_Sum.runQuestion()
 //    Question_838_Push_Dominoes.runQuestion()
 //    Question_841_Keys_and_Rooms.runQuestion()
 //    Question_844_Backspace_String_Compare.runQuestion()
@@ -529,4 +529,5 @@ fun main(args: Array<String>) {
 //    Question_3248_Snake_in_Matrix.runQuestion()
 //    Question_3249_Count_the_Number_of_Good_Nodes.runQuestion()
 //    Question_3290_Maximum_Multiplication_Score.runQuestion()
+    Question_3296_Minimum_Number_of_Seconds_to_Make_Mountain_Height_Zero.runQuestion()
 }
