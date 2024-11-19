@@ -445,6 +445,7 @@ fun main(args: Array<String>) {
 //    Question_2381_Shifting_Letters_II.runQuestion()
 //    Question_2384_Largest_Palindromic_Number.runQuestion()
 //    Question_2395_Find_Subarrays_With_Equal_Sum.runQuestion()
+    Question_2420_Find_All_Good_Indices.runQuestion()
 //    Question_2423_Remove_Letter_To_Equalize_Frequency.runQuestion()
 //    Question_2425_Bitwise_XOR_of_All_Pairings.runQuestion()
 //    Question_2438_Range_Product_Queries_of_Powers.runQuestion()
@@ -529,5 +530,5 @@ fun main(args: Array<String>) {
 //    Question_3248_Snake_in_Matrix.runQuestion()
 //    Question_3249_Count_the_Number_of_Good_Nodes.runQuestion()
 //    Question_3290_Maximum_Multiplication_Score.runQuestion()
-    Question_3296_Minimum_Number_of_Seconds_to_Make_Mountain_Height_Zero.runQuestion()
+//    Question_3296_Minimum_Number_of_Seconds_to_Make_Mountain_Height_Zero.runQuestion()
 }
