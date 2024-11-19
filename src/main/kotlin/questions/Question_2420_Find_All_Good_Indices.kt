@@ -58,6 +58,43 @@ class Question_2420_Find_All_Good_Indices {
             return ans.toList()
         }
 
+        fun goodIndicesFromLeftAndRight(nums: IntArray, k: Int): List<Int> {
+            if (nums.size < 2 * k + 1) {
+                return listOf()
+            }
+            if (k == 1) {
+                val ans: MutableList<Int> = mutableListOf()
+                for (count in 1..nums.size - 2) {
+                    ans.add(count)
+                }
+                return ans.toList()
+            }
+            var left = IntArray(nums.size) { 1 }
+            var right = IntArray(nums.size) { 1 }
+            val ans: MutableList<Int> = mutableListOf()
+            for (i in 1..nums.size - 1) {
+                if (nums[i] <= nums[i - 1]) {
+                    left[i] = left[i - 1] + 1
+                } else {
+                    left[i] = 1
+                }
+            }
+            for (i in nums.size - 2 downTo 0) {
+                if (nums[i] <= nums[i + 1]) {
+                    right[i] = right[i + 1] + 1
+                } else {
+                    right[i] = 1
+                }
+            }
+            // println("left = ${left.contentToString()}, right = ${right.contentToString()}")
+            for (i in k..nums.size - 1 - k) {
+                if (left[i - 1] >= k && right[i + 1] >= k) {
+                    ans.add(i)
+                }
+            }
+            return ans.toList()
+        }
+
         fun goodIndicesFaster(nums: IntArray, k: Int): List<Int> {
             if (nums.size < 2 * k + 1) {
                 return listOf()
