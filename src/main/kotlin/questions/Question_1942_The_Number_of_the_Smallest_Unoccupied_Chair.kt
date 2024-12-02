@@ -51,5 +51,36 @@ class Question_1942_The_Number_of_the_Smallest_Unoccupied_Chair {
             }
             return -1
         }
+
+        fun smallestChairQuicker(times: Array<IntArray>, targetFriend: Int): Int {
+            val result: MutableList<IntArray> = mutableListOf()
+            val used = PriorityQueue<IntArray> { a, b ->
+                a[0] - b[0]
+            }
+            for (i in 0..times.size - 1) {
+                val temp = intArrayOf(i, times[i][0], times[i][1])
+                result.add(temp)
+            }
+            result.sortBy { it[1] }
+            val empty = PriorityQueue<Int> { a, b ->
+                a - b
+            }
+            for (i in 0..times.size - 1) {
+                empty.add(i)
+            }
+            for (i in 0..result.size - 1) {
+                val time = result[i]
+                while (!used.isEmpty() && used.peek()[0] <= time[1]) {
+                    val item = used.remove()
+                    empty.add(item[1])
+                }
+                val number = empty.remove()
+                if (targetFriend == time[0]) {
+                    return number
+                }
+                used.add(intArrayOf(time[2], number))
+            }
+            return -1
+        }
     }
 }
