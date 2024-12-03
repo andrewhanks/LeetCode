@@ -72,5 +72,34 @@ class Question_792_Number_of_Matching_Subsequences {
             }
             return true
         }
+
+        fun numMatchingSubseqByMemorizeNextPosition(s: String, words: Array<String>): Int {
+            val next = Array(s.length + 1) { IntArray(26) { -1 } }
+            val tempS = "#" + s
+            for (i in tempS.length - 1 downTo 1) {
+                for (j in 0..25) {
+                    next[i - 1][j] = next[i][j]
+                }
+                next[i - 1][tempS[i] - 'a'] = i
+            }
+            var ans = 0
+            for (item in words) {
+                if (checkByMemorizeNextPosition(next, item) != -1) {
+                    ans++
+                }
+            }
+            return ans
+        }
+
+        fun checkByMemorizeNextPosition(next: Array<IntArray>, word: String): Int {
+            var ret = 0
+            for (i in 0..word.length - 1) {
+                ret = next[ret][word[i] - 'a']
+                if (ret == -1) {
+                    break
+                }
+            }
+            return ret
+        }
     }
 }
