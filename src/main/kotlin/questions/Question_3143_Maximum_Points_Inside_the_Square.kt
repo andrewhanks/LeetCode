@@ -48,5 +48,37 @@ class Question_3143_Maximum_Points_Inside_the_Square {
             }
             return ans
         }
+
+        fun maxPointsInsideSquareByBinarySearch(points: Array<IntArray>, s: String): Int {
+            var start = 0
+            var end = Int.MAX_VALUE
+            while (start < end) {
+                val mid = end - (end - start) / 2
+                val temp = check(points, s, mid)
+                if (temp < 0) {
+                    end = mid - 1
+                } else {
+                    start = mid
+                }
+            }
+            val ans = check(points, s, start)
+            return ans
+        }
+
+        fun check(points: Array<IntArray>, s: String, mid: Int): Int {
+            val set: MutableSet<Char> = mutableSetOf()
+            var ret = 0
+            for (i in 0..points.size - 1) {
+                val max = max(abs(points[i][0]), abs(points[i][1]))
+                if (max <= mid) {
+                    if (set.contains(s[i])) {
+                        return -1
+                    }
+                    set.add(s[i])
+                    ret++
+                }
+            }
+            return ret
+        }
     }
 }
