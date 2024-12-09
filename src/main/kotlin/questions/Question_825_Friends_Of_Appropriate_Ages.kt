@@ -28,5 +28,29 @@ class Question_825_Friends_Of_Appropriate_Ages {
             }
             return ans
         }
+
+        fun numFriendRequestsWithCumulativeArray(ages: IntArray): Int {
+            val result = IntArray(121) { 0 }
+            for (i in 0..ages.size - 1) {
+                result[ages[i]]++
+            }
+            for (i in 1..result.size - 1) {
+                result[i] = result[i - 1] + result[i]
+            }
+            var ans = 0
+            for (i in 0..result.size - 1) {
+                if (i <= 14) {
+                    continue
+                }
+                val min = (i * 0.5 + 7).toInt() + 1
+                if (i - 1 >= min) {
+                    ans += (result[i] - result[i - 1]) * (result[i - 1] - result[min - 1])
+                }
+                if ((result[i] - result[i - 1]) > 1) {
+                    ans += (result[i] - result[i - 1]) * (result[i] - result[i - 1] - 1)
+                }
+            }
+            return ans
+        }
     }
 }
