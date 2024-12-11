@@ -39,5 +39,35 @@ class Question_1017_Convert_to_Base_Neg_2 {
                 result.insert(0, 1)
             }
         }
+
+        fun baseNeg2Formally(n: Int): String {
+            var result = StringBuilder("")
+            calculateFormally(n, result)
+            // println("result = ${result.toString()}")
+            return result.toString()
+        }
+
+        fun calculateFormally(n: Int, result: StringBuilder) {
+            var temp = n
+            val neg2 = -2
+            while (temp != 1 && temp != 0) {
+                var rest = temp % neg2
+                var quot = temp / neg2
+                // println("rest = $rest, quot = $quot")
+                if (rest < 0) {
+                    temp = quot + 1
+                    result.insert(0, rest - neg2)
+                } else {
+                    temp = quot
+                    result.insert(0, rest)
+                }
+            }
+            if (temp == 0) {
+                result.insert(0, 0)
+            }
+            if (temp == 1) {
+                result.insert(0, 1)
+            }
+        }
     }
 }
