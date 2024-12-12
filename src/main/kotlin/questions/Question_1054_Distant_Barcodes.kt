@@ -1,10 +1,14 @@
 package questions
 
+import java.util.*
+
 class Question_1054_Distant_Barcodes {
 
     companion object {
 
         fun runQuestion() {
+//            Input: barcodes = [1,1,1,1,2,2,3,3]
+//            Output: [1,3,1,3,1,2,1,2]
             val inputIntArray = intArrayOf(1, 1, 1, 1, 2, 2, 3, 3)
             val resultList = rearrangeBarcodes(inputIntArray)
             var result = "["
@@ -20,6 +24,39 @@ class Question_1054_Distant_Barcodes {
         }
 
         fun rearrangeBarcodes(barcodes: IntArray): IntArray {
+            val result = IntArray(10001) { 0 }
+            for (i in 0..barcodes.size - 1) {
+                result[barcodes[i]]++
+            }
+            val queue = PriorityQueue<IntArray> { a, b ->
+                b[1] - a[1]
+            }
+            for (i in 0..result.size - 1) {
+                if (result[i] == 0) {
+                    continue
+                }
+                queue.add(intArrayOf(i, result[i]))
+            }
+            var ans: MutableList<Int> = mutableListOf()
+            while (!queue.isEmpty()) {
+                val item = queue.remove()
+                var item2: IntArray? = null
+                ans.add(item[0])
+                if (!queue.isEmpty()) {
+                    item2 = queue.remove()
+                    ans.add(item2[0])
+                }
+                if (item[1] - 1 > 0) {
+                    queue.add(intArrayOf(item[0], item[1] - 1))
+                }
+                if (item2 != null && item2[1] - 1 > 0) {
+                    queue.add(intArrayOf(item2[0], item2[1] - 1))
+                }
+            }
+            return ans.toIntArray()
+        }
+
+        fun rearrangeBarcodesOldSolution(barcodes: IntArray): IntArray {
             val numberToTimesMap: MutableMap<Int, Int> = mutableMapOf()
             barcodes.forEach { number ->
                 if (!numberToTimesMap.containsKey(number)) {
