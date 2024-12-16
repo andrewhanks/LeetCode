@@ -1,6 +1,7 @@
 package questions
 
 import kotlin.math.abs
+import kotlin.math.pow
 
 
 class Question_1774_Closest_Dessert_Cost {
@@ -72,6 +73,32 @@ class Question_1774_Closest_Dessert_Cost {
                 }
             }
             return ret
+        }
+
+        fun closestCostWithBitMask(baseCosts: IntArray, toppingCosts: IntArray, target: Int): Int {
+            var ans = Int.MAX_VALUE
+            for (i in 0..baseCosts.size - 1) {
+                val till = (3f).pow(toppingCosts.size).toInt()
+                for (count in 0..till) {
+                    var current = baseCosts[i]
+                    var temp = count
+                    for (j in 0..toppingCosts.size - 1) {
+                        if (temp % 3 == 1) {
+                            current += toppingCosts[j]
+                        } else if (temp % 3 == 2) {
+                            current += toppingCosts[j] * 2
+                        }
+                        temp = temp / 3
+                    }
+                    // println("ans = $ans, current = $current, target = $target")
+                    if (abs(ans - target) > abs(current - target)) {
+                        ans = current
+                    } else if (abs(ans - target) == abs(current - target) && current < ans) {
+                        ans = current
+                    }
+                }
+            }
+            return ans
         }
     }
 }
