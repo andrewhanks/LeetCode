@@ -57,5 +57,29 @@ class Question_2100_Find_Good_Days_to_Rob_the_Bank {
             }
             return ans.toList()
         }
+
+        fun goodDaysToRobBankByIncreasingNumber(security: IntArray, time: Int): List<Int> {
+            val ltr = IntArray(security.size) { 0 }
+            val rtl = IntArray(security.size) { 0 }
+            for (i in 1..security.size - 1) {
+                if (security[i] <= security[i - 1]) {
+                    ltr[i] = ltr[i - 1] + 1
+                }
+            }
+            // println("ltr = ${ltr.contentToString()}")
+            for (i in security.size - 2 downTo 0) {
+                if (security[i + 1] >= security[i]) {
+                    rtl[i] = rtl[i + 1] + 1
+                }
+            }
+            // println("rtl = ${rtl.contentToString()}")
+            val ans: MutableList<Int> = mutableListOf()
+            for (i in 0..security.size - 1) {
+                if (ltr[i] >= time && rtl[i] >= time) {
+                    ans.add(i)
+                }
+            }
+            return ans.toList()
+        }
     }
 }
