@@ -77,5 +77,31 @@ class Question_958_Check_Completeness_of_a_Binary_Tree {
             }
             return true
         }
+
+        fun isCompleteTreeWithCheckDirectly(root: TreeNode?): Boolean {
+            val queue: Queue<TreeNode?> = LinkedList()
+            var shouldNotHaveChild = false
+            queue.add(root)
+            while (!queue.isEmpty()) {
+                val node = queue.remove()
+                if (node?.left != null) {
+                    if (shouldNotHaveChild) {
+                        return false
+                    }
+                    queue.add(node?.left)
+                } else {
+                    shouldNotHaveChild = true
+                }
+                if (node?.right != null) {
+                    if (shouldNotHaveChild) {
+                        return false
+                    }
+                    queue.add(node?.right)
+                } else {
+                    shouldNotHaveChild = true
+                }
+            }
+            return true
+        }
     }
 }
