@@ -89,5 +89,57 @@ class Question_816_Ambiguous_Coordinates {
             }
             return ans.toList()
         }
+
+        fun ambiguousCoordinatesByCheckingValid(s: String): List<String> {
+            val ans: MutableSet<String> = mutableSetOf()
+            val temp = s.substring(1..s.length - 2)
+            for (i in 1..temp.length - 1) {
+                var frontSub = temp.substring(0..i - 1)
+                var backSub = temp.substring(i..temp.length - 1)
+                val frontPossible = getPossibleString(frontSub)
+                val backPossible = getPossibleString(backSub)
+                // println("i = $i, frontPossible = $frontPossible, backPossible = $backPossible")
+                for (front in frontPossible) {
+                    if (isValid(front)) {
+                        for (back in backPossible) {
+                            if (isValid(back)) {
+                                ans.add("(" + front + ", " + back + ")")
+                            }
+                        }
+                    }
+                }
+            }
+            return ans.toList()
+        }
+
+        fun getPossibleString(str: String): MutableList<String> {
+            val ret: MutableList<String> = mutableListOf()
+            for (i in 1..str.length) {
+                if (i < str.length) {
+                    val temp = str.substring(0..i - 1) + "." + str.substring(i..str.length - 1)
+                    ret.add(temp)
+                } else {
+                    ret.add(str)
+                }
+            }
+            return ret
+        }
+
+        fun isValid(str: String): Boolean {
+            if (str.contains(".")) {
+                val dotIndex = str.indexOf(".")
+                if ((str[0] == '0' && dotIndex != 1) || str[str.length - 1] == '0') {
+                    return false
+                } else {
+                    return true
+                }
+            } else {
+                if (str[0] != '0' || str.length == 1) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        }
     }
 }
