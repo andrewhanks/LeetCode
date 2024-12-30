@@ -63,5 +63,20 @@ class Question_826_Most_Profit_Assigning_Work {
             }
             return ans
         }
+
+        fun maxProfitAssignmentWithDp(difficulty: IntArray, profit: IntArray, worker: IntArray): Int {
+            val result = IntArray(100001) { 0 }
+            for (i in 0..difficulty.size - 1) {
+                result[difficulty[i]] = max(result[difficulty[i]], profit[i])
+            }
+            for (i in 1..100000) {
+                result[i] = max(result[i], result[i - 1])
+            }
+            var ans = 0
+            for (i in 0..worker.size - 1) {
+                ans += result[worker[i]]
+            }
+            return ans
+        }
     }
 }
