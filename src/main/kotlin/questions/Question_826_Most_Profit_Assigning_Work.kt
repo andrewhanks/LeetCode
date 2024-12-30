@@ -1,6 +1,7 @@
 package questions
 
 import java.util.*
+import kotlin.math.max
 
 
 class Question_826_Most_Profit_Assigning_Work {
@@ -38,6 +39,27 @@ class Question_826_Most_Profit_Assigning_Work {
                         worked[i] = true
                     }
                 }
+            }
+            return ans
+        }
+
+        fun maxProfitAssignment2(difficulty: IntArray, profit: IntArray, worker: IntArray): Int {
+            val works = Array(difficulty.size) { IntArray(2) { 0 } }
+            for (i in 0..difficulty.size - 1) {
+                works[i][0] = difficulty[i]
+                works[i][1] = profit[i]
+            }
+            works.sortBy { it[0] }
+            worker.sort()
+            var ans = 0
+            for (i in 0..worker.size - 1) {
+                var best = 0
+                var j = 0
+                while (j <= works.size - 1 && worker[i] >= works[j][0]) {
+                    best = max(best, works[j][1])
+                    j++
+                }
+                ans += best
             }
             return ans
         }
