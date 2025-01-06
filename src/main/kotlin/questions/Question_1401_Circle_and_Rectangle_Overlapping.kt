@@ -1,5 +1,8 @@
 package questions
 
+import kotlin.math.max
+import kotlin.math.min
+
 class Question_1401_Circle_and_Rectangle_Overlapping {
 
     companion object {
@@ -32,6 +35,23 @@ class Question_1401_Circle_and_Rectangle_Overlapping {
                 ((x2 - xCenter) * (x2 - xCenter) + (y2 - yCenter) * (y2 - yCenter) <= radius * radius)
             ) return true
 
+            return false
+        }
+
+        fun checkOverlapByNearestPoint(
+            radius: Int,
+            xCenter: Int,
+            yCenter: Int,
+            x1: Int,
+            y1: Int,
+            x2: Int,
+            y2: Int
+        ): Boolean {
+            val nearestX = max(x1, min(xCenter, x2))
+            val nearestY = max(y1, min(yCenter, y2))
+            if ((nearestX - xCenter) * (nearestX - xCenter) + (nearestY - yCenter) * (nearestY - yCenter) <= radius * radius) {
+                return true
+            }
             return false
         }
     }
