@@ -33,5 +33,17 @@ class Question_2140_Solving_Questions_With_Brainpower {
             result[index] = max(pick, notPick)
             return result[index]
         }
+
+        fun mostPointsIterative(questions: Array<IntArray>): Long {
+            val dp = LongArray(questions.size + 1) { 0 }
+            for (i in dp.size - 2 downTo 0) {
+                if (i + questions[i][1] + 1 <= dp.size - 1) {
+                    dp[i] = max(dp[i + 1], dp[i + questions[i][1] + 1] + questions[i][0])
+                } else {
+                    dp[i] = max(dp[i + 1], questions[i][0].toLong())
+                }
+            }
+            return dp[0]
+        }
     }
 }
