@@ -41,5 +41,35 @@ class Question_1567_Maximum_Length_of_Subarray_With_Positive_Product {
             }
             return ans
         }
+
+        fun getMaxLenByCheckingAtEachNumber(nums: IntArray): Int {
+            var ans = 0
+            var i = 0
+            while (i <= nums.size - 1) {
+                if (nums[i] == 0) {
+                    i++
+                    continue
+                }
+                var j = i
+                var count = 0
+                var k = -1
+                while (j <= nums.size - 1 && nums[j] != 0) {
+                    if (nums[j] < 0) {
+                        count++
+                        if (k == -1) {
+                            k = j
+                        }
+                    }
+                    if (count % 2 == 0) {
+                        ans = max(ans, j - i + 1)
+                    } else if (k != -1) {
+                        ans = max(ans, j - k)
+                    }
+                    j++
+                }
+                i = j
+            }
+            return ans
+        }
     }
 }
