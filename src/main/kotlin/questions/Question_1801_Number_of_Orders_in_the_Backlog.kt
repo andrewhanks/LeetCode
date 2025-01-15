@@ -1,6 +1,7 @@
 package questions
 
 import java.util.*
+import kotlin.math.min
 
 
 class Question_1801_Number_of_Orders_in_the_Backlog {
@@ -68,6 +69,51 @@ class Question_1801_Number_of_Orders_in_the_Backlog {
                 // println("sellQueue item = ${item.contentToString()}")
             }
             return ans.toInt()
+        }
+
+        fun getNumberOfBacklogOrdersByRecordingOrderNumber(orders: Array<IntArray>): Int {
+            val mod = 1000000007
+            val buyQueue = PriorityQueue<IntArray> { a, b ->
+                b[0] - a[0]
+            }
+            val sellQueue = PriorityQueue<IntArray> { a, b ->
+                a[0] - b[0]
+            }
+            var total = 0L
+            var ans = 0L
+            for (order in orders) {
+                val price = order[0]
+                var rest = order[1]
+                total += rest
+                if (order[2] == 0) {
+                    while (!sellQueue.isEmpty() && sellQueue.peek()[0] <= price && rest > 0) {
+                        val sellItem = sellQueue.remove()
+                        val min = min(rest, sellItem[1])
+                        rest = rest - min
+                        ans += min * 2
+                        if (rest == 0) {
+                            sellQueue.add(intArrayOf(sellItem[0], sellItem[1] - min))
+                        }
+                    }
+                    if (rest > 0) {
+                        buyQueue.add(intArrayOf(order[0], rest))
+                    }
+                } else if (order[2] == 1) {
+                    while (!buyQueue.isEmpty() && buyQueue.peek()[0] >= price && rest > 0) {
+                        val buyItem = buyQueue.remove()
+                        val min = min(rest, buyItem[1])
+                        rest = rest - min
+                        ans += min * 2
+                        if (rest == 0) {
+                            buyQueue.add(intArrayOf(buyItem[0], buyItem[1] - min))
+                        }
+                    }
+                    if (rest > 0) {
+                        sellQueue.add(intArrayOf(order[0], rest))
+                    }
+                }
+            }
+            return ((total - ans) % mod).toInt()
         }
     }
 }
