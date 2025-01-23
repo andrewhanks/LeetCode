@@ -64,5 +64,28 @@ class Question_1372_Longest_ZigZag_Path_in_a_Binary_Tree {
                 return cal(head?.left, true) + 1
             }
         }
+
+        fun longestZigZagByCalculateContinuously(root: TreeNode?): Int {
+            return max(
+                calculateByCalculateContinuously(root?.left, true, 1),
+                calculateByCalculateContinuously(root?.right, false, 1)
+            ) - 1
+        }
+
+        fun calculateByCalculateContinuously(head: TreeNode?, isRight: Boolean, level: Int): Int {
+            if (head == null) {
+                return level
+            }
+            var right = 0
+            var left = 0
+            if (isRight) {
+                right = calculateByCalculateContinuously(head?.right, false, level + 1)
+                left = calculateByCalculateContinuously(head?.left, true, 1)
+            } else {
+                left = calculateByCalculateContinuously(head?.left, true, level + 1)
+                right = calculateByCalculateContinuously(head?.right, false, 1)
+            }
+            return max(right, left)
+        }
     }
 }
