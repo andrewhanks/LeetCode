@@ -2,6 +2,7 @@ package questions
 
 import java.util.*
 import kotlin.Comparator
+import kotlin.math.max
 
 
 class Question_2406_Divide_Intervals_Into_Minimum_Number_of_Groups {
@@ -19,6 +20,7 @@ class Question_2406_Divide_Intervals_Into_Minimum_Number_of_Groups {
 
         fun minGroups(intervals: Array<IntArray>): Int {
             intervals.sortWith(Comparator { a, b ->
+                // It is OK if only sorted by first element
                 if (b[0] == a[0]) {
                     b[1] - a[1]
                 } else {
@@ -47,6 +49,22 @@ class Question_2406_Divide_Intervals_Into_Minimum_Number_of_Groups {
                 }
             }
             return queue.size
+        }
+
+        fun minGroupsByEachTimePoint(intervals: Array<IntArray>): Int {
+            val map: TreeMap<Int, Int> = TreeMap()
+            for (item in intervals) {
+                map[item[0]] = map.getOrDefault(item[0], 0) + 1
+                map[item[1] + 1] = map.getOrDefault(item[1] + 1, 0) - 1
+            }
+            var ans = 0
+            var sum = 0
+            // println("map = $map")
+            for ((key, value) in map) {
+                sum += value
+                ans = max(ans, sum)
+            }
+            return ans
         }
     }
 }
