@@ -402,7 +402,7 @@ fun main(args: Array<String>) {
 //    Question_1758_Minimum_Changes_To_Make_Alternating_Binary_String.runQuestion()
 //    Question_1769_Minimum_Number_of_Operations_to_Move_All_Balls_to_Each_Box.runQuestion()
 //    Question_1774_Closest_Dessert_Cost.runQuestion()
-    Question_1781_Sum_of_Beauty_of_All_Substrings.runQuestion()
+//    Question_1781_Sum_of_Beauty_of_All_Substrings.runQuestion()
 //    Question_1801_Number_of_Orders_in_the_Backlog.runQuestion()
 //    Question_1814_Count_Nice_Pairs_in_an_Array.runQuestion()
 //    Question_1864_Minimum_Number_of_Swaps_to_Make_the_Binary_String_Alternating.runQuestion()
@@ -564,4 +564,5 @@ fun main(args: Array<String>) {
 //    Question_3290_Maximum_Multiplication_Score.runQuestion()
 //    Question_3296_Minimum_Number_of_Seconds_to_Make_Mountain_Height_Zero.runQuestion()
 //    Question_3310_Remove_Methods_From_Project.runQuestion()
+    Question_3315_Construct_the_Minimum_Bitwise_Array_II.runQuestion()
 }
