@@ -461,6 +461,7 @@ fun main(args: Array<String>) {
 //    Question_2343_Query_Kth_Smallest_Trimmed_Number.runQuestion()
 //    Question_2344_Minimum_Deletions_to_Make_Array_Divisible.runQuestion()
 //    Question_2357_Make_Array_Zero_by_Subtracting_Equal_Amounts.runQuestion()
+    Question_2359_Find_Closest_Node_to_Given_Two_Nodes.runQuestion()
 //    Question_2364_Count_Number_of_Bad_Pairs.runQuestion()
 //    Question_2365_Task_Scheduler_II.runQuestion()
 //    Question_2375_Construct_Smallest_Number_From_DI_String.runQuestion()
@@ -564,5 +565,5 @@ fun main(args: Array<String>) {
 //    Question_3290_Maximum_Multiplication_Score.runQuestion()
 //    Question_3296_Minimum_Number_of_Seconds_to_Make_Mountain_Height_Zero.runQuestion()
 //    Question_3310_Remove_Methods_From_Project.runQuestion()
-    Question_3315_Construct_the_Minimum_Bitwise_Array_II.runQuestion()
+//    Question_3315_Construct_the_Minimum_Bitwise_Array_II.runQuestion()
 }
