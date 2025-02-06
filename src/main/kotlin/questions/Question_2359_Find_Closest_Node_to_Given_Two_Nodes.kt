@@ -1,6 +1,8 @@
 package questions
 
 import java.util.*
+import kotlin.math.max
+import kotlin.math.min
 
 
 class Question_2359_Find_Closest_Node_to_Given_Two_Nodes {
@@ -60,6 +62,44 @@ class Question_2359_Find_Closest_Node_to_Given_Two_Nodes {
             }
             if (ans == Int.MAX_VALUE) {
                 return -1
+            }
+            return ans
+        }
+
+        fun closestMeetingNodeAccordingToQuestionMeaning(edges: IntArray, node1: Int, node2: Int): Int {
+            val node1ReachList = IntArray(edges.size) { -1 }
+            val node2ReachList = IntArray(edges.size) { -1 }
+            var now = node1
+            var stepsNow = 0
+            node1ReachList[node1] = 0
+            while (edges[now] != -1 && node1ReachList[edges[now]] == -1) {
+                stepsNow++
+                node1ReachList[edges[now]] = stepsNow
+                now = edges[now]
+            }
+            // println("node1ReachList = ${node1ReachList.contentToString()}")
+            now = node2
+            stepsNow = 0
+            node2ReachList[node2] = 0
+            while (edges[now] != -1 && node2ReachList[edges[now]] == -1) {
+                stepsNow++
+                node2ReachList[edges[now]] = stepsNow
+                now = edges[now]
+            }
+            // println("node2ReachList = ${node2ReachList.contentToString()}")
+            var ans = -1
+            var globalMax = Int.MAX_VALUE
+            for (i in 0..node1ReachList.size - 1) {
+                if (node1ReachList[i] == -1 || node2ReachList[i] == -1) {
+                    continue
+                }
+                val max = max(node1ReachList[i], node2ReachList[i])
+                if (max < globalMax) {
+                    globalMax = max
+                    ans = i
+                } else if (max == globalMax) {
+                    ans = min(ans, i)
+                }
             }
             return ans
         }
