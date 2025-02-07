@@ -1,6 +1,8 @@
 package questions
 
 import java.util.*
+import kotlin.math.max
+import kotlin.math.min
 
 
 class Question_2202_Maximize_the_Topmost_Element_After_K_Moves {
@@ -57,6 +59,29 @@ class Question_2202_Maximize_the_Topmost_Element_After_K_Moves {
                 }
                 return queue.remove()
             }
+        }
+
+        fun maximumTopSimplified(nums: IntArray, k: Int): Int {
+            val n = nums.size
+
+            // Edge case: Single element array
+            if (n == 1) {
+                return if (k % 2 == 1) -1 else nums[0]
+            }
+
+            var max = -1
+
+            // Iterate and find maximum for up to (k-1) elements or length n
+            for (i in 0..min(k - 1, n) - 1) {
+                max = max(max, nums[i])
+            }
+
+            // Handle the case where k <= n
+            if (k < n) {
+                max = max(max, nums[k])
+            }
+
+            return max
         }
     }
 }
