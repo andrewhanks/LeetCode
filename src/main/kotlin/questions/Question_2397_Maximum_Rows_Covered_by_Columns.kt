@@ -47,5 +47,28 @@ class Question_2397_Maximum_Rows_Covered_by_Columns {
             }
             return ans
         }
+
+        fun maximumRowsCompareByWholeRow(matrix: Array<IntArray>, numSelect: Int): Int {
+            val max = (2.0).pow(matrix[0].size).toInt()
+            var ans = 0
+            for (i in 0..max - 1) {
+                var target = Integer.toBinaryString(i)
+                if (target.filter { it == '1' }.count() != numSelect) {
+                    continue
+                }
+                var ret = 0
+                for (j in 0..matrix.size - 1) {
+                    var value = 0
+                    for (k in 0..matrix[j].size - 1) {
+                        value = value * 2 + matrix[j][k]
+                    }
+                    if (value and i == value) {
+                        ret++
+                    }
+                }
+                ans = max(ans, ret)
+            }
+            return ans
+        }
     }
 }
