@@ -53,5 +53,31 @@ class Question_1239_Maximum_Length_of_a_Concatenated_String_with_Unique_Characte
             }
             return ans
         }
+
+        fun maxLengthByDfs(arr: List<String>): Int {
+            val counter = IntArray(26)
+            return dfs(0, counter, arr)
+        }
+
+        fun dfs(index: Int, counter: IntArray, arr: List<String>): Int {
+            if (index == arr.size) {
+                return 0
+            }
+
+            val word = arr[index]
+            for (i in 0 until word.length) {
+                counter[word[i] - 'a']++
+            }
+            var with = 0
+            val moreThenOne = counter.firstOrNull { it > 1 }
+            if (moreThenOne == null) {
+                with = word.length + dfs(index + 1, counter, arr)
+            }
+            for (i in 0 until word.length) {
+                counter[word[i] - 'a']--
+            }
+            val without = dfs(index + 1, counter, arr)
+            return max(with, without)
+        }
     }
 }
