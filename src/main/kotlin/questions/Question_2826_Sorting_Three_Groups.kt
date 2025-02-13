@@ -50,5 +50,40 @@ class Question_2826_Sorting_Three_Groups {
             }
             return list
         }
+
+        fun minimumOperationsWithDp(nums: List<Int>): Int {
+            val result = Array(nums.size) { IntArray(3) { 0 } }
+            for (i in 0..2) {
+                result[0][i] = if (nums[0] == i + 1) {
+                    0
+                } else {
+                    1
+                }
+            }
+            for (i in 1..nums.size - 1) {
+                val extra1 = if (nums[i] != 1) {
+                    1
+                } else {
+                    0
+                }
+                result[i][0] = result[i - 1][0] + extra1
+
+                val extra2 = if (nums[i] != 2) {
+                    1
+                } else {
+                    0
+                }
+                result[i][1] = min(result[i - 1][0], result[i - 1][1]) + extra2
+
+                val extra3 = if (nums[i] != 3) {
+                    1
+                } else {
+                    0
+                }
+                result[i][2] = min(result[i - 1][0], min(result[i - 1][1], result[i - 1][2])) + extra3
+            }
+            // println("result = ${result.contentDeepToString()}")
+            return min(result[result.size - 1][0], min(result[result.size - 1][1], result[result.size - 1][2]))
+        }
     }
 }
