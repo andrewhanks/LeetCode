@@ -517,7 +517,7 @@ fun main(args: Array<String>) {
 //    Question_2745_Construct_the_Longest_New_String.runQuestion()
 //    Question_2766_Relocate_Marbles.runQuestion()
 //    Question_2779_Maximum_Beauty_of_an_Array_After_Applying_Operation.runQuestion()
-    Question_2826_Sorting_Three_Groups.runQuestion()
+//    Question_2826_Sorting_Three_Groups.runQuestion()
 //    Question_2860_Happy_Students.runQuestion()
 //    Question_2915_Length_of_the_Longest_Subsequence_That_Sums_to_Target.runQuestion()
 //    Question_2929_Distribute_Candies_Among_Children_II.runQuestion()
@@ -572,4 +572,5 @@ fun main(args: Array<String>) {
 //    Question_3296_Minimum_Number_of_Seconds_to_Make_Mountain_Height_Zero.runQuestion()
 //    Question_3310_Remove_Methods_From_Project.runQuestion()
 //    Question_3315_Construct_the_Minimum_Bitwise_Array_II.runQuestion()
+    Question_3341_Find_Minimum_Time_to_Reach_Last_Room_I.runQuestion()
 }
