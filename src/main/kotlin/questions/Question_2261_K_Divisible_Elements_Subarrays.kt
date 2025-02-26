@@ -41,5 +41,31 @@ class Question_2261_K_Divisible_Elements_Subarrays {
             }
             return ans.size
         }
+
+        fun countDistinctFasterSolution(nums: IntArray, k: Int, p: Int): Int {
+            val divisible = Array(nums.size) { false }
+            val ans: MutableSet<MutableList<Int>> = mutableSetOf()
+            for (i in 0..nums.size - 1) {
+                if (nums[i] % p == 0) {
+                    divisible[i] = true
+                }
+            }
+            for (i in 0..nums.size - 1) {
+                var item: MutableList<Int> = mutableListOf()
+                var total = 0
+                for (j in i..nums.size - 1) {
+                    if (divisible[j]) {
+                        total++
+                    }
+                    if (total <= k) {
+                        item.add(nums[j])
+                        ans.add(item.toMutableList())
+                    } else {
+                        break
+                    }
+                }
+            }
+            return ans.size
+        }
     }
 }
