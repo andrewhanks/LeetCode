@@ -28,5 +28,21 @@ class Question_1220_Count_Vowels_Permutation {
             val ans = result.sum() % mod
             return ans.toInt()
         }
+
+        fun countVowelPermutationBackTrack(n: Int): Int {
+            val mod = 1000000007
+            val result = Array(5) { 1L }
+            for (i in n downTo 2) {
+                val temp = result.toList()
+                result[0] = (temp[1]) % mod
+                result[1] = (temp[0] + temp[2]) % mod
+                result[2] = (temp[0] + temp[1] + temp[3] + temp[4]) % mod
+                result[3] = (temp[2] + temp[4]) % mod
+                result[4] = (temp[0]) % mod
+            }
+            // println("result = ${result.contentToString()}")
+            val ans = result.sum() % mod
+            return ans.toInt()
+        }
     }
 }
