@@ -44,5 +44,19 @@ class Question_889_Construct_Binary_Tree_from_Preorder_and_Postorder_Traversal {
             root.right = construct(preorder, postorder, preStart + size + 1, preEnd, postStart + size, postEnd)
             return root
         }
+
+        var preIndex = 0
+        var postIndex = 0
+        fun constructFromPrePostQuicker(preorder: IntArray, postorder: IntArray): TreeNode? {
+            val root = TreeNode(preorder[preIndex++])
+            if (root.`val` != postorder[postIndex]) {
+                root?.left = constructFromPrePostQuicker(preorder, postorder)
+            }
+            if (root.`val` != postorder[postIndex]) {
+                root?.right = constructFromPrePostQuicker(preorder, postorder)
+            }
+            postIndex++
+            return root
+        }
     }
 }
