@@ -1,5 +1,6 @@
 package questions
 
+import kotlin.math.max
 import kotlin.math.min
 
 
@@ -53,6 +54,23 @@ class Question_1292_Maximum_Side_Length_of_a_Square_with_Sum_Less_than_or_Equal_
                 }
             }
             return false
+        }
+
+        fun maxSideLengthBruteForceWithPreSumArray(mat: Array<IntArray>, threshold: Int): Int {
+            val presum = Array(mat.size + 1) { IntArray(mat[0].size + 1) { 0 } }
+            for (i in 1..mat.size) {
+                for (j in 1..mat[0].size) {
+                    presum[i][j] = presum[i - 1][j] + presum[i][j - 1] - presum[i - 1][j - 1] + mat[i - 1][j - 1]
+                }
+            }
+            // println("presum = ${presum.contentDeepToString()}")
+            var ans = 0
+            for (n in 1..min(mat.size, mat[0].size)) {
+                if (check(presum, n, threshold)) {
+                    ans = max(ans, n)
+                }
+            }
+            return ans
         }
     }
 }
