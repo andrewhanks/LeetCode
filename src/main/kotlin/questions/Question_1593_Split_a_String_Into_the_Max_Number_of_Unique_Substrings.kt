@@ -35,5 +35,33 @@ class Question_1593_Split_a_String_Into_the_Max_Number_of_Unique_Substrings {
                 }
             }
         }
+
+        fun maxUniqueSplitFaster(s: String): Int {
+            val max: MutableList<MutableSet<String>> = MutableList(1) { mutableSetOf() }
+            val set: MutableSet<String> = mutableSetOf()
+            dfsFaster(s, 0, max, set)
+            return max[0].size
+        }
+
+        fun dfsFaster(s: String, index: Int, max: MutableList<MutableSet<String>>, set: MutableSet<String>) {
+            if (index > s.length - 1) {
+                if (max[0].size < set.size) {
+                    max[0] = set.toMutableSet()
+                }
+                return
+            }
+            if (set.size + s.length - index <= max[0].size) {
+                return
+            }
+            for (i in 1..s.length - 1 - index + 1) {
+                val substring = s.substring(index..index + i - 1)
+                // println("substring = $substring, set = $set")
+                if (!set.contains(substring)) {
+                    set.add(substring)
+                    dfsFaster(s, index + i, max, set)
+                    set.remove(substring)
+                }
+            }
+        }
     }
 }
