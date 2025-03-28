@@ -58,5 +58,27 @@ class Question_1079_Letter_Tile_Possibilities {
             }
             return ret
         }
+
+        fun numTilePossibilitiesFaster(tiles: String): Int {
+            val list = IntArray(26) { 0 }
+            for (i in 0..tiles.length - 1) {
+                list[tiles[i] - 'A']++
+            }
+            return dfs(list)
+        }
+
+        fun dfs(list: IntArray): Int {
+            var ans = 0
+            for (i in 0..list.size - 1) {
+                if (list[i] == 0) {
+                    continue
+                }
+                ans++
+                list[i]--
+                ans += dfs(list)
+                list[i]++
+            }
+            return ans
+        }
     }
 }
