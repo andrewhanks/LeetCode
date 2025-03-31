@@ -1,6 +1,7 @@
 package questions
 
 import kotlin.math.max
+import kotlin.math.sqrt
 
 class Question_3020_Find_the_Maximum_Number_of_Elements_in_Subset {
 
@@ -47,6 +48,35 @@ class Question_3020_Find_the_Maximum_Number_of_Elements_in_Subset {
                     current = current - 1
                 }
                 // println("i = $i, current = $current")
+                ans = max(ans, current)
+            }
+            return ans
+        }
+
+        fun maximumLengthFaster(nums: IntArray): Int {
+            val map: MutableMap<Double, Int> = mutableMapOf()
+            for (i in 0..nums.size - 1) {
+                val num = nums[i].toDouble()
+                map[num] = map.getOrDefault(num, 0) + 1
+            }
+            var ans = 0
+            for ((key, value) in map) {
+                if (key == 1.0) {
+                    if (value % 2 == 1) {
+                        ans = max(ans, value)
+                    } else {
+                        ans = max(ans, value - 1)
+                    }
+                    continue
+                }
+                var current = 1
+                var next = sqrt(key)
+                // println("key = $key, current = $current, next = $next, map[next]!=null && map[next]!!>=2 = ${map[next]!=null && map[next]!!>=2}")
+                while (map[next] != null && map[next]!! >= 2) {
+                    current += 2
+                    next = sqrt(next)
+                }
+                // println("current = $current")
                 ans = max(ans, current)
             }
             return ans
