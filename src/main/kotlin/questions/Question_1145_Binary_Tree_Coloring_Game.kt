@@ -2,6 +2,7 @@ package questions
 
 import models.TreeNode
 import java.util.*
+import kotlin.math.max
 
 
 class Question_1145_Binary_Tree_Coloring_Game {
@@ -110,6 +111,27 @@ class Question_1145_Binary_Tree_Coloring_Game {
                 }
             }
             return count
+        }
+
+        fun btreeGameWinningMoveFaster(root: TreeNode?, n: Int, x: Int): Boolean {
+            val target = findNode(root, x)
+            val left = countNodes(target!!.left)
+            val right = countNodes(target!!.right)
+            val parent = n - left - right - 1
+            return max(left, max(right, parent)) > n / 2
+        }
+
+        private fun findNode(root: TreeNode?, x: Int): TreeNode? {
+            if (root == null) return null
+            if (root.`val` == x) return root
+            val left = findNode(root.left, x)
+            if (left != null) return left
+            return findNode(root.right, x)
+        }
+
+        private fun countNodes(root: TreeNode?): Int {
+            if (root == null) return 0
+            return 1 + countNodes(root.left) + countNodes(root.right)
         }
     }
 }
