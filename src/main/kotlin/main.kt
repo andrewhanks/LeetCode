@@ -441,6 +441,7 @@ fun main(args: Array<String>) {
 //    Question_2070_Most_Beautiful_Item_for_Each_Query.runQuestion()
 //    Question_2074_Reverse_Nodes_in_Even_Length_Groups.runQuestion()
 //    Question_2086_Minimum_Number_of_Food_Buckets_to_Feed_the_Hamsters.runQuestion()
+    Question_2087_Minimum_Cost_Homecoming_of_a_Robot_in_a_Grid.runQuestion()
 //    Question_2100_Find_Good_Days_to_Rob_the_Bank.runQuestion()
 //    Question_2115_Find_All_Possible_Recipes_from_Given_Supplies.runQuestion()
 //    Question_2126_Destroying_Asteroids.runQuestion()
@@ -590,5 +591,5 @@ fun main(args: Array<String>) {
 //    Question_3310_Remove_Methods_From_Project.runQuestion()
 //    Question_3315_Construct_the_Minimum_Bitwise_Array_II.runQuestion()
 //    Question_3341_Find_Minimum_Time_to_Reach_Last_Room_I.runQuestion()
-    Question_3380_Maximum_Area_Rectangle_With_Point_Constraints_I.runQuestion()
+//    Question_3380_Maximum_Area_Rectangle_With_Point_Constraints_I.runQuestion()
 }
