@@ -72,5 +72,31 @@ class Question_1139_Largest_1_Bordered_Square {
             }
             return true
         }
+
+        fun largest1BorderedSquareFaster(grid: Array<IntArray>): Int {
+            val n = grid.size + 1
+            val m = grid[0].size + 1
+            var res = 0
+            val dpRow = Array(n) { IntArray(m) }
+            val dpCol = Array(n) { IntArray(m) }
+            for (i in 1..n - 1) {
+                for (j in 1..m - 1) {
+                    if (grid[i - 1][j - 1] != 0) {
+                        // prefix sum row and col
+                        dpRow[i][j] = dpRow[i][j - 1] + 1
+                        dpCol[i][j] = dpCol[i - 1][j] + 1
+                        // check square
+                        val side = min(dpRow[i][j], dpCol[i][j])
+                        for (k in side downTo res + 1) {
+                            if (i >= k && j >= k && dpRow[i - k + 1][j] >= k && dpCol[i][j - k + 1] >= k) {
+                                res = k
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+            return res * res
+        }
     }
 }
