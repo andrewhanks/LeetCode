@@ -1,5 +1,6 @@
 package questions
 
+import java.util.*
 import kotlin.math.max
 
 class Question_1024_Video_Stitching {
@@ -45,6 +46,62 @@ class Question_1024_Video_Stitching {
                 result++
             }
             return result
+        }
+
+        fun videoStitchingNewSolutionByMySelf(clips: Array<IntArray>, time: Int): Int {
+            val queue = PriorityQueue<IntArray> { a, b ->
+                if (a[0] == b[0]) {
+                    b[1] - a[1]
+                } else {
+                    a[0] - b[0]
+                }
+            }
+
+            var start = -1
+            var end = -1
+            var current = -1
+            var ans = 0
+
+            for (clip in clips) {
+                queue.add(clip)
+            }
+
+            if (!queue.isEmpty()) {
+                val clip = queue.remove()
+                // println("clip = ${clip.contentToString()}")
+                if (start == -1 && end == -1) {
+                    start = clip[0]
+                    end = clip[1]
+                    current = clip[1]
+                    ans++
+                }
+            }
+
+            while (!queue.isEmpty()) {
+                if (current >= time) {
+                    if (start > 0) {
+                        return -1
+                    } else {
+                        return ans
+                    }
+                }
+                if (queue.peek()[0] > end) {
+                    return -1
+                }
+                while (!queue.isEmpty() && queue.peek()[0] <= current) {
+                    val anotherClip = queue.remove()
+                    // println("anotherClip = ${anotherClip.contentToString()}")
+                    end = max(end, anotherClip[1])
+                }
+                current = end
+                ans++
+            }
+
+            if (end < time || start > 0) {
+                return -1
+            } else {
+                return ans
+            }
         }
     }
 }
