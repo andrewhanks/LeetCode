@@ -1,6 +1,7 @@
 package questions
 
 import java.util.*
+import kotlin.math.max
 
 class Question_2856_Minimum_Array_Length_After_Pair_Removals {
 
@@ -45,6 +46,27 @@ class Question_2856_Minimum_Array_Length_After_Pair_Removals {
                 return 0
             } else {
                 return queue.remove()[1]
+            }
+        }
+
+        fun minLengthAfterRemovalsFaster(nums: List<Int>): Int {
+            val map: MutableMap<Int, Int> = mutableMapOf()
+            for (i in 0..nums.size - 1) {
+                val num = nums[i]
+                map[num] = map.getOrDefault(num, 0) + 1
+            }
+            var max = 0
+            for ((key, value) in map) {
+                max = max(max, value)
+            }
+            if (max > nums.size / 2) {
+                return max - (nums.size - max)
+            } else {
+                if (nums.size % 2 == 0) {
+                    return 0
+                } else {
+                    return 1
+                }
             }
         }
     }
