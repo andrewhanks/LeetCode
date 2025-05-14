@@ -1,5 +1,7 @@
 package questions
 
+import kotlin.math.max
+
 
 class Question_2871_Split_Array_Into_Maximum_Number_of_Subarrays {
 
@@ -28,6 +30,24 @@ class Question_2871_Split_Array_Into_Maximum_Number_of_Subarrays {
                 ans--
             }
             return ans
+        }
+
+        fun maxSubarraysWebSolution(nums: IntArray): Int {
+            var ans = 0
+            var i = 0
+            while (i <= nums.size - 1) {
+                var j = i
+                var x = nums[i]
+                while (j + 1 <= nums.size - 1 && x != 0) {
+                    j++
+                    x = x and nums[j]
+                }
+                if (x == 0) {
+                    ans++
+                }
+                i = j + 1
+            }
+            return max(1, ans)
         }
     }
 }
