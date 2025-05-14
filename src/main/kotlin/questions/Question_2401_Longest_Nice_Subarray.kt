@@ -30,5 +30,20 @@ class Question_2401_Longest_Nice_Subarray {
             }
             return ans
         }
+
+        fun longestNiceSubarraySlidingWindow(nums: IntArray): Int {
+            var ans = 1
+            var j = 1
+            var sum = nums[0]
+            for (i in 0..nums.size - 1) {
+                while (j <= nums.size - 1 && (sum and nums[j]) == 0) {
+                    sum = sum + nums[j]
+                    j++
+                }
+                ans = max(ans, j - i)
+                sum = sum - nums[i]
+            }
+            return ans
+        }
     }
 }
