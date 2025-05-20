@@ -27,5 +27,18 @@ class Question_2568_Minimum_Impossible_OR {
             }
             return -1
         }
+
+        fun minImpossibleORAnotherSolution(nums: IntArray): Int {
+            nums.sort()
+            var max = 0
+            for (i in 0..nums.size - 1) {
+                if (nums[i] > max + 1) {
+                    return max + 1
+                } else {
+                    max = max or nums[i]
+                }
+            }
+            return max + 1
+        }
     }
 }
