@@ -34,5 +34,18 @@ class Question_1027_Longest_Arithmetic_Subsequence {
             }
             return ans
         }
+
+        fun longestArithSeqLengthDp(nums: IntArray): Int {
+            val dp: Array<MutableMap<Int, Int>> = Array(nums.size) { mutableMapOf() }
+            var ans = 0
+            for (i in 0..nums.size - 1) {
+                for (j in i + 1..nums.size - 1) {
+                    val diff = nums[j] - nums[i]
+                    dp[j][diff] = dp[i].getOrDefault(diff, 1) + 1
+                    ans = max(ans, dp[j][diff]!!)
+                }
+            }
+            return ans
+        }
     }
 }
