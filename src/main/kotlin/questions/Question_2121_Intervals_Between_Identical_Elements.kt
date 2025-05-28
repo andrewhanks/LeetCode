@@ -39,5 +39,29 @@ class Question_2121_Intervals_Between_Identical_Elements {
             }
             return ans
         }
+
+        fun getDistancesTotalMinusPrefixSum(arr: IntArray): LongArray {
+            val map: MutableMap<Int, MutableList<Int>> = mutableMapOf()
+            var ans = LongArray(arr.size) { 0L }
+            for (i in 0..arr.size - 1) {
+                val list = map.getOrDefault(arr[i], mutableListOf())
+                list.add(i)
+                map[arr[i]] = list
+            }
+            for ((key, value) in map) {
+                var totalSum = 0L
+                for (item in value) {
+                    totalSum += item
+                }
+                var prefixSum = 0L
+                for (i in 0..value.size - 1) {
+                    val rightSum = totalSum - prefixSum - value[i]
+                    val leftSum = prefixSum
+                    ans[value[i]] = (rightSum - leftSum) - ((value.size - 1 - i) - (i)) * value[i].toLong()
+                    prefixSum += value[i]
+                }
+            }
+            return ans
+        }
     }
 }
