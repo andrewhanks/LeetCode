@@ -55,6 +55,37 @@ class Question_1262_Greatest_Sum_Divisible_by_Three {
             }
         }
 
+        fun maxSumDivThreeDpWithMultipleTakenCases(nums: IntArray): Int {
+            val dp = Array(nums.size) { IntArray(3) { -1 } }
+            if (nums[0] % 3 == 0) {
+                dp[0][0] = nums[0]
+            } else if (nums[0] % 3 == 1) {
+                dp[0][1] = nums[0]
+            } else {
+                dp[0][2] = nums[0]
+            }
+            for (i in 1..nums.size - 1) {
+                for (j in 0..2) {
+                    val k = nums[i] % 3
+                    val taken = if (dp[i - 1][(j - k + 3) % 3] != -1) {
+                        dp[i - 1][(j - k + 3) % 3] + nums[i]
+                    } else if (j == k && dp[i - 1][j] == -1) {
+                        nums[i]
+                    } else {
+                        -1
+                    }
+                    val notTaken = dp[i - 1][j]
+                    dp[i][j] = max(taken, notTaken)
+                }
+            }
+            // println("dp = ${dp.contentDeepToString()}")
+            if (dp[dp.size - 1][0] == -1) {
+                return 0
+            } else {
+                return dp[dp.size - 1][0]
+            }
+        }
+
         fun maxSumDivThreeDp(nums: IntArray): Int {
             val dp = Array(nums.size + 1) { IntArray(3) { 0 } }
             dp[0][0] = 0
