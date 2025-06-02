@@ -54,5 +54,20 @@ class Question_1262_Greatest_Sum_Divisible_by_Three {
                 return sum
             }
         }
+
+        fun maxSumDivThreeDp(nums: IntArray): Int {
+            val dp = Array(nums.size + 1) { IntArray(3) { 0 } }
+            dp[0][0] = 0
+            dp[0][1] = Int.MIN_VALUE
+            dp[0][2] = Int.MIN_VALUE
+            for (i in 1..dp.size - 1) {
+                for (j in 0..2) {
+                    val k = nums[i - 1] % 3
+                    dp[i][j] = max(dp[i - 1][(j - k + 3) % 3] + nums[i - 1], dp[i - 1][j])
+                }
+            }
+            // println("dp = ${dp.contentDeepToString()}")
+            return dp[dp.size - 1][0]
+        }
     }
 }
