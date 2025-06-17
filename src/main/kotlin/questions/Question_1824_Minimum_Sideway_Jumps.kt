@@ -67,5 +67,31 @@ class Question_1824_Minimum_Sideway_Jumps {
             }
             return min(dp[0][size - 1], min(dp[1][size - 1], dp[2][size - 1]))
         }
+
+        fun minSideJumpsSimplifiedSolution(obstacles: IntArray): Int {
+            val dp = Array(3) { IntArray(obstacles.size) { 0 } }
+            dp[0][0] = 1
+            dp[2][0] = 1
+            val size = dp[0].size
+            for (j in 1..size - 1) {
+                val obs = obstacles[j] - 1
+                var min = Int.MAX_VALUE
+                for (i in 0..2) {
+                    if (i == obs) {
+                        dp[i][j] = Int.MAX_VALUE
+                    } else {
+                        dp[i][j] = dp[i][j - 1]
+                        min = min(min, dp[i][j])
+                    }
+                }
+                for (i in 0..2) {
+                    if (i != obs && dp[i][j] > min) {
+                        dp[i][j] = min + 1
+                    }
+                }
+                // println("dp = ${dp.contentDeepToString()}")
+            }
+            return min(dp[0][size - 1], min(dp[1][size - 1], dp[2][size - 1]))
+        }
     }
 }
