@@ -18,6 +18,27 @@ class Question_983_Minimum_Cost_For_Tickets {
         }
 
         fun mincostTickets(days: IntArray, costs: IntArray): Int {
+            val dayType = intArrayOf(1, 7, 30)
+            val dp = IntArray(days[days.size - 1] + 1) { 0 }
+            for (i in 1..dp.size - 1) {
+                if (!days.contains(i)) {
+                    dp[i] = dp[i - 1]
+                    continue
+                }
+                var min = Int.MAX_VALUE
+                for (j in 0..costs.size - 1) {
+                    if (dayType[j] >= i) {
+                        min = min(min, costs[j])
+                    } else {
+                        min = min(min, dp[i - dayType[j]] + costs[j])
+                    }
+                }
+                dp[i] = min
+            }
+            return dp[dp.size - 1]
+        }
+
+        fun mincostTicketsOldSolution(days: IntArray, costs: IntArray): Int {
             val dayList = days.toMutableList()
             dayList.add(0, 0)
             val result = IntArray(dayList.size) { 0 }
