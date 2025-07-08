@@ -15,7 +15,7 @@ class Question_1312_Minimum_Insertion_Steps_to_Make_a_String_Palindrome {
             println("Question 1312: $result")
         }
 
-        // s.length - LCS
+        // s.length - LCS(longest common subsequence)
         fun minInsertions(s: String): Int {
             val len = s.length
             val revS = s.reversed()
@@ -62,6 +62,27 @@ class Question_1312_Minimum_Insertion_Steps_to_Make_a_String_Palindrome {
             }
             // println("dp = ${dp.contentDeepToString()}")
             return dp[0][m - 1]
+        }
+
+        // SCS(shortest common supersequence) - s.length
+        fun minInsertionsBySCS(s: String): Int {
+            val m = s.length
+            val dp = Array(m + 1) { IntArray(m + 1) { Int.MAX_VALUE / 2 } }
+            for (i in 0..m - 1) {
+                dp[i][0] = i
+                dp[0][i] = i
+            }
+            val t = s.reversed()
+            for (i in 1..m) {
+                for (j in 1..m) {
+                    if (s[i - 1] == t[j - 1]) {
+                        dp[i][j] = dp[i - 1][j - 1] + 1
+                    } else {
+                        dp[i][j] = min(dp[i - 1][j] + 1, dp[i][j - 1] + 1)
+                    }
+                }
+            }
+            return dp[m][m] - s.length
         }
     }
 }
