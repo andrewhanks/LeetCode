@@ -27,5 +27,30 @@ class Question_1510_Stone_Game_IV {
             }
             return dp[n]
         }
+
+        fun winnerSquareGameRecursive(n: Int): Boolean {
+            val dp = IntArray(n + 1) { -1 }
+            return recursive(n, dp)
+        }
+
+        fun recursive(n: Int, dp: IntArray): Boolean {
+            if (dp[n] != -1) {
+                return if (dp[n] == 0) {
+                    false
+                } else {
+                    true
+                }
+            }
+            var temp = 1
+            while (temp * temp <= n) {
+                if (!recursive(n - temp * temp, dp)) {
+                    dp[n] = 1
+                    return true
+                }
+                temp++
+            }
+            dp[n] = 0
+            return false
+        }
     }
 }
