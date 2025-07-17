@@ -399,7 +399,7 @@ fun main(args: Array<String>) {
 //    Question_1487_Making_File_Names_Unique.runQuestion()
 //    Question_1503_Last_Moment_Before_All_Ants_Fall_Out_of_a_Plank.runQuestion()
 //    Question_1509_Minimum_Difference_Between_Largest_and_Smallest_Value_in_Three_Moves.runQuestion()
-    Question_1510_Stone_Game_IV.runQuestion()
+//    Question_1510_Stone_Game_IV.runQuestion()
 //    Question_1524_Number_of_Sub_arrays_With_Odd_Sum.runQuestion()
 //    Question_1540_Can_Convert_String_in_K_Moves.runQuestion()
 //    Question_1541_Minimum_Insertions_to_Balance_a_Parentheses_String.runQuestion()
@@ -620,4 +620,5 @@ fun main(args: Array<String>) {
 //    Question_3315_Construct_the_Minimum_Bitwise_Array_II.runQuestion()
 //    Question_3341_Find_Minimum_Time_to_Reach_Last_Room_I.runQuestion()
 //    Question_3380_Maximum_Area_Rectangle_With_Point_Constraints_I.runQuestion()
+    Question_3387_Maximize_Amount_After_Two_Days_of_Conversions.runQuestion()
 }
