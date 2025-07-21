@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 
 class Question_768_Max_Chunks_To_Make_Sorted_II {
 
@@ -28,6 +30,23 @@ class Question_768_Max_Chunks_To_Make_Sorted_II {
                 }
             }
             return ans
+        }
+
+        fun maxChunksToSortedWithStack(arr: IntArray): Int {
+            val stack: Stack<Int> = Stack()
+            var currMax = 0
+            for (i in 0..arr.size - 1) {
+                if (stack.isEmpty() || arr[i] >= stack.peek()) {
+                    stack.add(arr[i])
+                    currMax = arr[i]
+                } else {
+                    while (!stack.isEmpty() && arr[i] < stack.peek()) {
+                        stack.removeLast()
+                    }
+                    stack.add(currMax)
+                }
+            }
+            return stack.size
         }
     }
 }
