@@ -62,5 +62,35 @@ class Question_3219_Minimum_Cost_for_Cutting_Cake_II {
             }
             return ans
         }
+
+        fun minimumCostAnotherSolution(m: Int, n: Int, horizontalCut: IntArray, verticalCut: IntArray): Long {
+            var ans = 0L
+            var cutV = 1
+            var cutH = 1
+            var sortH = horizontalCut.sorted()
+            var sortV = verticalCut.sorted()
+            var indexH = m - 2
+            var indexV = n - 2
+            while (indexH >= 0 && indexV >= 0) {
+                if (sortH[indexH] >= sortV[indexV]) {
+                    ans += sortH[indexH] * cutV
+                    cutH++
+                    indexH--
+                } else {
+                    ans += sortV[indexV] * cutH
+                    cutV++
+                    indexV--
+                }
+            }
+            while (indexH >= 0) {
+                ans += sortH[indexH] * cutV
+                indexH--
+            }
+            while (indexV >= 0) {
+                ans += sortV[indexV] * cutH
+                indexV--
+            }
+            return ans
+        }
     }
 }
