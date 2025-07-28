@@ -52,5 +52,27 @@ class Question_2321_Maximum_Score_Of_Spliced_Array {
             }
             return max(max(dp1[0][size - 1], dp1[2][size - 1]), max(dp2[0][size - 1], dp2[2][size - 1]))
         }
+
+        fun maximumsSplicedArrayByKadaneAlgorithm(nums1: IntArray, nums2: IntArray): Int {
+            return max(solve(nums1, nums2), solve(nums2, nums1))
+        }
+
+        fun solve(nums1: IntArray, nums2: IntArray): Int {
+            val size = nums1.size
+            val diff = IntArray(size) { 0 }
+            for (i in 0..size - 1) {
+                diff[i] = nums2[i] - nums1[i]
+            }
+            var max = 0
+            var sum = 0
+            for (i in 0..size - 1) {
+                sum += diff[i]
+                max = max(max, sum)
+                if (sum < 0) {
+                    sum = 0
+                }
+            }
+            return nums1.sum() + max
+        }
     }
 }
