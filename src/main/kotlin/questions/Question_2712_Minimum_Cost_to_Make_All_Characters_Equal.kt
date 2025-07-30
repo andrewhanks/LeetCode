@@ -67,5 +67,15 @@ class Question_2712_Minimum_Cost_to_Make_All_Characters_Equal {
             }
             return sum
         }
+
+        fun minimumCostOptimalCodes(s: String): Long {
+            var ans = 0L
+            for (i in 1..s.length - 1) {
+                if (s[i] != s[i - 1]) {
+                    ans += min(i, s.length - i)
+                }
+            }
+            return ans
+        }
     }
 }
