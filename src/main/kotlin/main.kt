@@ -580,7 +580,7 @@ fun main(args: Array<String>) {
 //    Question_3071_Minimum_Operations_to_Write_the_Letter_Y_on_a_Grid.runQuestion()
 //    Question_3076_Shortest_Uncommon_Substring_in_an_Array.runQuestion()
 //    Question_3080_Mark_Elements_on_Array_by_Performing_Queries.runQuestion()
-    Question_3092_Most_Frequent_IDs.runQuestion()
+//    Question_3092_Most_Frequent_IDs.runQuestion()
 //    Question_3107_Minimum_Operations_to_Make_Median_of_Array_Equal_to_K.runQuestion()
 //    Question_3112_Minimum_Time_to_Visit_Disappearing_Nodes.runQuestion()
 //    Question_3132_Find_the_Integer_Added_to_Array_II.runQuestion()
@@ -624,6 +624,7 @@ fun main(args: Array<String>) {
 //    Question_3310_Remove_Methods_From_Project.runQuestion()
 //    Question_3315_Construct_the_Minimum_Bitwise_Array_II.runQuestion()
 //    Question_3341_Find_Minimum_Time_to_Reach_Last_Room_I.runQuestion()
+    Question_3376_Minimum_Time_to_Break_Locks_I.runQuestion()
 //    Question_3380_Maximum_Area_Rectangle_With_Point_Constraints_I.runQuestion()
 //    Question_3387_Maximize_Amount_After_Two_Days_of_Conversions.runQuestion()
 }
