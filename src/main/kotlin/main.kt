@@ -542,6 +542,7 @@ fun main(args: Array<String>) {
 //    Question_2593_Find_Score_of_an_Array_After_Marking_All_Elements.runQuestion()
 //    Question_2607_Make_K_Subarray_Sums_Equal.runQuestion()
 //    Question_2611_Mice_and_Cheese.runQuestion()
+    Question_2615_Sum_of_Distances.runQuestion()
 //    Question_2639_Find_the_Width_of_Columns_of_a_Grid.runQuestion()
 //    Question_2641_Cousins_in_Binary_Tree_II.runQuestion()
 //    Question_2643_Row_With_Maximum_Ones.runQuestion()
@@ -624,7 +625,7 @@ fun main(args: Array<String>) {
 //    Question_3310_Remove_Methods_From_Project.runQuestion()
 //    Question_3315_Construct_the_Minimum_Bitwise_Array_II.runQuestion()
 //    Question_3341_Find_Minimum_Time_to_Reach_Last_Room_I.runQuestion()
-    Question_3376_Minimum_Time_to_Break_Locks_I.runQuestion()
+//    Question_3376_Minimum_Time_to_Break_Locks_I.runQuestion()
 //    Question_3380_Maximum_Area_Rectangle_With_Point_Constraints_I.runQuestion()
 //    Question_3387_Maximize_Amount_After_Two_Days_of_Conversions.runQuestion()
 }
