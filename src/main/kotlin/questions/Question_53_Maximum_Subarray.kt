@@ -50,5 +50,16 @@ class Question_53_Maximum_Subarray {
             }
             return max
         }
+
+        fun maxSubArrayDp(nums: IntArray): Int {
+            val dp = IntArray(nums.size) { 0 }
+            var ans = nums[0]
+            dp[0] = nums[0]
+            for (i in 1..nums.size - 1) {
+                dp[i] = max(nums[i], dp[i - 1] + nums[i])
+                ans = max(ans, dp[i])
+            }
+            return ans
+        }
     }
 }
