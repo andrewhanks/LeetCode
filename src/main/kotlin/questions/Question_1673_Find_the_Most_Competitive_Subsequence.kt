@@ -34,5 +34,25 @@ class Question_1673_Find_the_Most_Competitive_Subsequence {
             }
             return result.toIntArray()
         }
+
+        fun mostCompetitiveCountDropNumber(nums: IntArray, k: Int): IntArray {
+            val result: MutableList<Int> = mutableListOf()
+            var drop = nums.size - k
+            for (i in 0..nums.size - 1) {
+                if (result.isEmpty()) {
+                    result.add(nums[i])
+                } else {
+                    while (result.size > 0 && nums[i] < result[result.size - 1] && drop > 0) {
+                        result.removeAt(result.size - 1)
+                        drop--
+                    }
+                    result.add(nums[i])
+                }
+            }
+            while (result.size > k) {
+                result.removeAt(result.size - 1)
+            }
+            return result.toIntArray()
+        }
     }
 }
