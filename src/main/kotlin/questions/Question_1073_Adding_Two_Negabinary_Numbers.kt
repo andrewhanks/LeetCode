@@ -64,5 +64,44 @@ class Question_1073_Adding_Two_Negabinary_Numbers {
             }
             return result.toIntArray()
         }
+
+        fun addNegabinaryHandleOtherBitsInFor(arr1: IntArray, arr2: IntArray): IntArray {
+            arr1.reverse()
+            arr2.reverse()
+            var carry = 0
+            val result: MutableList<Int> = mutableListOf()
+            for (i in 0..max(arr1.size, arr2.size) + 1) {
+                val a = if (i <= arr1.size - 1) {
+                    arr1[i]
+                } else {
+                    0
+                }
+                val b = if (i <= arr2.size - 1) {
+                    arr2[i]
+                } else {
+                    0
+                }
+                result.add(0, abs(a + b + carry) % (-2))
+                if (a + b + carry >= 2) {
+                    carry = -1
+                } else if (a + b + carry < 0) {
+                    carry = 1
+                } else {
+                    carry = 0
+                }
+            }
+            var i = 0
+            while (i <= result.size - 1) {
+                if (result[i] == 1) {
+                    break
+                }
+                if (result[i] == 0 && i != result.size - 1) {
+                    result.removeAt(i)
+                    i--
+                }
+                i++
+            }
+            return result.toIntArray()
+        }
     }
 }
