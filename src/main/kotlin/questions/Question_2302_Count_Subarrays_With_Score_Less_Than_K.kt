@@ -24,6 +24,7 @@ class Question_2302_Count_Subarrays_With_Score_Less_Than_K {
                 if (nums[i - 1] >= k) {
                     continue
                 }
+                // start, end and mid are numbers of subarray
                 var start = 1
                 var end = nums.size - i + 1
                 while (start < end) {
@@ -35,6 +36,21 @@ class Question_2302_Count_Subarrays_With_Score_Less_Than_K {
                     }
                 }
                 ans += start
+            }
+            return ans
+        }
+
+        fun countSubarraysWithTwoPointers(nums: IntArray, k: Long): Long {
+            var ans = 0L
+            var sum = 0L
+            var start = 0
+            for (end in 0..nums.size - 1) {
+                sum = sum + nums[end]
+                while (sum * (end - start + 1) >= k) {
+                    sum -= nums[start]
+                    start++
+                }
+                ans += end - start + 1
             }
             return ans
         }
