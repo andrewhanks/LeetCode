@@ -1,4 +1,4 @@
-import questions.*
+import questions.Question_1345_Jump_Game_IV
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
@@ -379,6 +379,7 @@ fun main(args: Array<String>) {
 //    Question_1319_Number_of_Operations_to_Make_Network_Connected.runQuestion()
 //    Question_1332_Remove_Palindromic_Subsequences.runQuestion()
 //    Question_1339_Maximum_Product_of_Splitted_Binary_Tree.runQuestion()
+    Question_1345_Jump_Game_IV.runQuestion()
 //    Question_1346_Check_If_N_and_Its_Double_Exist.runQuestion()
 //    Question_1351_Count_Negative_Numbers_in_a_Sorted_Matrix.runQuestion()
 //    Question_1356_Sort_Integers_by_The_Number_of_1_Bits.runQuestion()
@@ -494,7 +495,7 @@ fun main(args: Array<String>) {
 //    Question_2261_K_Divisible_Elements_Subarrays.runQuestion()
 //    Question_2275_Largest_Combination_With_Bitwise_AND_Greater_Than_Zero.runQuestion()
 //    Question_2280_Minimum_Lines_to_Represent_a_Line_Chart.runQuestion()
-    Question_2302_Count_Subarrays_With_Score_Less_Than_K.runQuestion()
+//    Question_2302_Count_Subarrays_With_Score_Less_Than_K.runQuestion()
 //    Question_2304_Minimum_Path_Cost_in_a_Grid.runQuestion()
 //    Question_2316_Count_Unreachable_Pairs_of_Nodes_in_an_Undirected_Graph.runQuestion()
 //    Question_2317_Maximum_XOR_After_Operations.runQuestion()
