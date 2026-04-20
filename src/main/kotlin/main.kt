@@ -1,4 +1,4 @@
-import questions.Question_1345_Jump_Game_IV
+import questions.*
 
 fun main(args: Array<String>) {
 //    Question_1_Two_Sum.runQuestion()
