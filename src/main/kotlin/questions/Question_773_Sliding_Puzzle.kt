@@ -86,5 +86,53 @@ class Question_773_Sliding_Puzzle {
             }
             return true
         }
+
+        fun slidingPuzzleWithString(board: Array<IntArray>): Int {
+            val dirs = listOf(listOf(1, 0), listOf(-1, 0), listOf(0, 1), listOf(0, -1))
+            val queue: Queue<String> = LinkedList()
+            val visited: MutableList<String> = mutableListOf()
+            var str = ""
+            for (i in 0..board.size - 1) {
+                for (j in 0..board[0].size - 1) {
+                    str += board[i][j]
+                }
+            }
+            if (str == "123450") {
+                return 0
+            }
+            queue.add(str)
+            visited.add(str)
+            var times = 0
+            while (!queue.isEmpty()) {
+                val size = queue.size
+                for (i in 0..size - 1) {
+                    val item = queue.remove()
+                    val index = item.indexOf('0')
+                    for (dir in dirs) {
+                        val x = index / 3 + dir[0]
+                        val y = index % 3 + dir[1]
+                        if (x < 0 || x > board.size - 1 || y < 0 || y > board[0].size - 1) {
+                            continue
+                        }
+                        val index2 = x * 3 + y
+                        val temp = StringBuilder(item)
+                        val number = temp[index]
+                        temp[index] = temp[index2]
+                        temp[index2] = number
+                        val tempStr = temp.toString()
+                        if (tempStr == "123450") {
+                            return times + 1
+                        }
+                        if (visited.contains(tempStr)) {
+                            continue
+                        }
+                        visited.add(tempStr)
+                        queue.add(tempStr)
+                    }
+                }
+                times++
+            }
+            return -1
+        }
     }
 }
