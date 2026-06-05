@@ -1,5 +1,7 @@
 package questions
 
+import java.util.*
+
 class Question_795_Number_of_Subarrays_with_Bounded_Maximum {
 
     companion object {
@@ -33,6 +35,37 @@ class Question_795_Number_of_Subarrays_with_Bounded_Maximum {
                         j = cur
                     }
                     ans = ans + j - i + 1
+                }
+            }
+            return ans
+        }
+
+        fun numSubarrayBoundedMaxAnotherSolution(nums: IntArray, left: Int, right: Int): Int {
+            val size = nums.size
+            val stack = Stack<Int>()
+            val preGreaterOrEqual = IntArray(size) { -1 }
+            val nextGreater = IntArray(size) { size }
+            for (i in 0..size - 1) {
+                while (!stack.isEmpty() && nums[stack.peek()] < nums[i]) {
+                    nextGreater[stack.peek()] = i
+                    stack.removeLast()
+                }
+                stack.add(i)
+            }
+            stack.clear()
+            for (i in size - 1 downTo 0) {
+                while (!stack.isEmpty() && nums[stack.peek()] <= nums[i]) {
+                    preGreaterOrEqual[stack.peek()] = i
+                    stack.removeLast()
+                }
+                stack.add(i)
+            }
+            var ans = 0
+            for (i in 0..size - 1) {
+                if (nums[i] >= left && nums[i] <= right) {
+                    val j = preGreaterOrEqual[i]
+                    val k = nextGreater[i]
+                    ans += (i - j) * (k - i)
                 }
             }
             return ans
