@@ -40,6 +40,29 @@ class Question_795_Number_of_Subarrays_with_Bounded_Maximum {
             return ans
         }
 
+        fun numSubarrayBoundedMaxWithResetToMinusOne(nums: IntArray, left: Int, right: Int): Int {
+            var i = -1
+            var j = -1
+            var ans = 0
+            for (cur in 0..nums.size - 1) {
+                if (nums[cur] > right) {
+                    i = -1
+                    j = -1
+                } else {
+                    if (i == -1) {
+                        i = cur
+                    }
+                    if (nums[cur] >= left) {
+                        j = cur
+                    }
+                    if (i != -1 && j != -1) {
+                        ans += j - i + 1
+                    }
+                }
+            }
+            return ans
+        }
+
         fun numSubarrayBoundedMaxAnotherSolution(nums: IntArray, left: Int, right: Int): Int {
             val size = nums.size
             val stack = Stack<Int>()
