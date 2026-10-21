@@ -32,5 +32,19 @@ class Question_2787_Ways_to_Express_an_Integer_as_Sum_of_Powers {
             // println("dp = ${dp.contentDeepToString()}")
             return dp[n][n].toInt()
         }
+
+        fun numberOfWaysOneDimension(n: Int, x: Int): Int {
+            val mode = 1000000007
+            val dp: LongArray = LongArray(n + 1) { 0L }
+            dp[0] = 1L
+            for (i in 1..n) {
+                val prev = i.toDouble().pow(x).toInt()
+                for (j in n downTo prev) {
+                    dp[j] = dp[j] + dp[j - prev]
+                    dp[j] = dp[j] % mode
+                }
+            }
+            return dp[n].toInt()
+        }
     }
 }
