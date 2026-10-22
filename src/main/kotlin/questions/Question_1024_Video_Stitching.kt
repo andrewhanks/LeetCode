@@ -8,7 +8,8 @@ class Question_1024_Video_Stitching {
     companion object {
 
         fun runQuestion() {
-            // clips = [[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], time = 10
+//            Input: clips = [[0,2],[4,6],[8,10],[1,9],[1,5],[5,9]], time = 10
+//            Output: 3
             val inpuArray = arrayOf(
                 intArrayOf(0, 2),
                 intArrayOf(4, 6),
