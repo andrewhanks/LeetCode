@@ -52,5 +52,49 @@ class Question_2055_Plates_Between_Candles {
             }
             return candlePos[end] - candlePos[start] - end + start
         }
+
+        fun platesBetweenCandlesAnotherSolution(s: String, queries: Array<IntArray>): IntArray {
+            val n = s.length
+            val presum = IntArray(n) { 0 }
+            var sum = 0
+            for (i in 0..s.length - 1) {
+                if (s[i] == '*') {
+                    sum += 1
+                    presum[i] = sum
+                } else {
+                    presum[i] = sum
+                }
+            }
+            val left = IntArray(n) { 0 }
+            var pos = -1
+            for (i in 0..s.length - 1) {
+                if (s[i] == '|') {
+                    pos = i
+                }
+                left[i] = pos
+            }
+            pos = n
+            val right = IntArray(n) { 0 }
+            for (i in s.length - 1 downTo 0) {
+                if (s[i] == '|') {
+                    pos = i
+                }
+                right[i] = pos
+            }
+            val ret = IntArray(queries.size) { 0 }
+            for (i in 0..queries.size - 1) {
+                val a = queries[i][0]
+                val b = queries[i][1]
+                val start = right[a]
+                val end = left[b]
+                // println("a = $a, b = $b, start = $start, end = $end")
+                if (start < end) {
+                    ret[i] = presum[end] - presum[start]
+                } else {
+                    ret[i] = 0
+                }
+            }
+            return ret
+        }
     }
 }
