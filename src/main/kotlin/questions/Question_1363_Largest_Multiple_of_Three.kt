@@ -125,5 +125,51 @@ class Question_1363_Largest_Multiple_of_Three {
                 return ret
             }
         }
+
+        fun largestMultipleOfThreeWithBackTracking(digits: IntArray): String {
+            digits.sortDescending()
+            val n = digits.size
+            val dp = Array(3) { IntArray(n + 1) { 0 } }
+            val pick = Array(3) { Array<Boolean>(n + 1) { false } }
+            val prev = Array(3) { IntArray(n + 1) { 0 } }
+            dp[0][0] = 0
+            dp[1][0] = Int.MIN_VALUE
+            dp[2][0] = Int.MIN_VALUE
+            for (i in 1..n) {
+                for (j in 0..2) {
+                    val digit = digits[i - 1]
+                    val prevJ = (j - digit % 3 + 3) % 3
+                    val picked = dp[prevJ][i - 1]
+                    val notPicked = dp[j][i - 1]
+                    if (notPicked >= picked + 1) {
+                        dp[j][i] = notPicked
+                        pick[j][i] = false
+                        prev[j][i] = j
+                    } else {
+                        dp[j][i] = picked + 1
+                        pick[j][i] = true
+                        prev[j][i] = prevJ
+                    }
+                }
+            }
+            var ret = ""
+            var prevJ = 0
+            for (i in n downTo 1) {
+                if (pick[prevJ][i]) {
+                    ret += digits[i - 1]
+                }
+                prevJ = prev[prevJ][i]
+            }
+
+            val answer = ret.reversed()
+
+            if (answer.isEmpty()) {
+                return ""
+            } else if (answer[0] == '0') {
+                return "0"
+            } else {
+                return answer
+            }
+        }
     }
 }
