@@ -85,5 +85,45 @@ class Question_1363_Largest_Multiple_of_Three {
             }
             return answer
         }
+
+        fun largestMultipleOfThreeWithDp(digits: IntArray): String {
+            digits.sortDescending()
+            val dp = Array<String>(3) { "" }
+            dp[0] = ""
+            dp[1] = "#"
+            dp[2] = "#"
+            for (i in 1..digits.size) {
+                val prevDp = dp.toMutableList()
+                for (j in 0..2) {
+                    val digit = digits[i - 1]
+                    val k = digit % 3
+                    val prevJ = ((j - k) + 3) % 3
+                    val picked = prevDp[prevJ]
+                    val notPicked = prevDp[j]
+                    // println("picked = $picked, notPicked = $notPicked")
+                    dp[j] = if (notPicked == "#" && picked == "#") {
+                        "#"
+                    } else if (notPicked == "#") {
+                        picked + digit
+                    } else if (picked == "#") {
+                        notPicked
+                    } else if (picked.length + 1 <= notPicked.length) {
+                        notPicked
+                    } else {
+                        picked + digit
+                    }
+                }
+                // println("dp = ${dp.contentToString()}")
+            }
+            // println("dp = ${dp.contentToString()}")
+            val ret = dp[0]
+            if (ret.length == 0) {
+                return ""
+            } else if (ret[0] == '0') {
+                return "0"
+            } else {
+                return ret
+            }
+        }
     }
 }
