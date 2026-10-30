@@ -39,5 +39,19 @@ class Question_1458_Max_Dot_Product_of_Two_Subsequences {
             }
             return ret
         }
+
+        fun maxDotProductWithMaxPaired(nums1: IntArray, nums2: IntArray): Int {
+            val m = nums1.size
+            val n = nums2.size
+            val dp = Array(m + 1) { IntArray(n + 1) { Int.MIN_VALUE } }
+            for (i in 1..m) {
+                for (j in 1..n) {
+                    val notPaired = max(dp[i][j - 1], dp[i - 1][j])
+                    val paired = max(0, dp[i - 1][j - 1]) + nums1[i - 1] * nums2[j - 1]
+                    dp[i][j] = max(notPaired, paired)
+                }
+            }
+            return dp[m][n]
+        }
     }
 }
