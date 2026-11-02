@@ -59,5 +59,44 @@ class Question_1298_Maximum_Candies_You_Can_Get_from_Boxes {
             }
             return answer
         }
+
+        fun maxCandiesWithOpenedParam(
+            status: IntArray,
+            candies: IntArray,
+            keys: Array<IntArray>,
+            containedBoxes: Array<IntArray>,
+            initialBoxes: IntArray
+        ): Int {
+            val openedBoxes = BooleanArray(status.size) { false }
+            val ownKeys = BooleanArray(status.size) { false }
+            val ownBoxes: Queue<Int> = LinkedList(initialBoxes.asList())
+            var answer = 0
+            var opened = true
+            while (!ownBoxes.isEmpty() && opened) {
+                opened = false
+                val size = ownBoxes.size
+                for (i in 0..size - 1) {
+                    val currentBox = ownBoxes.remove()
+                    // println("status[$currentBox] = ${status[currentBox]}, ownKeys[$currentBox] = ${ownKeys[currentBox]}")
+                    if (status[currentBox] == 1 || (status[currentBox] == 0 && ownKeys[currentBox] == true)) {
+                        opened = true
+                        openedBoxes[currentBox] = true
+                        answer += candies[currentBox]
+                        for (box in containedBoxes[currentBox]) {
+                            if (!ownBoxes.contains(box)) {
+                                ownBoxes.add(box)
+                            }
+                        }
+                        for (key in keys[currentBox]) {
+                            ownKeys[key] = true
+                        }
+                    } else {
+                        ownBoxes.add(currentBox)
+                    }
+                    // println("answer = $answer, ownBoxes.size = ${ownBoxes.size}")
+                }
+            }
+            return answer
+        }
     }
 }
