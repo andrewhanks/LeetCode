@@ -7,6 +7,8 @@ class Question_1047_Remove_All_Adjacent_Duplicates_In_String {
     companion object {
 
         fun runQuestion() {
+//            Input: s = "azxxzy"
+//            Output: "ay"
             val string = "azxxzy"
             val result = removeDuplicates(string)
             println("Question 1047: $result")
