@@ -89,5 +89,29 @@ class Question_1754_Largest_Merge_Of_Two_Strings {
             }
             return ans.toString()
         }
+
+        fun largestMergeByComparingRestString(word1: String, word2: String): String {
+            var ans = StringBuilder()
+            var i = 0
+            var j = 0
+            while (i <= word1.length - 1 && j <= word2.length - 1) {
+                if (word1.substring(i..word1.length - 1) > word2.substring(j..word2.length - 1)) {
+                    ans.append(word1[i])
+                    i++
+                } else {
+                    ans.append(word2[j])
+                    j++
+                }
+            }
+            while (i <= word1.length - 1) {
+                ans.append(word1[i])
+                i++
+            }
+            while (j <= word2.length - 1) {
+                ans.append(word2[j])
+                j++
+            }
+            return ans.toString()
+        }
     }
 }
